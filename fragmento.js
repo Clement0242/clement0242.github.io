@@ -1,7 +1,7 @@
 class miComponente123 extends HTMLElement {   
     constructor() {
         super();
-        this.innerHTML= <p>the Chalenge</p>;
+        this.innerHTML= <p>the Challenge</p>;
     }
 }
 
