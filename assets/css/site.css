@@ -393,7 +393,7 @@ section + section { border-top: 1px solid var(--rule); }
 }
 .releve-tete b { color: var(--ink); font-weight: 700; }
 /* Ici le chasse-fixe est légitime : c'est une lecture d'appareil. */
-.releve-tete span { margin-left: auto; font-family: var(--mono); font-weight: 400; letter-spacing: 0.04em; }
+.releve-tete span { margin-left: auto; font-family: var(--mono); font-weight: 400; letter-spacing: 0.04em; white-space: nowrap; }
 
 #as-profil { display: block; width: 100%; height: auto; }
 
