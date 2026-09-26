@@ -235,17 +235,21 @@ section { padding-block: clamp(64px, 10vw, 140px); position: relative; }
    pas un dégradé posé sur un fond. Bornées au bandeau, coupées net en
    mouvement réduit. */
 .halos { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-.halo { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; will-change: transform; }
+.halo { position: absolute; border-radius: 50%; filter: blur(84px); opacity: 0.8; will-change: transform; }
+/* ⚠️ Positions choisies APRÈS mesure : posé en haut à droite, le halo vert
+   tombait exactement derrière le portrait, qui le masquait entièrement — on
+   payait une animation continue pour un effet que personne ne voyait.
+   Il passe derrière le nom, là où il y a de la place. */
 .halo.a {
-  width: 46vw; height: 46vw; min-width: 340px; min-height: 340px;
-  background: radial-gradient(circle, rgba(204, 255, 61, 0.34), transparent 68%);
-  top: -14%; right: -8%;
+  width: 58vw; height: 52vw; min-width: 420px; min-height: 380px;
+  background: radial-gradient(circle, rgba(204, 255, 61, 0.5), transparent 66%);
+  top: -26%; left: 22%;
   animation: derive-a 22s ease-in-out infinite alternate;
 }
 .halo.b {
-  width: 40vw; height: 40vw; min-width: 300px; min-height: 300px;
-  background: radial-gradient(circle, rgba(91, 156, 255, 0.3), transparent 68%);
-  bottom: -18%; left: -10%;
+  width: 48vw; height: 44vw; min-width: 340px; min-height: 320px;
+  background: radial-gradient(circle, rgba(91, 156, 255, 0.46), transparent 66%);
+  bottom: -30%; left: -14%;
   animation: derive-b 27s ease-in-out infinite alternate;
 }
 @keyframes derive-a { to { transform: translate3d(-9%, 12%, 0) scale(1.14); } }
@@ -263,12 +267,55 @@ section { padding-block: clamp(64px, 10vw, 140px); position: relative; }
   mask-image: radial-gradient(ellipse 80% 62% at 50% 42%, #000 20%, transparent 78%);
   opacity: 0.6;
 }
-.quart > * { position: relative; z-index: 1; }
+/* ⚠️ :not(.halos) est INDISPENSABLE. Sans lui, cette règle s'applique aussi
+   au conteneur des halos et écrase son position:absolute — même spécificité
+   (0,1,0), écrite plus bas, donc c'est elle qui gagne. Mesuré : .halos
+   tombait à 0x0 et les deux nappes lumineuses ne s'affichaient nulle part,
+   alors que leur animation continuait de tourner. Le piège classique de deux
+   règles de même poids : trancher par la spécificité, jamais par l'ordre. */
+.quart > *:not(.halos) { position: relative; z-index: 1; }
 /* INDISPENSABLE : .quart etant un conteneur flex, .enveloppe s'y reduit a
    la largeur de son contenu et son margin-inline:auto la recentre — le
    bandeau se decalait de 320 px par rapport a toutes les autres sections.
    Le defaut ne remonte ni en debordement ni en erreur : il faut mesurer. */
 .quart > .enveloppe { width: 100%; }
+
+/* --- LE PORTRAIT ---------------------------------------------------------
+   Le bandeau passe en deux colonnes. Le portrait est plafonné à 280 px :
+   le fichier fait 400x400, l'afficher plus grand le rendrait mou, et flou
+   sur un écran à haute densité. La bordure claire le détache de la nuit,
+   le liseré acide ne touche qu'une arête — la lumière ne cerne pas. */
+.quart-grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+}
+.portrait {
+  position: relative;
+  width: clamp(132px, 21vw, 280px);
+  aspect-ratio: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--ligne-2);
+  box-shadow: var(--ombre-3);
+  flex: 0 0 auto;
+  margin: 0;
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* L'arête éclairée : un filet acide en bas, pas un contour complet. */
+.portrait::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: linear-gradient(to right, transparent, var(--acide), transparent);
+}
+
+@media (max-width: 900px) {
+  /* Sur mobile le portrait passe AU-DESSUS du nom et se réduit : posé à
+     côté d'un titre de 3 rem, il écraserait la colonne de texte. */
+  .quart-grille { grid-template-columns: 1fr; gap: 26px; justify-items: start; }
+  .portrait { order: -1; width: clamp(104px, 28vw, 150px); border-radius: 16px; }
+}
 
 .quart h1 {
   font-size: var(--t-geant); font-weight: 800;

@@ -59,7 +59,26 @@ html:not(.js) .cv-actions { display: none; }
 
 /* ------------------------------------------------------------------ EN-TÊTE */
 
-.cv-tete { border-bottom: 2px solid var(--p-encre); padding-bottom: 17px; margin-bottom: 24px; }
+/* L'en-tête passe en grille pour loger la photo : la photo à droite, le nom
+   et les coordonnées à gauche. En grille plutôt qu'en flottant, sinon la
+   photo déborde du filet inférieur à l'impression. */
+.cv-tete {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 20px;
+  align-items: start;
+  border-bottom: 2px solid var(--p-encre);
+  padding-bottom: 17px; margin-bottom: 24px;
+}
+.cv-tete > :not(.cv-photo) { grid-column: 1; }
+.cv-photo {
+  grid-column: 2; grid-row: 1 / span 3;
+  width: 84px; height: 84px;
+  object-fit: cover; border-radius: 10px;
+  align-self: center;
+}
+@media (max-width: 480px) { .cv-photo { width: 62px; height: 62px; } }
+@media print { .cv-photo { width: 21mm; height: 21mm; } }
 .cv-tete h1 {
   font-family: var(--display);
   font-size: clamp(1.9rem, 4.4vw, 2.8rem);

@@ -81,6 +81,10 @@ ils ne doivent pas se retrouver en ligne.
 - ⚠️ **`.cv-bloc` doit garder `padding-block: 0`.** `site.css` pose
   `section { padding-block: clamp(64px, 10vw, 140px) }`, et les blocs du CV sont
   des `<section>` : sans cette remise à zéro le CV s'étire sur quatre pages.
+- ⚠️ **`.quart > *:not(.halos)` doit garder son `:not()`.** Sans lui, la règle
+  écrase le `position: absolute` du conteneur des halos (même spécificité,
+  écrite plus bas) : il tombe à 0×0, les deux nappes lumineuses disparaissent,
+  et leur animation continue de tourner pour rien.
 - ⚠️ **Ne pas remettre `overflow-x: hidden` sur `body`** : cela casse la barre
   de navigation collante sur Safari. Les halos sont déjà bornés par `.quart`.
 - **Contrastes vérifiés** au rendu réel, composite alpha compris. `--gris-2` et
