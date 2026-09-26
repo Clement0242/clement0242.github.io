@@ -1,0 +1,8 @@
+# CV taillés pour une entreprise précise : ils ne doivent JAMAIS partir en
+# ligne. Le CV publié est la page cv/, volontairement sans destinataire.
+CV_Clement_Verdier_*.pdf
+*.local.*
+
+# Systèmes
+Thumbs.db
+.DS_Store

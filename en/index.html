@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clément Verdier — Data engineer, elite sport performance</title>
+<meta name="description" content="Data engineer (Polytech Lille) and sport scientist (MSc in performance optimisation). Federation data governance, sensor pipelines, training-load and potential modelling. Research data engineer at INSEP, Paris.">
+<meta name="author" content="Clément Verdier">
+<link rel="canonical" href="https://clement0242.github.io/en/">
+<meta name="theme-color" content="#F3F0E8">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Clément Verdier — Data engineer, elite sport performance">
+<meta property="og:description" content="Federation data governance, sensor pipelines, training-load and athlete-potential modelling.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://clement0242.github.io/en/">
+<link rel="alternate" hreflang="fr" href="https://clement0242.github.io/">
+<link rel="alternate" hreflang="en" href="https://clement0242.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://clement0242.github.io/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.className += " js";</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315191E'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-weight='bold' font-size='17' fill='%23F3F0E8' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="evite" href="#contenu">Skip to content</a>
+
+<header class="barre">
+  <div class="barre-in">
+    <a class="sceau" href="./"><i>CV</i> Clément Verdier</a>
+    <nav class="liens" aria-label="Site sections">
+      <a href="#work">What I do</a>
+      <a href="#career">Career</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="langue">
+      <a href="../" hreflang="fr">FR</a>
+      <a href="./" aria-current="true" hreflang="en">EN</a>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <!-- ============================================================ HERO -->
+  <section class="quart">
+    <div class="enveloppe quart-grille">
+
+      <div>
+        <h1>Clément<br><em>Verdier</em></h1>
+
+        <p class="fonction">
+          I put data where performance is actually decided:
+          <b>federation-level governance</b>, sensor pipelines,
+          <b>modelling the effort itself</b>.
+          <span class="ou">Research data engineer at INSEP, Paris.</span>
+        </p>
+
+        <dl class="pont">
+          <div>
+            <dt>Engineer</dt>
+            <dd>Computer science &amp; statistics<br>Polytech Lille</dd>
+          </div>
+          <div>
+            <dt>Sport scientist</dt>
+            <dd>MSc performance optimisation<br>Saint-Étienne</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          <a class="bouton" href="cv/">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v13m0 0l-4.5-4.5M12 16l4.5-4.5M4 20h16"/>
+            </svg>
+            View résumé
+          </a>
+          <a class="bouton creux" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 6 9-6"/>
+            </svg>
+            Get in touch
+          </a>
+        </div>
+      </div>
+
+      <figure class="releve" style="margin:0">
+        <div class="releve-tete">
+          <b>Acceleration–speed profile</b>
+          <span>GPS · 10 Hz</span>
+        </div>
+        <h2 id="as-t" class="sr-only">Individual acceleration–speed profile</h2>
+        <p id="as-d" class="sr-only">
+          Scatter plot relating instantaneous running speed to the acceleration
+          produced, derived from GPS data. The regression line intercepts the
+          acceleration axis at A₀ = 7.4 m·s⁻² (theoretical maximal acceleration)
+          and the speed axis at S₀ = 9.6 m·s⁻¹ (theoretical maximal running speed).
+          The orientation of that line describes the athlete's mechanical profile.
+          Method illustration: the values plotted here are simulated. No real
+          athlete data is published on this site.
+        </p>
+        <svg id="as-profil" viewBox="0 0 560 360" role="img" aria-labelledby="as-t as-d">
+          <line class="g-grille" x1="97.6" y1="24" x2="97.6" y2="316.0"/>
+          <line class="g-grille" x1="141.3" y1="24" x2="141.3" y2="316.0"/>
+          <line class="g-grille" x1="184.9" y1="24" x2="184.9" y2="316.0"/>
+          <line class="g-grille" x1="228.5" y1="24" x2="228.5" y2="316.0"/>
+          <line class="g-grille" x1="272.2" y1="24" x2="272.2" y2="316.0"/>
+          <line class="g-grille" x1="315.8" y1="24" x2="315.8" y2="316.0"/>
+          <line class="g-grille" x1="359.5" y1="24" x2="359.5" y2="316.0"/>
+          <line class="g-grille" x1="403.1" y1="24" x2="403.1" y2="316.0"/>
+          <line class="g-grille" x1="446.7" y1="24" x2="446.7" y2="316.0"/>
+          <line class="g-grille" x1="490.4" y1="24" x2="490.4" y2="316.0"/>
+          <line class="g-grille" x1="534.0" y1="24" x2="534.0" y2="316.0"/>
+          <line class="g-grille" x1="54" y1="281.6" x2="534.0" y2="281.6"/>
+          <line class="g-grille" x1="54" y1="247.3" x2="534.0" y2="247.3"/>
+          <line class="g-grille" x1="54" y1="212.9" x2="534.0" y2="212.9"/>
+          <line class="g-grille" x1="54" y1="178.6" x2="534.0" y2="178.6"/>
+          <line class="g-grille" x1="54" y1="144.2" x2="534.0" y2="144.2"/>
+          <line class="g-grille" x1="54" y1="109.9" x2="534.0" y2="109.9"/>
+          <line class="g-grille" x1="54" y1="75.5" x2="534.0" y2="75.5"/>
+          <line class="g-grille" x1="54" y1="41.2" x2="534.0" y2="41.2"/>
+          <rect class="g-cadre" x="54" y="24" width="480.0" height="292.0"/>
+          <text class="g-axe" x="54.0" y="331.0" text-anchor="middle">0</text>
+          <text class="g-axe" x="141.3" y="331.0" text-anchor="middle">2</text>
+          <text class="g-axe" x="228.5" y="331.0" text-anchor="middle">4</text>
+          <text class="g-axe" x="315.8" y="331.0" text-anchor="middle">6</text>
+          <text class="g-axe" x="403.1" y="331.0" text-anchor="middle">8</text>
+          <text class="g-axe" x="490.4" y="331.0" text-anchor="middle">10</text>
+          <text class="g-axe" x="45" y="319.2" text-anchor="end">0</text>
+          <text class="g-axe" x="45" y="250.5" text-anchor="end">2</text>
+          <text class="g-axe" x="45" y="181.8" text-anchor="end">4</text>
+          <text class="g-axe" x="45" y="113.1" text-anchor="end">6</text>
+          <text class="g-axe" x="45" y="44.4" text-anchor="end">8</text>
+          <text class="g-titre" x="294.0" y="352.0" text-anchor="middle">Speed — m·s⁻¹</text>
+          <text class="g-titre" x="15" y="170.0" text-anchor="middle" transform="rotate(-90 15 170.0)">Acceleration — m·s⁻²</text>
+          <circle class="g-point" cx="70.7" cy="81.0" r="2.6" style="animation-delay:0.250s"/>
+          <circle class="g-point" cx="75.0" cy="117.7" r="2.6" style="animation-delay:0.258s"/>
+          <circle class="g-point" cx="79.5" cy="112.4" r="2.6" style="animation-delay:0.266s"/>
+          <circle class="g-point" cx="80.8" cy="90.7" r="2.6" style="animation-delay:0.274s"/>
+          <circle class="g-point" cx="85.1" cy="103.6" r="2.6" style="animation-delay:0.282s"/>
+          <circle class="g-point" cx="89.4" cy="84.7" r="2.6" style="animation-delay:0.290s"/>
+          <circle class="g-point" cx="90.3" cy="85.7" r="2.6" style="animation-delay:0.298s"/>
+          <circle class="g-point" cx="90.8" cy="127.3" r="3.3" style="animation-delay:0.306s"/>
+          <circle class="g-point" cx="94.1" cy="86.3" r="2.6" style="animation-delay:0.314s"/>
+          <circle class="g-point" cx="95.0" cy="128.7" r="2.6" style="animation-delay:0.322s"/>
+          <circle class="g-point" cx="97.2" cy="103.1" r="2.6" style="animation-delay:0.330s"/>
+          <circle class="g-point" cx="102.7" cy="107.3" r="3.3" style="animation-delay:0.338s"/>
+          <circle class="g-point" cx="116.3" cy="103.6" r="2.6" style="animation-delay:0.346s"/>
+          <circle class="g-point" cx="117.9" cy="106.6" r="2.6" style="animation-delay:0.354s"/>
+          <circle class="g-point" cx="120.9" cy="101.6" r="2.6" style="animation-delay:0.362s"/>
+          <circle class="g-point" cx="120.9" cy="115.5" r="2.6" style="animation-delay:0.369s"/>
+          <circle class="g-point" cx="121.6" cy="131.9" r="3.3" style="animation-delay:0.377s"/>
+          <circle class="g-point" cx="122.4" cy="106.7" r="2.6" style="animation-delay:0.385s"/>
+          <circle class="g-point" cx="126.4" cy="152.8" r="2.6" style="animation-delay:0.393s"/>
+          <circle class="g-point" cx="127.8" cy="107.3" r="3.3" style="animation-delay:0.401s"/>
+          <circle class="g-point" cx="129.6" cy="106.7" r="2.6" style="animation-delay:0.409s"/>
+          <circle class="g-point" cx="130.0" cy="121.9" r="2.6" style="animation-delay:0.417s"/>
+          <circle class="g-point" cx="147.5" cy="119.3" r="2.6" style="animation-delay:0.425s"/>
+          <circle class="g-point" cx="149.6" cy="127.8" r="2.6" style="animation-delay:0.433s"/>
+          <circle class="g-point" cx="151.5" cy="128.1" r="2.6" style="animation-delay:0.441s"/>
+          <circle class="g-point" cx="158.4" cy="139.0" r="2.6" style="animation-delay:0.449s"/>
+          <circle class="g-point" cx="169.3" cy="136.2" r="2.6" style="animation-delay:0.457s"/>
+          <circle class="g-point" cx="175.3" cy="156.0" r="2.6" style="animation-delay:0.465s"/>
+          <circle class="g-point" cx="180.5" cy="148.2" r="3.3" style="animation-delay:0.473s"/>
+          <circle class="g-point" cx="185.0" cy="155.5" r="2.6" style="animation-delay:0.481s"/>
+          <circle class="g-point" cx="185.1" cy="143.5" r="2.6" style="animation-delay:0.489s"/>
+          <circle class="g-point" cx="186.3" cy="149.9" r="2.6" style="animation-delay:0.497s"/>
+          <circle class="g-point" cx="190.9" cy="150.3" r="2.6" style="animation-delay:0.505s"/>
+          <circle class="g-point" cx="198.6" cy="152.6" r="2.6" style="animation-delay:0.513s"/>
+          <circle class="g-point" cx="199.5" cy="168.5" r="2.6" style="animation-delay:0.521s"/>
+          <circle class="g-point" cx="206.2" cy="194.2" r="2.6" style="animation-delay:0.529s"/>
+          <circle class="g-point" cx="206.7" cy="157.0" r="2.6" style="animation-delay:0.537s"/>
+          <circle class="g-point" cx="211.7" cy="164.3" r="2.6" style="animation-delay:0.545s"/>
+          <circle class="g-point" cx="213.4" cy="182.2" r="2.6" style="animation-delay:0.553s"/>
+          <circle class="g-point" cx="214.7" cy="161.2" r="2.6" style="animation-delay:0.561s"/>
+          <circle class="g-point" cx="214.9" cy="171.0" r="2.6" style="animation-delay:0.569s"/>
+          <circle class="g-point" cx="215.3" cy="162.6" r="2.6" style="animation-delay:0.577s"/>
+          <circle class="g-point" cx="222.1" cy="193.5" r="2.6" style="animation-delay:0.585s"/>
+          <circle class="g-point" cx="228.9" cy="176.3" r="2.6" style="animation-delay:0.592s"/>
+          <circle class="g-point" cx="230.9" cy="173.9" r="2.6" style="animation-delay:0.600s"/>
+          <circle class="g-point" cx="237.3" cy="204.0" r="2.6" style="animation-delay:0.608s"/>
+          <circle class="g-point" cx="237.9" cy="217.9" r="3.3" style="animation-delay:0.616s"/>
+          <circle class="g-point" cx="239.2" cy="172.9" r="3.3" style="animation-delay:0.624s"/>
+          <circle class="g-point" cx="245.2" cy="182.0" r="2.6" style="animation-delay:0.632s"/>
+          <circle class="g-point" cx="248.7" cy="197.1" r="3.3" style="animation-delay:0.640s"/>
+          <circle class="g-point" cx="250.3" cy="188.9" r="2.6" style="animation-delay:0.648s"/>
+          <circle class="g-point" cx="250.5" cy="205.1" r="2.6" style="animation-delay:0.656s"/>
+          <circle class="g-point" cx="251.5" cy="234.0" r="2.6" style="animation-delay:0.664s"/>
+          <circle class="g-point" cx="252.6" cy="234.4" r="2.6" style="animation-delay:0.672s"/>
+          <circle class="g-point" cx="252.8" cy="189.4" r="3.3" style="animation-delay:0.680s"/>
+          <circle class="g-point" cx="253.7" cy="185.1" r="2.6" style="animation-delay:0.688s"/>
+          <circle class="g-point" cx="254.9" cy="187.6" r="2.6" style="animation-delay:0.696s"/>
+          <circle class="g-point" cx="257.9" cy="193.8" r="3.3" style="animation-delay:0.704s"/>
+          <circle class="g-point" cx="258.9" cy="201.3" r="2.6" style="animation-delay:0.712s"/>
+          <circle class="g-point" cx="262.5" cy="213.0" r="2.6" style="animation-delay:0.720s"/>
+          <circle class="g-point" cx="273.4" cy="202.2" r="3.3" style="animation-delay:0.728s"/>
+          <circle class="g-point" cx="273.9" cy="203.0" r="2.6" style="animation-delay:0.736s"/>
+          <circle class="g-point" cx="278.4" cy="203.5" r="2.6" style="animation-delay:0.744s"/>
+          <circle class="g-point" cx="292.8" cy="255.9" r="2.6" style="animation-delay:0.752s"/>
+          <circle class="g-point" cx="293.1" cy="205.8" r="2.6" style="animation-delay:0.760s"/>
+          <circle class="g-point" cx="293.7" cy="258.4" r="2.6" style="animation-delay:0.768s"/>
+          <circle class="g-point" cx="295.5" cy="251.0" r="2.6" style="animation-delay:0.776s"/>
+          <circle class="g-point" cx="297.2" cy="214.5" r="2.6" style="animation-delay:0.784s"/>
+          <circle class="g-point" cx="298.2" cy="235.5" r="2.6" style="animation-delay:0.792s"/>
+          <circle class="g-point" cx="298.7" cy="224.8" r="2.6" style="animation-delay:0.800s"/>
+          <circle class="g-point" cx="302.6" cy="252.2" r="2.6" style="animation-delay:0.808s"/>
+          <circle class="g-point" cx="303.2" cy="216.6" r="2.6" style="animation-delay:0.815s"/>
+          <circle class="g-point" cx="304.6" cy="224.5" r="2.6" style="animation-delay:0.823s"/>
+          <circle class="g-point" cx="318.6" cy="266.0" r="2.6" style="animation-delay:0.831s"/>
+          <circle class="g-point" cx="319.9" cy="265.4" r="2.6" style="animation-delay:0.839s"/>
+          <circle class="g-point" cx="320.0" cy="236.4" r="2.6" style="animation-delay:0.847s"/>
+          <circle class="g-point" cx="324.5" cy="229.7" r="2.6" style="animation-delay:0.855s"/>
+          <circle class="g-point" cx="326.0" cy="241.8" r="2.6" style="animation-delay:0.863s"/>
+          <circle class="g-point" cx="326.7" cy="233.3" r="2.6" style="animation-delay:0.871s"/>
+          <circle class="g-point" cx="330.1" cy="247.5" r="2.6" style="animation-delay:0.879s"/>
+          <circle class="g-point" cx="332.6" cy="233.4" r="2.6" style="animation-delay:0.887s"/>
+          <circle class="g-point" cx="334.6" cy="239.8" r="3.3" style="animation-delay:0.895s"/>
+          <circle class="g-point" cx="336.7" cy="278.6" r="2.6" style="animation-delay:0.903s"/>
+          <circle class="g-point" cx="337.7" cy="235.1" r="2.6" style="animation-delay:0.911s"/>
+          <circle class="g-point" cx="350.2" cy="250.4" r="2.6" style="animation-delay:0.919s"/>
+          <circle class="g-point" cx="356.7" cy="258.5" r="2.6" style="animation-delay:0.927s"/>
+          <circle class="g-point" cx="358.5" cy="264.2" r="3.3" style="animation-delay:0.935s"/>
+          <circle class="g-point" cx="365.2" cy="252.0" r="3.3" style="animation-delay:0.943s"/>
+          <circle class="g-point" cx="368.9" cy="270.2" r="2.6" style="animation-delay:0.951s"/>
+          <circle class="g-point" cx="377.6" cy="267.6" r="2.6" style="animation-delay:0.959s"/>
+          <circle class="g-point" cx="387.9" cy="298.8" r="2.6" style="animation-delay:0.967s"/>
+          <circle class="g-point" cx="388.0" cy="267.7" r="2.6" style="animation-delay:0.975s"/>
+          <circle class="g-point" cx="388.5" cy="280.5" r="2.6" style="animation-delay:0.983s"/>
+          <circle class="g-point" cx="389.2" cy="289.0" r="2.6" style="animation-delay:0.991s"/>
+          <circle class="g-point" cx="391.3" cy="307.3" r="2.6" style="animation-delay:0.999s"/>
+          <circle class="g-point" cx="393.6" cy="281.4" r="2.6" style="animation-delay:1.007s"/>
+          <circle class="g-point" cx="397.6" cy="279.5" r="2.6" style="animation-delay:1.015s"/>
+          <circle class="g-point" cx="400.4" cy="271.8" r="2.6" style="animation-delay:1.023s"/>
+          <circle class="g-point" cx="401.8" cy="282.9" r="2.6" style="animation-delay:1.031s"/>
+          <circle class="g-point" cx="402.7" cy="287.0" r="3.3" style="animation-delay:1.038s"/>
+          <circle class="g-point" cx="402.7" cy="274.9" r="2.6" style="animation-delay:1.046s"/>
+          <circle class="g-point" cx="404.5" cy="271.6" r="3.3" style="animation-delay:1.054s"/>
+          <circle class="g-point" cx="414.1" cy="282.6" r="2.6" style="animation-delay:1.062s"/>
+          <circle class="g-point" cx="417.0" cy="281.9" r="2.6" style="animation-delay:1.070s"/>
+          <circle class="g-point" cx="417.5" cy="303.7" r="2.6" style="animation-delay:1.078s"/>
+          <circle class="g-point" cx="420.4" cy="291.7" r="2.6" style="animation-delay:1.086s"/>
+          <circle class="g-point" cx="430.7" cy="307.2" r="3.3" style="animation-delay:1.094s"/>
+          <circle class="g-point" cx="445.4" cy="298.9" r="2.6" style="animation-delay:1.102s"/>
+          <circle class="g-point" cx="447.0" cy="304.0" r="2.6" style="animation-delay:1.110s"/>
+          <circle class="g-point" cx="449.8" cy="303.6" r="3.3" style="animation-delay:1.118s"/>
+          <circle class="g-point" cx="451.4" cy="304.2" r="3.3" style="animation-delay:1.126s"/>
+          <circle class="g-point" cx="457.8" cy="301.5" r="2.6" style="animation-delay:1.134s"/>
+          <circle class="g-point" cx="459.2" cy="314.6" r="2.6" style="animation-delay:1.142s"/>
+          <circle class="g-point" cx="460.9" cy="313.9" r="2.6" style="animation-delay:1.150s"/>
+          <line class="g-droite" x1="54.0" y1="61.8" x2="472.9" y2="316.0" style="--long:490"/>
+          <circle class="g-rep" cx="54.0" cy="61.8" r="3.6" fill="var(--vermillon)"/>
+          <text class="g-rep" x="64.0" y="53.8">A₀ = 7.4 m·s⁻²</text>
+          <circle class="g-rep" cx="472.9" cy="316.0" r="3.6" fill="var(--vermillon)"/>
+          <text class="g-rep" x="466.9" y="305.0" text-anchor="end">S₀ = 9.6 m·s⁻¹</text>
+        </svg>
+        <figcaption class="releve-pied">
+          <span><b>A₀</b> theoretical max. acceleration</span>
+          <span><b>S₀</b> theoretical max. speed</span>
+          <span><b>Slope</b> profile orientation</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ FACTS -->
+  <section style="padding-block:0;border-top:1px solid var(--rule)">
+    <div class="enveloppe" style="padding-block:clamp(34px,5vw,54px)">
+      <h2 class="sr-only">At a glance</h2>
+      <dl class="repaires">
+        <div>
+          <dt>Two degrees</dt>
+          <dd>2 <small>MSc-level — data engineering and sport science</small></dd>
+        </div>
+        <div>
+          <dt>In the field</dt>
+          <dd>INSEP <small>and the French Basketball Federation</small></dd>
+        </div>
+        <div>
+          <dt>Languages</dt>
+          <dd>3 <small>French native, English and Spanish C1</small></dd>
+        </div>
+        <div>
+          <dt>Abroad</dt>
+          <dd>1 year <small>Universidad Nacional del Sur, Argentina</small></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ======================================================== WHAT I DO -->
+  <section id="work">
+    <div class="enveloppe">
+      <p class="etiq">What I do <span>four fields, one chain</span></p>
+
+      <p style="font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.5;color:var(--ink-2);max-width:56ch;margin-bottom:clamp(26px,4vw,44px)">
+        Trained first as an engineer in computer science and statistics, then in
+        the optimisation of athletic performance. I work at the exact boundary
+        between <b style="color:var(--ink)">information-systems architecture</b>
+        and <b style="color:var(--ink)">elite sport science</b>, a place where you
+        need to write the pipeline <em>and</em> know what the measurement means.
+      </p>
+
+      <div class="registre">
+
+        <article class="fait">
+          <h3>Data governance</h3>
+          <div>
+            <p>
+              Mapping athlete data flows, writing the data dictionaries and setting
+              the rules that keep a federation's data estate coherent. Without that
+              work, every coaching staff recomputes its own indicator and nothing
+              can be compared to anything.
+            </p>
+            <div class="outils"><span>SQL</span><span>Data modelling</span><span>Documentation</span></div>
+          </div>
+        </article>
+
+        <article class="fait">
+          <h3>Pipelines &amp; sensors</h3>
+          <div>
+            <p>
+              Building the API connectors and ETL chains that bring heterogeneous
+              feeds (GPS, LPS, tracking, force plates) into a single reference
+              store, with the quality controls that have to come with them.
+            </p>
+            <div class="outils"><span>Python</span><span>Pandas</span><span>REST APIs</span></div>
+          </div>
+        </article>
+
+        <article class="fait">
+          <h3>Modelling the effort</h3>
+          <div>
+            <p>
+              Quantifying training load, reading force–velocity mechanical profiles,
+              and estimating a young athlete's potential while accounting for
+              relative, biological and training age. Raw performance conflates those
+              three variables every single time.
+            </p>
+            <div class="outils"><span>Scikit-learn</span><span>R</span><span>Statistics</span></div>
+          </div>
+        </article>
+
+        <article class="fait">
+          <h3>Decision support</h3>
+          <div>
+            <p>
+              Making all of it usable by a coaching staff on a Monday morning:
+              dashboards, visual reporting, and training the people who rely on
+              them. An indicator nobody reads is worth nothing.
+            </p>
+            <div class="outils"><span>Power BI</span><span>Streamlit</span><span>R Shiny</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== CAREER -->
+  <section id="career">
+    <div class="enveloppe">
+      <p class="etiq">Career <span>professional experience</span></p>
+
+      <div class="parcours">
+
+        <article class="poste">
+          <p class="poste-date"><b>Jan. 2025</b> → present</p>
+          <div>
+            <h3>Research data engineer &amp; performance analyst</h3>
+            <p class="poste-lieu">INSEP / French Basketball Federation <em>— Paris</em></p>
+            <ul>
+              <li>Mapping athlete data flows, building data dictionaries and governance rules to protect the integrity of the federation's data estate.</li>
+              <li>Automated ETL pipelines and API connectors in Python and SQL, integrating heterogeneous sensor and tracking feeds.</li>
+              <li>Quality-control mechanisms and procedures to make field-collected data trustworthy.</li>
+              <li>Training-load modelling, mechanical profiling (power, force–velocity) and decision-support tooling for coaching staff.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="poste">
+          <p class="poste-date"><b>Aug. 2026</b> → present</p>
+          <div>
+            <h3>Independent data &amp; sport science consultant</h3>
+            <p class="poste-lieu">Self-employed <em>— France</em></p>
+            <ul>
+              <li>Supporting professional sport organisations: data architecture design, API integration, advanced statistical modelling.</li>
+              <li>Bespoke dashboard design and optimisation of existing data flows.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="poste">
+          <p class="poste-date"><b>Jan. 2024</b> → Jan. 2025</p>
+          <div>
+            <h3>Data analyst — internship</h3>
+            <p class="poste-lieu">INSEP <em>— Paris</em></p>
+            <ul>
+              <li>Cleaning, processing and modelling quantitative high-performance datasets.</li>
+              <li>Industrialising analysis workflows through Python and SQL automation.</li>
+              <li>Interactive dashboards and technical documentation of athlete-monitoring indicators.</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="etiq" style="margin-top:clamp(40px,6vw,64px)">Education</p>
+
+      <div class="parcours">
+
+        <article class="poste">
+          <p class="poste-date"><b>2025</b> → 2026</p>
+          <div>
+            <h3>MSc — Training and optimisation of athletic performance</h3>
+            <p class="poste-lieu">Université Jean Monnet, Sport Science <em>— Saint-Étienne</em></p>
+            <ul>
+              <li>Exercise physiology, biomechanics, training-load planning, applied research in elite sport.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="poste">
+          <p class="poste-date"><b>2020</b> → 2025</p>
+          <div>
+            <h3>Engineering degree — computer science, statistics and AI</h3>
+            <p class="poste-lieu">Polytech Lille, ISIA programme <em>— five-year degree</em></p>
+            <ul>
+              <li>Information-systems architecture, data governance and modelling.</li>
+              <li>Advanced programming (Python, R), databases, API design, applied statistics.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="poste">
+          <p class="poste-date"><b>Mar. 2024</b> → Feb. 2025</p>
+          <div>
+            <h3>Exchange year — computer science and statistics</h3>
+            <p class="poste-lieu">Universidad Nacional del Sur <em>— Bahía Blanca, Argentina</em></p>
+            <ul>
+              <li>A full academic year taught in Spanish. That is where the C1 comes from.</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= PROJECTS -->
+  <section id="projects">
+    <div class="enveloppe">
+      <p class="etiq">Projects <span>things I have built</span></p>
+
+      <div class="projets">
+
+        <article class="projet">
+          <div class="projet-vue" style="--courbe:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 88%22%3E%3Cpath d=%22M0 74 L40 62 L80 66 L120 38 L160 28 L200 12%22 fill=%22none%22 stroke=%22%23C9412A%22 stroke-width=%222%22/%3E%3C/svg%3E')">
+            <b>SCOUT<span>·</span>BASE</b>
+          </div>
+          <div class="projet-corps">
+            <h3>Football scouting platform</h3>
+            <p>
+              Recruitment web application for a professional scouting unit: a pool
+              of several tens of thousands of players, a performance rating per
+              position and per season, field reports partitioned by scout, and
+              trajectory projections.
+            </p>
+            <div class="projet-meta">
+              <span class="etat vif">In production</span>
+              <span>Django</span><span>MySQL</span><span>Python</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="projet">
+          <div class="projet-vue" style="--courbe:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 88%22%3E%3Cpath d=%22M0 20 C50 20 50 68 100 68 C150 68 150 24 200 24%22 fill=%22none%22 stroke=%22%23C9412A%22 stroke-width=%222%22/%3E%3C/svg%3E')">
+            <b>FFBB<span>/</span>MON</b>
+          </div>
+          <div class="projet-corps">
+            <h3>Athlete monitoring — basketball</h3>
+            <p>
+              Monitoring application built for the French Basketball Federation:
+              aggregation of load and wellness measures, reporting back to coaching
+              staff, alerts on deviations.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Federation</span>
+              <span>R</span><span>Shiny</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="projet">
+          <div class="projet-vue" style="--courbe:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 88%22%3E%3Cpath d=%22M0 80 L30 30 L45 76 L75 22 L90 78 L120 26 L135 80 L165 34 L200 78%22 fill=%22none%22 stroke=%22%23C9412A%22 stroke-width=%222%22/%3E%3C/svg%3E')">
+            <b>KINE<span>·</span>XON</b>
+          </div>
+          <div class="projet-corps">
+            <h3>LPS data retrieval</h3>
+            <p>
+              Python client for the Kinexon API: extraction of raw positions and
+              detected jumps, session by session, with logging. It is the entry
+              brick of an external-load chain.
+            </p>
+            <div class="projet-meta">
+              <span>Python</span><span>API</span>
+              <a class="depot" href="https://github.com/Clement0242/Kinexon_API_recuperation">
+                GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projet">
+          <div class="projet-vue" style="--courbe:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 88%22%3E%3Cpath d=%22M0 78 C60 78 40 14 100 14 C160 14 140 78 200 78%22 fill=%22none%22 stroke=%22%23C9412A%22 stroke-width=%222%22/%3E%3C/svg%3E')">
+            <b>K<span>·</span>INVENT</b>
+          </div>
+          <div class="projet-corps">
+            <h3>Kinvent API client</h3>
+            <p>
+              Python client for the public Kinvent API: participants, protocols and
+              computed strength and balance metrics. Storage is left to the caller:
+              the brick does one thing and does it cleanly.
+            </p>
+            <div class="projet-meta">
+              <span>Python</span><span>Force–velocity</span>
+              <a class="depot" href="https://github.com/Clement0242/Kinvent_api">
+                GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projet">
+          <div class="projet-vue" style="--courbe:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 88%22%3E%3Cg fill=%22none%22 stroke=%22%23C9412A%22 stroke-width=%222%22%3E%3Cpath d=%22M0 70 L200 70%22 opacity=%22.4%22/%3E%3Cpath d=%22M20 70 L20 40 M60 70 L60 22 M100 70 L100 50 M140 70 L140 30 M180 70 L180 14%22/%3E%3C/g%3E%3C/svg%3E')">
+            <b>FFBB<span>·</span>STATS</b>
+          </div>
+          <div class="projet-corps">
+            <h3>French basketball stats extraction</h3>
+            <p>
+              A scraper for official box scores (NM1, LF2, Pro B): every season of a
+              given team, individual statistics row by row. Enough to build a
+              dataset where no API exists.
+            </p>
+            <div class="projet-meta">
+              <span>Python</span><span>Scraping</span>
+              <a class="depot" href="https://github.com/Clement0242/Scrap_NM1_LF2">
+                GitHub
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projet">
+          <div class="projet-vue" style="--courbe:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 88%22%3E%3Cpath d=%22M0 44 L36 44 L52 16 L70 72 L88 30 L104 58 L124 44 L200 44%22 fill=%22none%22 stroke=%22%23C9412A%22 stroke-width=%222%22/%3E%3C/svg%3E')">
+            <b>DE<span>·</span>CEL</b>
+          </div>
+          <div class="projet-corps">
+            <h3>Deceleration analysis</h3>
+            <p>
+              Final-year work on deceleration phases: the most costly side of
+              locomotion, and the most neglected in load monitoring.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Research</span>
+              <span>R</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <p style="margin-top:clamp(22px,3vw,34px);font-size:var(--t-petit);color:var(--ink-mut)">
+        All public repositories: <a href="https://github.com/Clement0242">github.com/Clement0242</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================== PUBLICATIONS -->
+  <section id="publications">
+    <div class="enveloppe">
+      <p class="etiq">Publications <span>papers and conference talks</span></p>
+
+      <div class="attente" style="max-width:74ch">
+        <h3>Section pending — waiting for the reference list</h3>
+        <p>
+          This section is waiting for the real references: <code>title</code>,
+          <code>journal or conference</code>, <code>year</code>,
+          <code>co-authors</code> and <code>DOI or link</code>. The display
+          template is already written and only needs filling in.
+        </p>
+        <p style="margin-bottom:0">
+          Nothing has been invented here: a public search returns no publication
+          under this name, and the INSEP laboratory profile lists research themes
+          without any reference. A fabricated bibliography on a public site turns
+          against its author the moment one reader checks it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== CONTACT -->
+  <section id="contact">
+    <div class="enveloppe contact-grille">
+      <div>
+        <p class="etiq">Contact</p>
+        <h2>Let's talk.</h2>
+        <p style="color:var(--ink-2)">
+          A permanent role, a one-off engagement, or simply a methodological
+          question about a field dataset: write to me. I always reply.
+        </p>
+        <p style="color:var(--ink-2);margin-bottom:0">
+          Based in Saint-Étienne, France. Available in the Paris region and for travel.
+        </p>
+      </div>
+
+      <div class="coord">
+        <a href="mailto:clement.verdier@laposte.net">
+          <i>Mail</i><b>clement.verdier@laposte.net</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        </a>
+        <a href="tel:+33782199998">
+          <i>Phone</i><b>+33 7 82 19 99 98</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        </a>
+        <a href="https://fr.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7" rel="me">
+          <i>LinkedIn</i><b>Clément Verdier</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        </a>
+        <a href="https://github.com/Clement0242" rel="me">
+          <i>GitHub</i><b>Clement0242</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        </a>
+        <a href="cv/">
+          <i>Résumé</i><b>Current version</b>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-in">
+    <p class="pied-nom" style="margin:0">Clément Verdier</p>
+    <nav class="pied-liens" aria-label="External links">
+      <a href="mailto:clement.verdier@laposte.net">Mail</a>
+      <a href="https://fr.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7">LinkedIn</a>
+      <a href="https://github.com/Clement0242">GitHub</a>
+      <a href="cv/">Résumé</a>
+      <a href="../" hreflang="fr">Français</a>
+    </nav>
+    <p class="pied-note">
+      Data engineer · elite sport performance. Saint-Étienne, France.
+      Static site, no tracker and no cookie.
+    </p>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
