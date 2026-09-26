@@ -8,24 +8,41 @@ On ouvre un fichier, on l'édite, on pousse.
 
 <https://clement0242.github.io>
 
-## Ce qu'il y a dans le dossier
+## Le dossier
 
 ```
 index.html            page française (tout le contenu)
-cv/index.html         CV français, mis en page pour l'écran ET pour l'A4
+cv/index.html         CV français — écran ET mise en page A4
 en/index.html         page anglaise
 en/cv/index.html      CV anglais
-assets/css/site.css   tout le design système (couleurs, typo, composants)
-assets/css/cv.css     mise en page du CV, écran et impression
-assets/js/site.js     animations et navigation (jamais nécessaires au contenu)
+assets/css/site.css   design système : couleurs, typo, composants, animations
+assets/css/cv.css     mise en page du CV (palette claire, propre au document)
+assets/js/site.js     carrousels, projecteur, navigation
 assets/js/cv.js       le bouton « imprimer »
+assets/img/projets/   TES CAPTURES D'ÉCRAN (voir LISEZ-MOI.txt dedans)
 ```
 
-## Mettre le site à jour
+## Ajouter des captures d'écran à un projet
 
-1. Ouvrir le fichier concerné, modifier le texte, enregistrer.
-2. Vérifier dans un navigateur : double-cliquer sur `index.html` suffit.
-3. Publier :
+C'est la manipulation la plus courante, et elle ne demande aucun outil.
+
+1. Déposer les images dans `assets/img/projets/`.
+2. Dans `index.html`, trouver le projet concerné, puis le bloc en commentaire
+   qui commence par `<!-- CAPTURES :`.
+3. Retirer les marqueurs de commentaire (`<!--` et `-->`) et corriger le nom du
+   fichier, le texte `alt` et la légende. Dupliquer le bloc `<figure class="vue">`
+   autant de fois qu'il y a d'images.
+4. Faire la même chose dans `en/index.html` (le chemin y commence par `../`).
+
+Les flèches, les pastilles et le clavier apparaissent **tout seuls** dès qu'il y
+a plus d'une vue. Avec une seule, le carrousel se replie : pas de flèche qui ne
+mène nulle part.
+
+⚠️ **Ces images partent sur un site public et permanent.** Vérifier qu'aucune ne
+laisse voir un nom d'athlète, une date de naissance, une donnée médicale ou un
+identifiant. Flouter ou remplacer par des données factices si besoin.
+
+## Publier une modification
 
 ```bash
 git add -A
@@ -35,16 +52,17 @@ git push
 
 GitHub Pages republie tout seul en une à deux minutes.
 
-⚠️ **Le site est bilingue et les deux versions sont deux fichiers séparés.**
-Une modification de contenu dans `index.html` doit être reportée à la main dans
-`en/index.html`. C'est le prix à payer pour n'avoir aucun build : assumé, mais à
-ne pas oublier, sinon les deux versions divergent en silence.
+⚠️ **Le site est bilingue, en deux fichiers séparés.** Une modification de
+contenu dans `index.html` doit être reportée à la main dans `en/index.html`.
+C'est le prix du zéro-build : assumé, mais à ne pas oublier, sinon les deux
+versions divergent en silence.
 
 ## Le CV
 
 `cv/index.html` est **à la fois** la page CV du site et la source du PDF.
-Pour produire le PDF : ouvrir la page, cliquer « Imprimer ou enregistrer en PDF »,
-choisir « Enregistrer au format PDF ». La mise en page A4 est déjà réglée (2 pages).
+Pour produire le PDF : ouvrir la page, cliquer « Imprimer ou enregistrer en
+PDF », choisir « Enregistrer au format PDF ». La mise en page A4 est réglée
+(2 pages).
 
 Il n'y a donc **pas de PDF à maintenir séparément** : on corrige le HTML, le PDF
 suit. Les CV taillés pour une entreprise précise sont exclus par `.gitignore` —
@@ -52,23 +70,29 @@ ils ne doivent pas se retrouver en ligne.
 
 ## Règles de conception à ne pas casser
 
-- **Rien d'essentiel ne dépend de JavaScript.** Toutes les sections sont visibles
-  par défaut ; le script ne fait qu'animer et signaler l'état. Si on ajoute une
-  animation d'entrée, le contenu doit rester lisible script désactivé.
-- **Le graphique du bandeau est dans le HTML**, en SVG complet. Ce n'est pas une
-  image : il se redimensionne, il s'imprime, et un lecteur d'écran lit sa
-  description. Les valeurs tracées sont **simulées** et c'est écrit dans la page.
-- **Le vermillon (`--vermillon`) ne décore jamais.** Il marque ce qui est actif,
-  mesuré, ou mis en avant. Utilisé partout, il ne veut plus rien dire.
-- **Aucune donnée d'athlète, aucun nom de joueur, aucune capture d'écran réelle**
-  d'un outil client. Les projets sont décrits par leur méthode.
-- **Contrastes vérifiés** : `--ink-mut` est calibré pour tenir 4,5:1 sur les trois
-  fonds du système. Éclaircir cette valeur casse l'accessibilité.
+- **Rien d'essentiel ne dépend de JavaScript.** Toutes les sections sont
+  visibles par défaut ; le script n'ajoute que le carrousel au clic, le
+  projecteur et l'état de la navigation. Le carrousel se balaie déjà au doigt
+  sans script (défilement par accroche natif).
+- **Le vert acide (`--acide`) ne décore jamais.** Il marque ce qui est actif,
+  mesuré ou cliquable. Employé partout, il ne veut plus rien dire.
+- **Un seul moment animé** : l'ouverture du bandeau. Si on ajoute une entrée en
+  fondu sur chaque section, l'effet devient un tic et la page se met à ramer.
+- ⚠️ **`.cv-bloc` doit garder `padding-block: 0`.** `site.css` pose
+  `section { padding-block: clamp(64px, 10vw, 140px) }`, et les blocs du CV sont
+  des `<section>` : sans cette remise à zéro le CV s'étire sur quatre pages.
+- ⚠️ **Ne pas remettre `overflow-x: hidden` sur `body`** : cela casse la barre
+  de navigation collante sur Safari. Les halos sont déjà bornés par `.quart`.
+- **Contrastes vérifiés** au rendu réel, composite alpha compris. `--gris-2` et
+  `--p-mut` sont calibrés au seuil : les éclaircir casse l'accessibilité.
 - **Aucun texte sous 12 px** (en dessous, iOS zoome à la sélection).
+- **Aucune donnée d'athlète, aucun nom de joueur** nulle part.
 
 ## À faire
 
 - [ ] Remplir la section **Publications** (titre, revue/congrès, année,
-      co-auteurs, DOI) dans `index.html` et `en/index.html`.
-- [ ] Relire et valider les descriptions de projets liés à l'INSEP, la FFBB et
-      les clubs avant toute diffusion large.
+      co-auteurs, DOI) dans `index.html` et `en/index.html`. Le gabarit est
+      juste au-dessus, dans l'entrée du séminaire INSEP.
+- [ ] Déposer les captures d'écran des projets.
+- [ ] Relire et valider les descriptions liées à l'INSEP, la FFBB et les clubs
+      avant diffusion large.

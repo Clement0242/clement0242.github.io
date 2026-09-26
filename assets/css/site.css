@@ -1,65 +1,57 @@
 /* ============================================================================
    CLÉMENT VERDIER — Site de présentation
-   Direction : « le carnet de mesure » — papier, encre, vermillon de traceur.
-   Fraunces (display) · Archivo (texte) · IBM Plex Mono (mesures UNIQUEMENT)
+   Direction : « la salle de performance, la nuit ».
+   Nuit profonde, halos qui dérivent, typographie massive, un vert acide qui
+   ne sert QUE de signal. Bricolage Grotesque / Instrument Sans / Plex Mono.
 
    THÈSE DE MOUVEMENT
-   Un seul moment orchestré : le profil accélération-vitesse se RELÈVE, comme
-   une séance qu'on rejoue — la trame se pose, les points atterrissent dans
-   l'ordre des vitesses croissantes, la droite balaie, les intercepts tombent.
-   Partout ailleurs le mouvement ne fait que deux choses : accuser réception
-   d'un geste (100-150 ms) et expliquer un changement d'état. Aucune section
-   ne rejoue une entrée : une même animation répétée huit fois n'est plus une
-   intention, c'est un tic.
+   Un moment orchestré : l'ouverture du bandeau — le nom se dévoile ligne à
+   ligne par masque pendant que les halos se mettent en place et que le ruban
+   part. Ensuite le mouvement ne fait plus que deux choses : accuser réception
+   d'un geste, et suivre le curseur là où il désigne quelque chose.
+   Aucune section ne rejoue l'entrée du bandeau.
    ========================================================================= */
 
 /* ---------------------------------------------------------------- 1. JETONS */
 
 :root {
-  /* Papier et encre */
-  --paper:      #F3F0E8;
-  --paper-2:    #EDE8DD;
-  --paper-3:    #E4DED0;
-  --ink:        #15191E;
-  --ink-2:      #3A424C;
-  --ink-mut:    #5C636F;   /* 5,32:1 papier / 4,95 panneau / 4,51 creux */
-  --rule:       rgba(21, 25, 30, 0.13);
-  --rule-2:     rgba(21, 25, 30, 0.26);
+  --noir:    #08090C;
+  --nuit:    #0E1217;
+  --nuit-2:  #151A22;
+  --nuit-3:  #1E2530;
+  --ligne:   rgba(255, 255, 255, 0.085);
+  --ligne-2: rgba(255, 255, 255, 0.17);
 
-  /* Le vermillon est la LUMIÈRE : actif, mesuré, mis en avant.
-     Il ne remplit jamais une zone entière. */
-  --vermillon:   #C9412A;
-  --vermillon-2: #A93520;   /* variante TEXTE — le vermillon plein
-                               tombe à 3,9:1 sur le papier */
-  --vermillon-w: rgba(201, 65, 42, 0.12);
-  --cyan:        #175F7C;
-  --cyan-w:      rgba(23, 95, 124, 0.10);
+  --blanc:   #F4F6F9;
+  --gris:    #A6B1C0;   /* 7,9:1 sur la nuit */
+  --gris-2:  #7D8896;   /* 4,9:1 — intitulés, mentions */
 
-  /* Typographie */
-  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --texte:   "Archivo", "Helvetica Neue", Helvetica, sans-serif;
-  --mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* LE SIGNAL. Ce qui est actif, mesuré, cliquable, vivant.
+     Jamais un décor, jamais une grande surface. */
+  --acide:   #CCFF3D;
+  --acide-s: #B6E82A;
+  --acide-w: rgba(204, 255, 61, 0.11);
+  --bleu:    #7FB4FF;
+  --bleu-w:  rgba(127, 180, 255, 0.13);
 
-  --t-geant: clamp(2.9rem, 8vw, 6rem);
-  --t-titre: clamp(1.9rem, 4vw, 3rem);
-  --t-sect:  clamp(1.35rem, 2.2vw, 1.75rem);
+  --display: "Bricolage Grotesque", "Helvetica Neue", sans-serif;
+  --texte:   "Instrument Sans", "Helvetica Neue", Helvetica, sans-serif;
+  --mono:    "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  --t-geant: clamp(3.1rem, 11vw, 9rem);
+  --t-titre: clamp(2rem, 5vw, 3.6rem);
   --t-corps: 1.0625rem;
-  --t-petit: 0.8125rem;
+  --t-petit: 0.875rem;
   --t-micro: 0.75rem;
 
-  /* Rythme */
-  --gouttiere: clamp(20px, 5vw, 64px);
-  --large: 1220px;
-  --lisible: 68ch;
-  --trame: 13px;   /* carreau fin ; le trait fort tombe tous les 5 */
+  --gouttiere: clamp(20px, 5vw, 72px);
+  --large: 1280px;
+  --lisible: 66ch;
 
-  /* Profondeur — décalage ET flou. Une ombre sans flou est un aplat décalé,
-     pas de la lumière ; ce monde n'est pas néobrutaliste. */
-  --ombre-1: 0 1px 2px rgba(21, 25, 30, 0.05), 0 2px 8px rgba(21, 25, 30, 0.04);
-  --ombre-2: 0 2px 4px rgba(21, 25, 30, 0.06), 0 8px 24px rgba(21, 25, 30, 0.08);
-  --ombre-3: 0 4px 8px rgba(21, 25, 30, 0.07), 0 18px 44px rgba(21, 25, 30, 0.11);
+  /* Profondeur : décalage ET flou. */
+  --ombre-2: 0 10px 34px rgba(0, 0, 0, 0.5);
+  --ombre-3: 0 20px 60px rgba(0, 0, 0, 0.62);
 
-  /* Courbes — décélération exponentielle, jamais de rebond par réflexe. */
   --sortie: cubic-bezier(0.16, 1, 0.3, 1);
   --vif:    cubic-bezier(0.32, 0.72, 0, 1);
 }
@@ -71,71 +63,38 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 104px;
-
-  /* Les surfaces que le navigateur dessine à notre place appartiennent
-     quand même à la charte. */
-  color-scheme: light;
-  scrollbar-color: var(--rule-2) transparent;
+  scroll-padding-top: 96px;
+  color-scheme: dark;
+  scrollbar-color: var(--nuit-3) var(--noir);
   scrollbar-width: thin;
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-::selection { background: var(--vermillon); color: #fff; }
-::-webkit-scrollbar { width: 11px; height: 11px; }
-::-webkit-scrollbar-track { background: var(--paper-2); }
-::-webkit-scrollbar-thumb {
-  background: var(--rule-2);
-  border: 3px solid var(--paper-2);
-  border-radius: 6px;
-}
-::-webkit-scrollbar-thumb:hover { background: var(--ink-mut); }
+/* Les surfaces dessinées par le navigateur appartiennent aussi à la charte. */
+::selection { background: var(--acide); color: var(--noir); }
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--noir); }
+::-webkit-scrollbar-thumb { background: var(--nuit-3); border: 3px solid var(--noir); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #2C3541; }
 
 body {
   margin: 0;
-  background-color: var(--paper);
-  color: var(--ink);
-  caret-color: var(--vermillon);
+  background: var(--noir);
+  color: var(--blanc);
+  caret-color: var(--acide);
   font-family: var(--texte);
   font-size: var(--t-corps);
-  line-height: 1.6;
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-
-  /* Le papier millimétré : deux dégradés d'un pixel, aucune image. */
-  background-image:
-    linear-gradient(to right,  var(--rule-2) 0 1px, transparent 1px 100%),
-    linear-gradient(to bottom, var(--rule-2) 0 1px, transparent 1px 100%),
-    linear-gradient(to right,  var(--rule)   0 1px, transparent 1px 100%),
-    linear-gradient(to bottom, var(--rule)   0 1px, transparent 1px 100%);
-  background-size:
-    calc(var(--trame) * 5) calc(var(--trame) * 5),
-    calc(var(--trame) * 5) calc(var(--trame) * 5),
-    var(--trame) var(--trame),
-    var(--trame) var(--trame);
-  background-position: center top;
-  background-attachment: fixed;
 }
-/* La trame ne doit pas concurrencer la lecture : on la voile. */
-body::before {
-  content: "";
-  position: fixed; inset: 0;
-  background: var(--paper);
-  opacity: 0.68;
-  pointer-events: none;
-  z-index: 0;
-}
-body > * { position: relative; z-index: 1; }
 
-/* Grain — la matière du papier. Une passe SVG, aucune image chargée. */
+/* Grain — empêche les grands aplats sombres de bander. */
 body::after {
   content: "";
-  position: fixed; inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.26;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  position: fixed; inset: 0; z-index: 3; pointer-events: none;
+  opacity: 0.2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
 
 /* ----------------------------------------------------------- 3. TYPOGRAPHIE */
@@ -143,9 +102,8 @@ body::after {
 h1, h2, h3, h4 {
   font-family: var(--display);
   font-weight: 700;
-  font-variation-settings: "SOFT" 0, "WONK" 1;
-  line-height: 1.05;
-  letter-spacing: -0.018em;
+  line-height: 1.02;
+  letter-spacing: -0.032em;
   margin: 0;
   text-wrap: balance;
 }
@@ -154,43 +112,40 @@ p { margin: 0 0 1.1em; max-width: var(--lisible); }
 p:last-child { margin-bottom: 0; }
 
 a {
-  color: var(--ink);
-  text-decoration-color: var(--rule-2);
+  color: var(--blanc);
+  text-decoration-color: var(--ligne-2);
   text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: color 0.12s ease, text-decoration-color 0.12s ease;
+  text-underline-offset: 4px;
+  transition: color 0.14s ease, text-decoration-color 0.14s ease;
 }
-a:hover { color: var(--vermillon-2); text-decoration-color: currentColor; }
+a:hover { color: var(--acide); text-decoration-color: currentColor; }
 
 strong, b { font-weight: 600; }
+time, .chiffre { font-variant-numeric: tabular-nums; }
 
-/* Les chiffres s'alignent en colonne. Sans cela, une date et une durée
-   posées l'une sous l'autre dansent d'un ou deux pixels. */
-time, .chiffre, .repaires dd, .publi-an, .poste-date { font-variant-numeric: tabular-nums; }
-
-/* Intitulé de section. Pas de numéro : la séquence 01→06 ne porte aucune
-   information que le lecteur ait besoin de connaître. */
+/* Intitulé de section : un point de signal, un libellé, un filet qui court.
+   Ni numéro de séquence, ni sur-titre au-dessus du titre. */
 .etiq {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  font-size: var(--t-petit);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-mut);
-  margin: 0 0 clamp(20px, 3vw, 34px);
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; gap: 14px;
+  font-size: var(--t-micro); font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gris);
+  margin: 0 0 clamp(26px, 4vw, 44px);
+}
+.etiq::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--acide); flex: 0 0 auto;
+  box-shadow: 0 0 0 4px var(--acide-w);
+}
+.etiq::after {
+  content: ""; flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--ligne-2), transparent);
 }
 .etiq span {
-  margin-left: auto;
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 400;
-  color: var(--ink-mut);
+  text-transform: none; letter-spacing: 0; font-weight: 400;
+  color: var(--gris-2); flex: 0 0 auto;
 }
-@media (max-width: 620px) { .etiq span { display: none; } }
+@media (max-width: 640px) { .etiq span { display: none; } }
 
 .sr-only {
   position: absolute; width: 1px; height: 1px;
@@ -201,97 +156,67 @@ time, .chiffre, .repaires dd, .publi-an, .poste-date { font-variant-numeric: tab
 /* ------------------------------------------------------------- 4. GABARITS  */
 
 .enveloppe { max-width: var(--large); margin-inline: auto; padding-inline: var(--gouttiere); }
-section { padding-block: clamp(56px, 9vw, 116px); }
-section + section { border-top: 1px solid var(--rule); }
+section { padding-block: clamp(64px, 10vw, 140px); position: relative; }
 
 /* --------------------------------------------------------- 5. NAVIGATION    */
 
 .barre {
-  position: sticky; top: 0; z-index: 40;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(10px) saturate(1.1);
-  border-bottom: 1px solid var(--rule);
-  transition: box-shadow 0.25s ease, background 0.25s ease;
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(8, 9, 12, 0.72);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, background 0.3s ease;
 }
-/* Décollée du haut, la barre prend une ombre : elle explique qu'elle flotte
-   au-dessus du contenu au lieu d'en faire partie. */
-.barre.detachee {
-  box-shadow: var(--ombre-1);
-  background: color-mix(in srgb, var(--paper) 95%, transparent);
-}
+.barre.detachee { border-bottom-color: var(--ligne); background: rgba(8, 9, 12, 0.92); }
 .barre-in {
   max-width: var(--large); margin-inline: auto;
-  padding: 12px var(--gouttiere);
-  display: flex; align-items: center;
-  gap: clamp(12px, 3vw, 34px);
+  padding: 13px var(--gouttiere);
+  display: flex; align-items: center; gap: clamp(12px, 3vw, 32px);
 }
 
 .sceau {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 11px;
   text-decoration: none;
-  font-family: var(--display);
-  font-weight: 700; font-size: 1.0625rem;
-  letter-spacing: -0.02em; white-space: nowrap;
+  font-family: var(--display); font-weight: 700; font-size: 1.0625rem;
+  letter-spacing: -0.03em; white-space: nowrap;
 }
 .sceau i {
   display: grid; place-items: center;
-  width: 30px; height: 30px;
-  background: var(--ink); color: var(--paper);
-  font-family: var(--texte);
-  font-size: 0.75rem; font-weight: 700; font-style: normal;
-  letter-spacing: 0.01em; flex: 0 0 auto;
-  transition: background 0.15s ease, transform 0.15s var(--vif);
+  width: 32px; height: 32px; border-radius: 9px;
+  background: var(--acide); color: var(--noir);
+  font-family: var(--display); font-size: 0.8125rem; font-weight: 800;
+  font-style: normal; letter-spacing: -0.02em; flex: 0 0 auto;
+  transition: transform 0.2s var(--vif), box-shadow 0.2s ease;
 }
-.sceau:hover i { background: var(--vermillon); transform: rotate(-4deg); }
+.sceau:hover i { transform: rotate(-6deg) scale(1.06); box-shadow: 0 0 22px rgba(204, 255, 61, 0.4); }
+.sceau:hover { color: var(--blanc); }
 
 .liens { display: flex; gap: 2px; margin-left: auto; align-items: center; }
 .liens a {
-  position: relative;
-  font-size: var(--t-petit);
-  padding: 8px 12px;
-  text-decoration: none;
-  color: var(--ink-2);
-  white-space: nowrap;
-  transition: color 0.12s ease;
+  font-size: var(--t-petit); padding: 8px 13px;
+  text-decoration: none; color: var(--gris);
+  white-space: nowrap; border-radius: 9px;
+  transition: color 0.14s ease, background 0.14s ease;
 }
-.liens a:hover { color: var(--ink); }
-/* Le trait d'état glisse depuis le centre plutôt que d'apparaître :
-   il dit « tu es ici », il ne clignote pas. */
-.liens a::after {
-  content: "";
-  position: absolute;
-  left: 12px; right: 12px; bottom: 3px;
-  height: 2px;
-  background: var(--vermillon);
-  transform: scaleX(0);
-  transition: transform 0.22s var(--sortie);
-}
-.liens a:hover::after { transform: scaleX(0.4); }
-.liens a[aria-current="page"] { color: var(--ink); font-weight: 600; }
-.liens a[aria-current="page"]::after { transform: scaleX(1); }
+.liens a:hover { color: var(--blanc); background: var(--nuit-2); }
+.liens a[aria-current="page"] { color: var(--noir); background: var(--acide); font-weight: 600; }
 
 .langue {
-  display: flex;
-  border: 1px solid var(--rule-2);
-  font-size: var(--t-micro);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  overflow: hidden; flex: 0 0 auto;
+  display: flex; flex: 0 0 auto;
+  border: 1px solid var(--ligne-2); border-radius: 9px; overflow: hidden;
+  font-size: var(--t-micro); font-weight: 700; letter-spacing: 0.04em;
 }
-.langue a { padding: 6px 9px; text-decoration: none; color: var(--ink-mut); transition: background 0.12s ease, color 0.12s ease; }
-.langue a[aria-current="true"] { background: var(--ink); color: var(--paper); }
-.langue a:not([aria-current="true"]):hover { background: var(--paper-3); color: var(--ink); }
+.langue a { padding: 7px 10px; text-decoration: none; color: var(--gris-2); transition: background 0.14s, color 0.14s; }
+.langue a[aria-current="true"] { background: var(--blanc); color: var(--noir); }
+.langue a:not([aria-current="true"]):hover { background: var(--nuit-2); color: var(--blanc); }
 
-@media (max-width: 860px) {
-  /* flex-wrap est INDISPENSABLE : sans lui, le width:100% + order:3 posés sur
-     .liens ne peuvent pas provoquer de retour à la ligne, la bascule de langue
-     reste coincée au milieu et les liens sortent de l'écran. Le symptôme ne
-     remonte pas en débordement de page, .liens ayant son propre overflow-x. */
-  .barre-in { gap: 10px; flex-wrap: wrap; row-gap: 6px; }
-  .liens {
-    order: 3; width: 100%; margin-left: 0;
-    overflow-x: auto; scrollbar-width: none; padding-bottom: 2px;
-  }
+@media (max-width: 900px) {
+  /* flex-wrap est INDISPENSABLE : sans lui, width:100% + order:3 sur .liens
+     ne peuvent pas provoquer de retour à la ligne, la bascule de langue reste
+     coincée au milieu et les liens sortent de l'écran. Le symptôme ne remonte
+     pas en débordement de page, .liens ayant son propre overflow-x. */
+  .barre-in { flex-wrap: wrap; gap: 10px; row-gap: 8px; }
+  .liens { order: 3; width: 100%; margin-left: 0; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
   .liens::-webkit-scrollbar { display: none; }
   .liens a { flex: 0 0 auto; }
   .langue { margin-left: auto; }
@@ -299,277 +224,231 @@ section + section { border-top: 1px solid var(--rule); }
 
 /* ----------------------------------------------------------- 6. LE BANDEAU  */
 
-.quart { padding-block: clamp(44px, 7vw, 92px) clamp(48px, 8vw, 96px); }
-.quart-grille {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(28px, 5vw, 72px);
-  align-items: center;
+.quart {
+  min-height: clamp(540px, 84vh, 880px);
+  display: flex; align-items: center;
+  padding-block: clamp(56px, 9vw, 110px) clamp(40px, 6vw, 80px);
+  overflow: hidden;
 }
-@media (max-width: 980px) { .quart-grille { grid-template-columns: 1fr; gap: 36px; } }
 
-.quart h1 { font-size: var(--t-geant); font-weight: 800; margin-bottom: 0.3em; }
-.quart h1 em { font-style: normal; color: var(--vermillon); }
+/* Les halos : deux nappes floues qui dérivent. C'est la lumière de la salle,
+   pas un dégradé posé sur un fond. Bornées au bandeau, coupées net en
+   mouvement réduit. */
+.halos { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.halo { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; will-change: transform; }
+.halo.a {
+  width: 46vw; height: 46vw; min-width: 340px; min-height: 340px;
+  background: radial-gradient(circle, rgba(204, 255, 61, 0.34), transparent 68%);
+  top: -14%; right: -8%;
+  animation: derive-a 22s ease-in-out infinite alternate;
+}
+.halo.b {
+  width: 40vw; height: 40vw; min-width: 300px; min-height: 300px;
+  background: radial-gradient(circle, rgba(91, 156, 255, 0.3), transparent 68%);
+  bottom: -18%; left: -10%;
+  animation: derive-b 27s ease-in-out infinite alternate;
+}
+@keyframes derive-a { to { transform: translate3d(-9%, 12%, 0) scale(1.14); } }
+@keyframes derive-b { to { transform: translate3d(12%, -10%, 0) scale(1.1); } }
 
-/* Le métier vient SOUS le nom, pas au-dessus : une étiquette posée avant le
-   titre lui vole sa première ligne. */
+/* Trame de mesure, seulement sous le bandeau et fondue sur ses bords : elle
+   donne l'échelle sans devenir le fond générique à deux axes que porte
+   toute page « tech ». */
+.quart::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(to right,  var(--ligne) 0 1px, transparent 1px 100%),
+    linear-gradient(to bottom, var(--ligne) 0 1px, transparent 1px 100%);
+  background-size: 76px 76px;
+  mask-image: radial-gradient(ellipse 80% 62% at 50% 42%, #000 20%, transparent 78%);
+  opacity: 0.6;
+}
+.quart > * { position: relative; z-index: 1; }
+/* INDISPENSABLE : .quart etant un conteneur flex, .enveloppe s'y reduit a
+   la largeur de son contenu et son margin-inline:auto la recentre — le
+   bandeau se decalait de 320 px par rapport a toutes les autres sections.
+   Le defaut ne remonte ni en debordement ni en erreur : il faut mesurer. */
+.quart > .enveloppe { width: 100%; }
+
+.quart h1 {
+  font-size: var(--t-geant); font-weight: 800;
+  letter-spacing: -0.04em; margin-bottom: 0.26em; max-width: 13ch;
+}
+.quart h1 em { font-style: normal; color: var(--acide); }
+
+/* Le métier vient SOUS le nom : une étiquette posée au-dessus du titre lui
+   vole sa première ligne. */
 .fonction {
-  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
-  line-height: 1.45;
-  color: var(--ink-2);
-  max-width: 36ch;
-  margin-bottom: 1.5em;
+  font-size: clamp(1.15rem, 2.1vw, 1.65rem);
+  line-height: 1.42; color: var(--gris);
+  max-width: 30ch; margin-bottom: 1.1em; font-weight: 400;
 }
-.fonction b { color: var(--ink); font-weight: 600; }
-.fonction .ou {
-  display: block;
-  margin-top: 0.45em;
-  font-size: 0.9375rem;
-  color: var(--ink-mut);
+.fonction b { color: var(--blanc); font-weight: 600; }
+
+.ou {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: var(--t-petit); color: var(--gris-2); margin-bottom: 2em;
+}
+/* Le poste actuel. Point fixe et non clignotant : une pastille qui bat en
+   boucle est un tic d'interface, et l'animation tourne même hors écran. Le
+   halo figé dit la même chose sans jamais cesser de le dire. */
+.ou i {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--acide); flex: 0 0 auto;
+  box-shadow: 0 0 0 4px var(--acide-w);
 }
 
-/* Les deux formations, adossées. C'est la thèse du site en un objet. */
-.pont {
-  display: flex;
-  border: 1px solid var(--rule-2);
-  background: var(--paper-2);
-  max-width: 470px;
-  margin-bottom: 2em;
-  box-shadow: var(--ombre-1);
-}
-.pont div { padding: 15px 17px; flex: 1 1 0; min-width: 0; }
-.pont div + div { border-left: 1px solid var(--rule-2); }
-.pont dt {
-  font-size: var(--t-micro);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--vermillon-2);
-  margin-bottom: 6px;
-}
-.pont dd { margin: 0; font-size: 0.9375rem; font-weight: 600; line-height: 1.35; }
-
-.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 .bouton {
-  display: inline-flex; align-items: center; gap: 9px;
-  padding: 12px 20px;
-  font-family: var(--texte);
-  font-size: 0.9375rem; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px;
+  font-family: var(--texte); font-size: 0.9375rem; font-weight: 600;
   text-decoration: none;
-  border: 1px solid var(--ink);
-  background: var(--ink); color: var(--paper);
+  border: 1px solid var(--acide); border-radius: 11px;
+  background: var(--acide); color: var(--noir);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease,
-              transform 0.15s var(--vif), box-shadow 0.15s ease;
+  transition: transform 0.18s var(--vif), box-shadow 0.18s ease,
+              background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
-.bouton:hover {
-  background: var(--vermillon); border-color: var(--vermillon); color: #fff;
-  transform: translateY(-2px);
-  box-shadow: var(--ombre-2);
-}
-.bouton:active { transform: translateY(0); box-shadow: var(--ombre-1); }
-.bouton.creux { background: transparent; color: var(--ink); border-color: var(--rule-2); }
-.bouton.creux:hover { background: var(--paper-2); color: var(--ink); border-color: var(--ink); }
-.bouton svg { width: 16px; height: 16px; flex: 0 0 auto; }
+.bouton:hover { color: var(--noir); transform: translateY(-3px); box-shadow: 0 12px 34px rgba(204, 255, 61, 0.26); }
+.bouton:active { transform: translateY(-1px); }
+.bouton.creux { background: transparent; color: var(--blanc); border-color: var(--ligne-2); }
+.bouton.creux:hover { background: var(--nuit-2); color: var(--blanc); border-color: var(--ligne-2); box-shadow: var(--ombre-2); }
+.bouton svg { width: 17px; height: 17px; flex: 0 0 auto; }
 
-/* ------------------------------- 7. LE PROFIL AS — le moment orchestré */
+/* --------------------------------------------- 7. LE RUBAN DE COMPÉTENCES  */
 
-.releve {
-  border: 1px solid var(--rule-2);
-  background: var(--paper-2);
-  padding: 16px 16px 12px;
-  box-shadow: var(--ombre-2);
+.ruban {
+  border-block: 1px solid var(--ligne);
+  background: var(--nuit);
+  overflow: hidden; padding-block: 15px; position: relative;
+  /* Les bords s'effacent : la bande ne doit pas paraître coupée net. */
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
 }
-.releve-tete {
-  display: flex; align-items: baseline; gap: 10px;
-  font-size: var(--t-micro);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-mut);
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 9px; margin-bottom: 12px;
-}
-.releve-tete b { color: var(--ink); font-weight: 700; }
-/* Ici le chasse-fixe est légitime : c'est une lecture d'appareil. */
-.releve-tete span { margin-left: auto; font-family: var(--mono); font-weight: 400; letter-spacing: 0.04em; white-space: nowrap; }
-
-#as-profil { display: block; width: 100%; height: auto; }
-
-/* Le chasse-fixe du graphique : des mesures, pas un costume technique. */
-.g-axe   { font-family: var(--mono); font-size: 9px;   fill: var(--ink-mut); letter-spacing: 0.06em; }
-.g-titre { font-family: var(--mono); font-size: 9.5px; fill: var(--ink-2);   letter-spacing: 0.09em; text-transform: uppercase; }
-.g-rep   { font-family: var(--mono); font-size: 10px;  fill: var(--vermillon-2); font-weight: 500; }
-.g-grille    { stroke: var(--rule);   stroke-width: 1; }
-.g-cadre     { stroke: var(--rule-2); stroke-width: 1; fill: none; }
-.g-point     { fill: var(--cyan); opacity: 0.42; }
-.g-droite    { stroke: var(--vermillon); stroke-width: 2; stroke-linecap: round; }
-
-/* --- LA SÉANCE SE REJOUE ------------------------------------------------
-   La trame se pose, les points atterrissent dans l'ordre des vitesses
-   croissantes (le délai est porté par chaque point, calculé à la génération),
-   la droite balaie du haut vers la droite, les intercepts tombent en dernier
-   avec leurs valeurs. C'est une mesure qui se refait sous les yeux, pas une
-   apparition en fondu. */
-.releve .g-grille, .releve .g-cadre, .releve .g-axe, .releve .g-titre {
-  opacity: 1;
-}
-.anim .g-grille, .anim .g-cadre { animation: trame 0.5s ease-out both; }
-.anim .g-axe, .anim .g-titre    { animation: parait 0.4s ease-out 0.25s both; }
-.anim .g-point                  { animation: atterrit 0.42s var(--sortie) both; }
-.anim .g-droite {
-  stroke-dasharray: var(--long, 500);
-  stroke-dashoffset: var(--long, 500);
-  animation: balaie 0.9s var(--sortie) 1.22s both;
-}
-.anim .g-rep { animation: tombe 0.42s var(--sortie) 2.0s both; }
-
-@keyframes trame    { from { opacity: 0; } }
-@keyframes parait   { from { opacity: 0; } }
-@keyframes atterrit { from { opacity: 0; transform: translateY(-7px) scale(0.5); } }
-@keyframes balaie   { to   { stroke-dashoffset: 0; } }
-@keyframes tombe    { from { opacity: 0; transform: translateY(-5px); } }
-
-/* Mouvement réduit : la séance se rejoue quand même, en intensité seule.
-   Les points et la droite montent en opacité, sans déplacement. Supprimer
-   toute la séquence retirerait le seul moment d'auteur du site. */
-@media (prefers-reduced-motion: reduce) {
-  .anim .g-point  { animation: parait 0.3s ease-out both; }
-  .anim .g-droite { animation: parait 0.4s ease-out 0.3s both; stroke-dashoffset: 0; }
-  .anim .g-rep    { animation: parait 0.3s ease-out 0.6s both; }
-  .anim .g-grille, .anim .g-cadre, .anim .g-axe, .anim .g-titre { animation: none; }
-}
-
-.releve-pied {
-  display: flex; flex-wrap: wrap; gap: 4px 18px;
-  font-size: var(--t-micro);
-  color: var(--ink-mut);
-  border-top: 1px solid var(--rule);
-  margin-top: 10px; padding-top: 9px;
-}
-.releve-pied b { color: var(--ink); font-weight: 700; }
-
-/* ------------------------------------------------------------ 8. REPÈRES   */
-
-.repaires {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  border: 1px solid var(--rule-2);
-  background: var(--paper-2);
-  margin: 0;
-}
-.repaires div {
-  padding: 18px 20px;
-  border-right: 1px solid var(--rule-2);
-}
-.repaires div:last-child { border-right: 0; }
-.repaires dt {
-  font-size: var(--t-micro);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-mut);
-  margin-bottom: 8px;
-}
-.repaires dd {
-  margin: 0;
+.ruban-piste { display: flex; width: max-content; animation: defile 46s linear infinite; }
+.ruban:hover .ruban-piste { animation-play-state: paused; }
+.ruban-lot { display: flex; align-items: center; flex: 0 0 auto; }
+.ruban-lot span {
   font-family: var(--display);
-  font-variation-settings: "SOFT" 0, "WONK" 1;
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  font-weight: 800; line-height: 1; letter-spacing: -0.03em;
+  font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--gris);
+  padding-inline: clamp(16px, 2.4vw, 30px); white-space: nowrap;
 }
-.repaires dd small {
-  display: block;
-  font-family: var(--texte);
-  font-size: 0.8125rem; font-weight: 400; letter-spacing: 0;
-  color: var(--ink-2); margin-top: 7px; line-height: 1.35;
+.ruban-lot span.fort { color: var(--acide); }
+.ruban-lot i { width: 5px; height: 5px; border-radius: 50%; background: var(--ligne-2); flex: 0 0 auto; }
+@keyframes defile { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  /* On ne fige pas la bande sur un fragment arbitraire : elle redevient une
+     liste que l'on fait défiler soi-même. */
+  .ruban-piste { animation: none; }
+  .ruban { overflow-x: auto; scrollbar-width: none; }
+  .ruban::-webkit-scrollbar { display: none; }
 }
-@media (max-width: 620px) {
-  .repaires div { border-right: 0; border-bottom: 1px solid var(--rule-2); }
-  .repaires div:last-child { border-bottom: 0; }
+
+/* ------------------------------------------------------------ 8. LE RELEVÉ */
+/* Une ligne de régie, pas quatre tuiles de métrique : la tuile
+   « grand nombre + petit libellé » répétée est le gabarit de remplissage par
+   défaut, et elle ne hiérarchise rien. */
+
+.releve-bande {
+  display: flex; flex-wrap: wrap;
+  gap: clamp(18px, 3vw, 44px) clamp(24px, 4vw, 60px); align-items: baseline;
+  margin: 0; padding-block: clamp(28px, 4vw, 44px);
+  border-bottom: 1px solid var(--ligne);
 }
+.releve-bande > div { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+.releve-bande dt {
+  font-size: var(--t-micro); font-weight: 600;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--gris-2); order: 2; max-width: 20ch; line-height: 1.4;
+}
+.releve-bande dd {
+  margin: 0; order: 1;
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 800; letter-spacing: -0.04em; line-height: 1;
+  color: var(--blanc); white-space: nowrap;
+}
+.releve-bande dd.sig { color: var(--acide); }
 
 /* ---------------------------------------- 9. CE QUE JE FAIS — en registre  */
-/* Volontairement PAS quatre cartes de même taille : ce gabarit-là est le
-   remplissage par défaut, il range quatre métiers différents dans quatre
-   boîtes identiques et n'en hiérarchise aucun. Un registre à deux colonnes
-   — la discipline en display à gauche, ce qu'elle produit à droite — se lit
-   comme une page de carnet et laisse les titres respirer. */
 
-.registre { border-top: 1px solid var(--rule-2); }
+.registre { border-top: 1px solid var(--ligne); }
 
 .fait {
   display: grid;
-  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
-  gap: clamp(16px, 4vw, 56px);
-  padding-block: clamp(22px, 3.4vw, 36px);
-  border-bottom: 1px solid var(--rule);
-  transition: background 0.2s ease;
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+  gap: clamp(14px, 4vw, 60px);
+  padding-block: clamp(26px, 3.6vw, 42px);
+  border-bottom: 1px solid var(--ligne);
+  position: relative;
+  transition: background 0.3s ease;
 }
-.fait:hover { background: color-mix(in srgb, var(--paper-2) 60%, transparent); }
+/* Le filet du bas s'allume sur toute la largeur : la ligne se désigne sans
+   que rien ne se déplace. */
+.fait::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 1px; background: var(--acide);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s var(--sortie);
+}
+.fait:hover::after { transform: scaleX(1); }
+.fait:hover { background: rgba(255, 255, 255, 0.017); }
 
-.fait h3 {
-  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
-  letter-spacing: -0.022em;
-}
-.fait p {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--ink-2);
-  margin-bottom: 14px;
-  max-width: 54ch;
-}
-.outils { display: flex; flex-wrap: wrap; gap: 6px; }
+.fait h3 { font-size: clamp(1.45rem, 2.9vw, 2.15rem); letter-spacing: -0.035em; }
+.fait p { font-size: 1rem; line-height: 1.62; color: var(--gris); margin-bottom: 16px; max-width: 52ch; }
+
+.outils { display: flex; flex-wrap: wrap; gap: 7px; }
 .outils span {
-  font-size: var(--t-micro);
-  font-weight: 500;
-  padding: 4px 9px;
-  background: var(--paper-3);
-  color: var(--ink-2);
-  white-space: nowrap;
+  font-size: var(--t-micro); font-weight: 500;
+  padding: 5px 11px; border: 1px solid var(--ligne-2); border-radius: 999px;
+  color: var(--gris); white-space: nowrap;
+  transition: border-color 0.16s ease, color 0.16s ease;
 }
-@media (max-width: 760px) {
-  .fait { grid-template-columns: 1fr; gap: 10px; }
-}
+.fait:hover .outils span { border-color: rgba(204, 255, 61, 0.34); color: var(--blanc); }
+@media (max-width: 780px) { .fait { grid-template-columns: 1fr; gap: 12px; } }
 
 /* ------------------------------------------------------------ 10. PARCOURS  */
 
-.parcours { display: grid; }
+.parcours { position: relative; padding-left: 26px; }
+.parcours::before {
+  content: ""; position: absolute; left: 4px; top: 10px; bottom: 10px; width: 1px;
+  background: linear-gradient(to bottom, var(--acide), var(--ligne-2) 22%, var(--ligne));
+}
 
 .poste {
-  display: grid;
-  grid-template-columns: 152px 1fr;
-  gap: clamp(16px, 3vw, 40px);
-  padding-block: clamp(22px, 3vw, 32px);
-  border-top: 1px solid var(--rule);
+  position: relative; display: grid;
+  grid-template-columns: 158px 1fr; gap: clamp(14px, 3vw, 40px);
+  padding-block: clamp(20px, 2.8vw, 30px);
 }
-.poste:first-child { border-top: 0; padding-top: 0; }
+.poste + .poste { border-top: 1px solid var(--ligne); }
+.poste::before {
+  content: ""; position: absolute; left: -26px;
+  top: calc(clamp(20px, 2.8vw, 30px) + 8px);
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--nuit-3); box-shadow: 0 0 0 3px var(--noir);
+  transition: background 0.2s ease;
+}
+.poste:first-child::before { background: var(--acide); box-shadow: 0 0 0 3px var(--noir), 0 0 16px rgba(204, 255, 61, 0.6); }
+.poste:hover::before { background: var(--acide); }
 
-.poste-date {
-  font-size: var(--t-petit);
-  color: var(--ink-mut);
-  line-height: 1.5;
-  padding-top: 5px;
-}
-.poste-date b { display: block; color: var(--vermillon-2); font-weight: 700; }
-.poste h3 { font-size: 1.3125rem; margin-bottom: 4px; }
-.poste-lieu { font-size: 0.9375rem; color: var(--ink-2); font-weight: 600; margin-bottom: 12px; }
-.poste-lieu em { font-style: normal; font-weight: 400; color: var(--ink-mut); }
+.poste-date { font-size: var(--t-petit); color: var(--gris-2); line-height: 1.5; padding-top: 4px; font-variant-numeric: tabular-nums; }
+.poste-date b { display: block; color: var(--blanc); font-weight: 600; }
+.poste h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); margin-bottom: 5px; }
+.poste-lieu { font-size: 0.9375rem; color: var(--acide-s); font-weight: 500; margin-bottom: 13px; }
+.poste-lieu em { font-style: normal; font-weight: 400; color: var(--gris-2); }
 .poste ul { margin: 0; padding: 0; list-style: none; max-width: var(--lisible); }
 .poste li {
-  position: relative;
-  padding-left: 20px; margin-bottom: 7px;
-  font-size: 0.9375rem; line-height: 1.55; color: var(--ink-2);
+  position: relative; padding-left: 19px; margin-bottom: 8px;
+  font-size: 0.9375rem; line-height: 1.58; color: var(--gris);
 }
-.poste li::before {
-  content: "";
-  position: absolute; left: 2px; top: 0.62em;
-  width: 7px; height: 1px; background: var(--vermillon);
-}
-@media (max-width: 720px) {
-  .poste { grid-template-columns: 1fr; gap: 10px; }
-  .poste-date { padding-top: 0; display: flex; gap: 10px; align-items: baseline; }
+.poste li::before { content: ""; position: absolute; left: 0; top: 0.63em; width: 8px; height: 1px; background: var(--acide); opacity: 0.6; }
+@media (max-width: 760px) {
+  .parcours { padding-left: 20px; }
+  .poste { grid-template-columns: 1fr; gap: 8px; }
+  .poste::before { left: -20px; }
+  .poste-date { padding-top: 0; display: flex; gap: 9px; align-items: baseline; }
   .poste-date b { display: inline; }
 }
 
@@ -577,110 +456,176 @@ section + section { border-top: 1px solid var(--rule); }
 
 .projets {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: clamp(16px, 2.4vw, 26px);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
 }
 
 .projet {
-  display: flex; flex-direction: column;
-  border: 1px solid var(--rule-2);
-  background: var(--paper-2);
-  box-shadow: var(--ombre-1);
-  transition: transform 0.2s var(--vif), box-shadow 0.2s ease;
+  position: relative; display: flex; flex-direction: column;
+  background: var(--nuit);
+  border: 1px solid var(--ligne); border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.28s var(--sortie), border-color 0.28s ease, box-shadow 0.28s ease;
+}
+/* Projecteur : une nappe suit le curseur sur la carte visée. Les coordonnées
+   viennent du script ; sans script la nappe reste simplement invisible. */
+.projet::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 0%),
+              rgba(204, 255, 61, 0.1), transparent 62%);
+  opacity: 0; transition: opacity 0.3s ease;
 }
 .projet:hover, .projet:focus-within {
-  transform: translateY(-4px);
-  box-shadow: var(--ombre-3);
+  transform: translateY(-5px); border-color: var(--ligne-2); box-shadow: var(--ombre-3);
 }
+.projet:hover::before, .projet:focus-within::before { opacity: 1; }
+.projet > * { position: relative; z-index: 1; }
 
-/* La vignette : une trame d'écran de mesure et la courbe propre au projet.
-   Pas de fausse capture d'écran, pas de logo emprunté. */
-.projet-vue {
-  aspect-ratio: 16 / 7;
+/* --- LE CARROUSEL DE CAPTURES --------------------------------------------
+   Défilement par accroche natif : il se balaie au doigt et à la molette SANS
+   JavaScript, les flèches ne font qu'ajouter le clic. La première vue est
+   toujours le sigle du projet — tant qu'aucune capture n'est déposée, la
+   carte reste complète au lieu d'exposer un cadre vide qui se lit comme une
+   panne. Flèches et pastilles n'apparaissent qu'à partir de deux vues
+   (classe posée par le script). */
+
+.vues { position: relative; border-bottom: 1px solid var(--ligne); }
+
+.vues-piste {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.vues-piste::-webkit-scrollbar { display: none; }
+@media (prefers-reduced-motion: reduce) { .vues-piste { scroll-behavior: auto; } }
+
+.vue {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  position: relative;
   display: grid; place-items: center;
-  border-bottom: 1px solid var(--rule-2);
-  background-color: var(--ink);
-  background-image:
-    linear-gradient(to right,  rgba(243, 240, 232, 0.09) 0 1px, transparent 1px 100%),
-    linear-gradient(to bottom, rgba(243, 240, 232, 0.09) 0 1px, transparent 1px 100%);
-  background-size: 14px 14px;
-  overflow: hidden; position: relative;
+  background:
+    radial-gradient(120% 130% at 50% 0%, rgba(204, 255, 61, 0.07), transparent 60%),
+    var(--nuit-2);
+  overflow: hidden;
 }
-.projet-vue b {
-  font-family: var(--display);
-  font-variation-settings: "SOFT" 0, "WONK" 1;
-  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
-  font-weight: 800; letter-spacing: -0.03em;
-  color: var(--paper);
-  z-index: 1;
-  transition: transform 0.3s var(--sortie);
-}
-.projet-vue b span { color: var(--vermillon); }
-.projet:hover .projet-vue b { transform: translateY(-2px); }
-/* La courbe monte d'un cran au survol : le tracé réagit, pas la boîte. */
-.projet-vue::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: var(--courbe, none) center / 100% 100% no-repeat;
-  opacity: 0.45;
-  transform: translateY(3px);
-  transition: opacity 0.3s ease, transform 0.35s var(--sortie);
-}
-.projet:hover .projet-vue::after { opacity: 0.85; transform: translateY(0); }
+/* Une capture remplit sa vue sans se déformer. */
+.vue img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.projet-corps { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
-.projet-corps h3 { font-size: 1.125rem; margin-bottom: 8px; }
-.projet-corps p {
-  font-size: 0.9375rem; line-height: 1.55;
-  color: var(--ink-2); margin-bottom: 14px; max-width: none;
+/* La vue-sigle : le nom court du projet et sa courbe. */
+.vue-sigle b {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-weight: 800; letter-spacing: -0.05em;
+  color: var(--blanc); z-index: 1;
+  transition: transform 0.35s var(--sortie);
 }
+.vue-sigle b span { color: var(--acide); }
+.projet:hover .vue-sigle b { transform: translateY(-3px); }
+.vue-sigle::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--courbe, none) center / 100% 100% no-repeat;
+  opacity: 0.4; transform: translateY(4px);
+  transition: opacity 0.35s ease, transform 0.4s var(--sortie);
+}
+.projet:hover .vue-sigle::after { opacity: 0.95; transform: translateY(0); }
+
+/* Légende d'une capture : posée en bas sur un voile dégradé — une légende
+   blanche à même une capture claire serait illisible. */
+.vue figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 28px 14px 12px;
+  font-size: var(--t-micro); color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  text-align: left;
+}
+
+.vues-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 38px; height: 38px;
+  display: none; place-items: center;
+  background: rgba(8, 9, 12, 0.74);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--ligne-2); border-radius: 50%;
+  color: var(--blanc); cursor: pointer; z-index: 2;
+  transition: background 0.16s ease, border-color 0.16s ease,
+              color 0.16s ease, opacity 0.2s ease;
+}
+.vues.a-plusieurs .vues-nav { display: grid; }
+.vues-nav:hover { background: var(--acide); border-color: var(--acide); color: var(--noir); }
+.vues-nav[disabled] { opacity: 0.28; cursor: default; }
+.vues-nav[disabled]:hover { background: rgba(8, 9, 12, 0.74); border-color: var(--ligne-2); color: var(--blanc); }
+.vues-nav.prec { left: 10px; }
+.vues-nav.suiv { right: 10px; }
+.vues-nav svg { width: 17px; height: 17px; }
+
+.vues-points {
+  position: absolute; left: 0; right: 0; bottom: 11px;
+  display: none; justify-content: center; gap: 6px; z-index: 2;
+}
+.vues.a-plusieurs .vues-points { display: flex; }
+.vues-points button {
+  width: 7px; height: 7px; padding: 0;
+  border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+  transition: background 0.18s ease, width 0.22s var(--sortie);
+}
+.vues-points button[aria-current="true"] { background: var(--acide); width: 19px; border-radius: 4px; }
+
+.projet-corps { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+.projet-corps h3 { font-size: 1.1875rem; margin-bottom: 9px; letter-spacing: -0.028em; }
+.projet-corps p { font-size: 0.9375rem; line-height: 1.58; color: var(--gris); margin-bottom: 16px; max-width: none; }
+
 .projet-meta {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-  margin-top: auto; padding-top: 12px;
-  border-top: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
+  margin-top: auto; padding-top: 14px; border-top: 1px solid var(--ligne);
 }
 .projet-meta > span {
   font-size: var(--t-micro); font-weight: 500;
-  padding: 4px 8px;
-  background: var(--paper-3); color: var(--ink-2);
+  padding: 4px 10px; border-radius: 999px;
+  background: var(--nuit-2); color: var(--gris);
 }
 .projet-meta .depot {
-  margin-left: auto;
-  font-size: var(--t-micro); font-weight: 600;
-  display: inline-flex; align-items: center; gap: 5px;
-  text-decoration: none; color: var(--ink-2);
-  padding: 4px 6px;
+  margin-left: auto; font-size: var(--t-micro); font-weight: 600;
+  display: inline-flex; align-items: center; gap: 6px;
+  text-decoration: none; color: var(--gris); padding: 4px 6px;
 }
-.projet-meta .depot svg { width: 12px; height: 12px; transition: transform 0.18s var(--sortie); }
-.projet-meta .depot:hover { color: var(--vermillon-2); }
+.projet-meta .depot svg { width: 13px; height: 13px; transition: transform 0.2s var(--sortie); }
+.projet-meta .depot:hover { color: var(--acide); }
 .projet-meta .depot:hover svg { transform: translate(2px, -2px); }
 
 .etat {
   font-size: var(--t-micro); font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 4px 8px;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px;
 }
-.etat.vif   { background: var(--vermillon-w); color: var(--vermillon-2); }
-.etat.calme { background: var(--cyan-w);      color: var(--cyan); }
+.etat.vif   { background: var(--acide-w); color: var(--acide); }
+.etat.calme { background: var(--bleu-w);  color: var(--bleu); }
 
-/* ------------------------------------------------------- 12. PUBLICATIONS   */
+/* --------------------------------- 12. INTERVENTIONS ET PUBLICATIONS  */
 
 .publis { display: grid; }
 .publi {
-  display: grid;
-  grid-template-columns: 62px 1fr auto;
-  gap: clamp(14px, 2.4vw, 28px);
-  align-items: start;
-  padding-block: 22px;
-  border-top: 1px solid var(--rule);
+  display: grid; grid-template-columns: 104px 1fr auto;
+  gap: clamp(14px, 2.4vw, 30px); align-items: start;
+  padding-block: 24px; border-top: 1px solid var(--ligne);
+  transition: background 0.2s ease;
 }
 .publi:first-child { border-top: 0; padding-top: 0; }
-.publi-an { font-size: var(--t-petit); font-weight: 600; color: var(--vermillon-2); padding-top: 3px; }
-.publi h3 { font-size: 1.0625rem; line-height: 1.3; margin-bottom: 7px; }
-.publi-aut { font-size: 0.875rem; color: var(--ink-2); margin-bottom: 5px; line-height: 1.5; }
-.publi-aut b { color: var(--ink); font-weight: 700; }
-.publi-rev { font-size: var(--t-petit); color: var(--ink-mut); }
-.publi-lien { padding-top: 3px; font-size: var(--t-micro); font-weight: 600; }
+.publi:hover { background: rgba(255, 255, 255, 0.016); }
+.publi-an { font-size: var(--t-petit); font-weight: 600; color: var(--acide-s); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.publi h3 { font-size: 1.1875rem; line-height: 1.26; margin-bottom: 9px; letter-spacing: -0.028em; }
+.publi-aut { font-size: 0.9375rem; color: var(--gris); margin-bottom: 6px; line-height: 1.55; }
+.publi-aut b { color: var(--blanc); font-weight: 600; }
+.publi-rev { font-size: var(--t-petit); color: var(--gris-2); }
+.publi-lien { padding-top: 4px; font-size: var(--t-micro); font-weight: 600; white-space: nowrap; }
 @media (max-width: 720px) {
   .publi { grid-template-columns: 1fr; gap: 8px; }
   .publi-an { padding-top: 0; }
@@ -688,137 +633,132 @@ section + section { border-top: 1px solid var(--rule); }
 
 /* Encart « il manque quelque chose » — assumé, jamais un trou silencieux. */
 .attente {
-  border: 1px dashed var(--rule-2);
-  background: var(--paper-2);
-  padding: clamp(20px, 3vw, 28px);
+  border: 1px dashed var(--ligne-2); border-radius: 14px;
+  background: var(--nuit); padding: clamp(20px, 3vw, 30px);
 }
-.attente h3 { font-size: 1.0625rem; margin-bottom: 10px; }
-.attente p { font-size: 0.9375rem; color: var(--ink-2); margin-bottom: 0.7em; }
+.attente h3 { font-size: 1.125rem; margin-bottom: 11px; }
+.attente p { font-size: 0.9375rem; color: var(--gris); margin-bottom: 0.7em; }
 .attente code {
   font-family: var(--mono); font-size: 0.8125rem;
-  background: var(--paper-3); padding: 1px 5px;
+  background: var(--nuit-2); color: var(--acide-s);
+  padding: 2px 6px; border-radius: 5px;
 }
 
 /* ------------------------------------------------------------ 13. CONTACT   */
 
+.appel {
+  position: relative;
+  border: 1px solid var(--ligne); border-radius: 22px;
+  background:
+    radial-gradient(90% 140% at 12% 0%, rgba(204, 255, 61, 0.09), transparent 58%),
+    radial-gradient(70% 120% at 92% 100%, rgba(91, 156, 255, 0.08), transparent 60%),
+    var(--nuit);
+  padding: clamp(30px, 5vw, 64px); overflow: hidden;
+}
 .contact-grille {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
-  gap: clamp(28px, 5vw, 64px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+  gap: clamp(28px, 5vw, 64px); align-items: start;
 }
-@media (max-width: 860px) { .contact-grille { grid-template-columns: 1fr; } }
-.contact-grille h2 { font-size: var(--t-titre); margin-bottom: 0.5em; }
+@media (max-width: 880px) { .contact-grille { grid-template-columns: 1fr; } }
+.appel h2 { font-size: var(--t-titre); margin-bottom: 0.44em; }
+.appel p { color: var(--gris); }
 
-.coord { display: grid; gap: 1px; background: var(--rule-2); border: 1px solid var(--rule-2); }
+.coord { display: grid; gap: 8px; }
 .coord a {
-  display: flex; align-items: center; gap: 13px;
+  display: flex; align-items: center; gap: 14px;
   padding: 15px 18px;
-  background: var(--paper);
-  text-decoration: none; color: var(--ink);
-  font-size: 0.9375rem;
-  position: relative;
-  transition: background 0.14s ease;
+  background: rgba(255, 255, 255, 0.028);
+  border: 1px solid var(--ligne); border-radius: 12px;
+  text-decoration: none; color: var(--blanc); font-size: 0.9375rem;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.18s var(--vif);
 }
-/* Le trait se deploie depuis le bord : meme lecture qu'un decalage, sans
-   toucher a la mise en page. */
-.coord a::before {
-  content: "";
-  position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px; background: var(--vermillon);
-  transform: scaleY(0); transform-origin: center;
-  transition: transform 0.2s var(--sortie);
+.coord a:hover {
+  background: rgba(204, 255, 61, 0.055);
+  border-color: rgba(204, 255, 61, 0.34);
+  color: var(--blanc); transform: translateX(4px);
 }
-.coord a:hover { background: var(--paper-2); color: var(--vermillon-2); }
-.coord a:hover::before, .coord a:focus-visible::before { transform: scaleY(1); }
 .coord i {
-  font-style: normal;
-  font-size: var(--t-micro); font-weight: 700;
+  font-style: normal; font-size: var(--t-micro); font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--ink-mut); width: 62px; flex: 0 0 auto;
+  color: var(--gris-2); width: 66px; flex: 0 0 auto;
 }
-.coord b { font-weight: 500; }
-.coord svg { width: 15px; height: 15px; margin-left: auto; flex: 0 0 auto; opacity: 0.4; transition: opacity 0.14s ease, transform 0.18s var(--sortie); }
-.coord a:hover svg { opacity: 1; transform: translate(2px, -2px); }
+.coord b { font-weight: 500; min-width: 0; overflow-wrap: anywhere; }
+.coord svg { width: 15px; height: 15px; margin-left: auto; flex: 0 0 auto; color: var(--gris-2); transition: color 0.16s, transform 0.2s var(--sortie); }
+.coord a:hover svg { color: var(--acide); transform: translate(2px, -2px); }
 
 /* -------------------------------------------------------------- 14. PIED    */
 
-.pied {
-  border-top: 1px solid var(--rule-2);
-  background: var(--ink); color: var(--paper);
-  padding-block: clamp(34px, 5vw, 54px);
-}
-.pied ::selection { background: var(--sand, var(--vermillon)); color: #fff; }
+.pied { border-top: 1px solid var(--ligne); padding-block: clamp(34px, 5vw, 56px); }
 .pied-in {
-  max-width: var(--large); margin-inline: auto;
-  padding-inline: var(--gouttiere);
-  display: flex; flex-wrap: wrap; gap: 22px 40px; align-items: baseline;
+  max-width: var(--large); margin-inline: auto; padding-inline: var(--gouttiere);
+  display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: baseline;
 }
-.pied a { color: var(--paper); text-decoration-color: rgba(243, 240, 232, 0.35); }
-.pied a:hover { color: #F2A38F; text-decoration-color: currentColor; }
-.pied-nom {
-  font-family: var(--display);
-  font-variation-settings: "SOFT" 0, "WONK" 1;
-  font-size: 1.3125rem; font-weight: 700; letter-spacing: -0.02em;
-}
-.pied-liens { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-left: auto; }
-.pied-liens a { font-size: var(--t-petit); }
+.pied-nom { font-family: var(--display); font-size: 1.25rem; font-weight: 700; letter-spacing: -0.03em; }
+.pied-liens { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-left: auto; }
+.pied-liens a { font-size: var(--t-petit); color: var(--gris); }
+.pied-liens a:hover { color: var(--acide); }
 .pied-note {
-  width: 100%;
-  font-size: var(--t-micro);
-  color: rgba(243, 240, 232, 0.55);
-  border-top: 1px solid rgba(243, 240, 232, 0.14);
-  padding-top: 18px; letter-spacing: 0.03em;
+  width: 100%; font-size: var(--t-micro); color: var(--gris-2);
+  border-top: 1px solid var(--ligne); padding-top: 18px; letter-spacing: 0.02em;
 }
 
-/* ------------------------------------------- 15. ENTRÉE DU BANDEAU, UNE FOIS */
-/* Le bandeau se lève à l'ouverture. AUCUNE autre section ne rejoue cette
-   entrée : le contenu sous la ligne de flottaison est visible par défaut,
-   ce qui le rend aussi imprimable, indexable et lisible si le script échoue. */
+/* --------------------------------------- 15. L'OUVERTURE, UNE SEULE FOIS   */
+/* Le nom se dévoile ligne à ligne par masque, le reste suit. AUCUNE autre
+   section ne rejoue cette entrée : tout le contenu sous la ligne de
+   flottaison est visible par défaut, donc imprimable, indexable, et lisible
+   si le script échoue. */
 
-.js .quart h1,
+.js .quart h1 .l { display: block; overflow: hidden; }
+.js .quart h1 .l > span { display: block; animation: monte 0.85s var(--sortie) both; }
+.js .quart h1 .l:nth-child(2) > span { animation-delay: 0.1s; }
 .js .quart .fonction,
-.js .quart .pont,
-.js .quart .actions,
-.js .quart .releve { animation: leve 0.72s var(--sortie) both; }
-.js .quart .fonction { animation-delay: 0.08s; }
-.js .quart .pont     { animation-delay: 0.15s; }
-.js .quart .actions  { animation-delay: 0.21s; }
-.js .quart .releve   { animation-delay: 0.12s; }
-@keyframes leve { from { opacity: 0; transform: translateY(14px); } }
+.js .quart .ou,
+.js .quart .actions { animation: leve 0.75s var(--sortie) both; }
+.js .quart .fonction { animation-delay: 0.22s; }
+.js .quart .ou       { animation-delay: 0.3s; }
+.js .quart .actions  { animation-delay: 0.38s; }
 
-/* La grille de projets arrive en série — une liste qui apparaît comme une
-   liste. Le décalage total est plafonné à 0,3 s : au-delà, on attend. */
-.js .projets.serie > * { animation: leve 0.5s var(--sortie) both; }
+@keyframes monte  { from { transform: translateY(102%); } }
+@keyframes leve   { from { opacity: 0; transform: translateY(16px); } }
+@keyframes parait { from { opacity: 0; } }
+
+/* Une liste qui apparaît comme une liste. Décalage total plafonné par le
+   script à 0,3 s : au-delà, le dernier se fait attendre. */
+.js .projets.serie > * { animation: leve 0.55s var(--sortie) both; }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .quart h1, .js .quart .fonction, .js .quart .pont,
-  .js .quart .actions, .js .quart .releve,
-  .js .projets.serie > * { animation: parait 0.3s ease-out both; }
+  .js .quart h1 .l > span,
+  .js .quart .fonction, .js .quart .ou, .js .quart .actions,
+  .js .projets.serie > * { animation: parait 0.35s ease-out both; }
+  .halo { animation: none; }
 }
 
 /* ------------------------------------------------------ 16. FOCUS CLAVIER   */
 
-:focus-visible { outline: 2px solid var(--vermillon); outline-offset: 3px; }
-.pied :focus-visible { outline-color: #F2A38F; }
+:focus-visible { outline: 2px solid var(--acide); outline-offset: 3px; border-radius: 4px; }
 
 .evite {
-  position: absolute; left: 12px; top: -60px; z-index: 100;
-  background: var(--ink); color: var(--paper);
-  padding: 10px 16px; font-size: 0.9375rem; text-decoration: none;
-  transition: top 0.16s var(--sortie);
+  position: absolute; left: 12px; top: -64px; z-index: 100;
+  background: var(--acide); color: var(--noir);
+  padding: 11px 18px; border-radius: 10px;
+  font-size: 0.9375rem; font-weight: 600; text-decoration: none;
+  transition: top 0.18s var(--sortie);
 }
-.evite:focus { top: 12px; color: var(--paper); }
+.evite:focus { top: 12px; color: var(--noir); }
 
 /* ------------------------------------------------------------- 17. IMPRIME  */
 
 @media print {
-  body::before, body::after, .barre, .pied, .releve, .attente { display: none !important; }
-  body { background: #fff; color: #000; font-size: 10.5pt; }
-  body { background-image: none; }
-  section { padding-block: 14pt; border-top: 0.5pt solid #999; }
+  body { background: #fff !important; color: #000; font-size: 10.5pt; }
+  body::after, .barre, .pied, .halos, .ruban, .attente,
+  .vues-nav, .vues-points { display: none !important; }
+  .quart::before { display: none !important; }
+  .quart { min-height: 0; }
+  section { padding-block: 14pt; }
+  .appel { border: 0; background: none; padding: 0; }
   a { text-decoration: none; color: #000; }
-  .projet, .fait, .repaires div, .poste { break-inside: avoid; }
-  .js .quart h1, .js .quart .fonction, .js .quart .pont,
-  .js .quart .actions, .js .projets.serie > * { animation: none !important; opacity: 1 !important; }
+  .projet, .fait, .poste, .publi { break-inside: avoid; }
+  .js .quart h1 .l > span, .js .quart .fonction, .js .quart .ou,
+  .js .quart .actions, .js .projets.serie > * { animation: none !important; opacity: 1 !important; transform: none !important; }
 }

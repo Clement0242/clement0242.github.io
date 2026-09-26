@@ -1,0 +1,26 @@
+CAPTURES D'ÉCRAN DES PROJETS
+============================
+
+Dépose ici les images que tu veux montrer dans les carrousels des cartes
+projet. Un nom de fichier par projet, numéroté :
+
+    scoutbase-1.png     scoutbase-2.png     ...
+    ffbb-monitoring-1.png   ffbb-monitoring-2.png   ...
+    kinexon-1.png       kinvent-1.png       ffbb-stats-1.png
+    decel-1.png
+
+Puis, dans index.html ET en/index.html, décommente le bloc <figure class="vue">
+correspondant et corrige le nom du fichier, le texte alternatif et la légende.
+
+RECOMMANDATIONS
+- Format 16/10 (par ex. 1600x1000 px). Une autre proportion sera recadrée au
+  centre, pas déformée.
+- PNG pour une interface, JPG pour une photo.
+- Vise moins de 300 Ko par image : au-delà, la page devient lente sur mobile.
+- Toujours renseigner alt="" avec ce que MONTRE la capture. C'est ce que lit
+  une personne aveugle et ce qui s'affiche si l'image ne charge pas.
+
+AVANT DE PUBLIER
+Ces images partent sur un site public et permanent. Vérifie qu'aucune capture
+ne laisse voir un nom d'athlète, une date de naissance, une donnée médicale ou
+un identifiant. Floute ou remplace par des données factices si besoin.
