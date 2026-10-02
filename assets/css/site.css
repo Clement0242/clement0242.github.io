@@ -565,6 +565,12 @@ section { padding-block: clamp(64px, 10vw, 140px); position: relative; }
 /* Une capture remplit sa vue sans se déformer. */
 .vue img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+/* Un film (16:9) dans une vue 16:10 : CONTENU, jamais rogné — en « cover »,
+   les titres posés à 100 px du bord gauche du film seraient coupés. Le fond
+   reprend la nuit du film : les deux fines bandes ne se voient pas. */
+.vue-film { background: #0D1524; }
+.vue-film video { width: 100%; height: 100%; object-fit: contain; display: block; background: #0D1524; }
+
 /* La vue-sigle : le nom court du projet et sa courbe. */
 .vue-sigle b {
   font-family: var(--display);
@@ -649,6 +655,8 @@ section { padding-block: clamp(64px, 10vw, 140px); position: relative; }
 .projet-meta .depot svg { width: 13px; height: 13px; transition: transform 0.2s var(--sortie); }
 .projet-meta .depot:hover { color: var(--acide); }
 .projet-meta .depot:hover svg { transform: translate(2px, -2px); }
+/* téléchargement : la flèche descend au lieu de partir en diagonale */
+.projet-meta .depot[download]:hover svg { transform: translateY(2px); }
 
 .etat {
   font-size: var(--t-micro); font-weight: 600;
