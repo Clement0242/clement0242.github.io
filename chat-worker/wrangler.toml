@@ -1,0 +1,17 @@
+name = "clement-assistant"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# La clé OpenRouter n'est JAMAIS écrite ici (dépôt public) :
+#   npx wrangler secret put OPENROUTER_API_KEY
+workers_dev = true
+
+
+# Compteurs exacts (8 questions/min par IP, 300/jour au total) — cf. worker.js.
+[[durable_objects.bindings]]
+name = "COMPTEUR"
+class_name = "Compteur"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Compteur"]

@@ -1,10 +1,9 @@
 /* ============================================================================
    CV — feuille dédiée.
 
-   Le site est nuit, la feuille du CV est BLANCHE, et c'est délibéré : ce même
-   document sert l'écran ET l'impression A4. Un CV sombre imprimé dévore
-   l'encre et sort gris. Posée sur le fond nuit, la feuille se lit d'ailleurs
-   comme un document sur un bureau.
+   La feuille du CV est BLANCHE : ce même document sert l'écran ET
+   l'impression A4. Posée sur le fond blanc cassé du site, elle se détache par
+   un filet et une ombre très douce, comme un document sur un bureau.
 
    Cette feuille définit donc sa PROPRE palette claire, indépendante des
    jetons du site : elle doit rester juste même si l'identité du site change
@@ -19,9 +18,7 @@
   --p-filet:   rgba(20, 24, 29, 0.14);
   --p-filet-2: rgba(20, 24, 29, 0.3);
   --p-creux:   #EEF0F2;
-  --p-signal:  #2F6B12;   /* vert appuyé — 6,4:1 sur blanc. L'acide du site
-                             tombe à 1,4:1 sur papier : illisible, et invisible
-                             une fois imprimé en noir et blanc. */
+  --p-signal:  #1B3A6B;   /* l'accent bleu nuit du site — 11:1 sur blanc */
 }
 
 .cv-page {
@@ -42,15 +39,16 @@ html:not(.js) .cv-actions { display: none; }
 .cv-actions p {
   margin: 0;
   font-size: var(--t-petit);
-  color: var(--gris-2);
+  color: var(--mut);
   max-width: 46ch;
 }
 
 .feuille {
   background: #fff;
   color: var(--p-encre);
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 24px 70px rgba(0, 0, 0, 0.5);
+  border: 1px solid #E4E2DB;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(20, 23, 28, 0.04), 0 12px 40px rgba(20, 23, 28, 0.08);
   padding: clamp(24px, 3.6vw, 48px);
 }
 .feuille a { color: var(--p-encre-2); text-decoration-color: var(--p-filet-2); }
@@ -80,9 +78,9 @@ html:not(.js) .cv-actions { display: none; }
 @media (max-width: 480px) { .cv-photo { width: 62px; height: 62px; } }
 @media print { .cv-photo { width: 21mm; height: 21mm; } }
 .cv-tete h1 {
-  font-family: var(--display);
-  font-size: clamp(1.9rem, 4.4vw, 2.8rem);
-  font-weight: 800; letter-spacing: -0.04em; line-height: 1.02;
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4.8vw, 3.1rem);
+  font-weight: 400; letter-spacing: -0.015em; line-height: 1;
   margin-bottom: 7px;
   color: var(--p-encre);
 }

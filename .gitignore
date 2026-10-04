@@ -6,3 +6,8 @@ CV_Clement_Verdier_*.pdf
 # Systèmes
 Thumbs.db
 .DS_Store
+
+# Relais de l'assistant (Cloudflare Worker) : état local et secrets
+chat-worker/.wrangler/
+chat-worker/node_modules/
+chat-worker/.dev.vars
