@@ -7,6 +7,8 @@
     "generer": "node outils/generer.mjs",
     "verifier": "node outils/generer.mjs --check",
     "tester": "node outils/tester-assistant.mjs",
-    "deployer": "node outils/generer.mjs && node outils/tester-assistant.mjs && cd chat-worker && npx wrangler deploy"
+    "tester-rapide": "node outils/tester-assistant.mjs --rapide",
+    "deployer": "node outils/generer.mjs && node outils/tester-assistant.mjs && cd chat-worker && npx wrangler deploy",
+    "deployer-rapide": "node outils/generer.mjs && node outils/tester-assistant.mjs --rapide && cd chat-worker && npx wrangler deploy"
   }
 }

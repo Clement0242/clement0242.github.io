@@ -35,8 +35,9 @@ const permise = (o) => o === "https://clement0242.github.io" || LOCAL.test(o);
 const MAX_MESSAGES = 12;        // historique renvoyé au modèle
 const MAX_CARACTERES = 1200;    // par message
 const MAX_PAR_MINUTE = 8;       // par IP
-const MAX_PAR_JOUR = 300;       // tous visiteurs confondus : protège le quota
-                                // quotidien de modèles gratuits du compte OpenRouter
+const MAX_PAR_JOUR = 800;       // tous visiteurs confondus : sous le quota de
+                                // 1 000 requêtes gratuites/jour d'OpenRouter (compte
+                                // crédité ≥ 5 $ ; 50/jour sinon), marge pour les tests
 
 const CONSIGNE = `Tu es l'assistant du site personnel de Clément Verdier. Les visiteurs (recruteurs, clubs, fédérations, chercheurs) te posent des questions pour en apprendre plus sur lui.
 

@@ -7,7 +7,7 @@ compatibility_date = "2026-09-01"
 workers_dev = true
 
 
-# Compteurs exacts (8 questions/min par IP, 300/jour au total) — cf. worker.js.
+# Compteurs exacts (8 questions/min par IP, 800/jour au total) — cf. worker.js.
 [[durable_objects.bindings]]
 name = "COMPTEUR"
 class_name = "Compteur"

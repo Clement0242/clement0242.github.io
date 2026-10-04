@@ -83,6 +83,15 @@ npm run generer     # réécrit les 4 pages + chat-worker/profil.js
 npm run verifier    # échoue si une page n'est plus à jour (avant un commit)
 npm run tester      # questions de référence sur l'assistant LOCAL
 npm run deployer    # generer → tester → déploie l'assistant (stoppe si un test échoue)
+npm run deployer-rapide   # idem avec 3 questions seulement (petites retouches)
+```
+
+⚠️ **Quota OpenRouter** : 1 000 requêtes gratuites par jour parce que le
+compte a été crédité de 5 $ (sinon 50, et l'assistant tombe en
+« indisponible » dès midi — vécu le 04/10). Les tests complets coûtent 10 à
+20 requêtes ; le relais plafonne les visiteurs à 800/jour.
+
+```bash
 ```
 
 Un champ `site: false` n'apparaît que dans l'assistant ; un bloc `cv: {…}`

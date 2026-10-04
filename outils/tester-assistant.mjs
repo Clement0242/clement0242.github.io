@@ -8,7 +8,12 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
-import { CAS } from "./cas-assistant.mjs";
+import { CAS as TOUS } from "./cas-assistant.mjs";
+
+// --rapide : 3 cas seulement (football, piège GitHub, tentative de détournement).
+// Chaque cas coûte 1-2 requêtes sur le quota quotidien d'OpenRouter.
+const RAPIDE = process.argv.includes("--rapide");
+const CAS = RAPIDE ? TOUS.filter((c, i) => [1, 3, 7].includes(i)) : TOUS;
 
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 
