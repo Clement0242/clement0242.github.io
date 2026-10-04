@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- Gabarit de l'image d'aperçu des liens partagés (1200×630).
+     Rendu en PNG par outils/apercu.mjs ; ?lang=en pour la version anglaise. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --fond:#FAFAF7; --encre:#14171C; --texte-2:#444B55; --mut:#686F79; --ligne:#E4E2DB; --accent:#1B3A6B; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; background: var(--fond); }
+  body {
+    display: grid; grid-template-columns: 1fr 420px;
+    font-family: "Instrument Sans", Helvetica, Arial, sans-serif; color: var(--encre);
+  }
+  .texte { padding: 72px 64px 64px 80px; display: flex; flex-direction: column; }
+  .site { font-size: 22px; color: var(--mut); letter-spacing: .01em; }
+  h1 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 118px; line-height: .92; letter-spacing: -.02em; margin-top: 44px; }
+  h1 em { color: var(--accent); }
+  .titre { font-size: 33px; line-height: 1.3; color: var(--texte-2); margin-top: 34px; max-width: 19em; }
+  .titre b { color: var(--encre); font-weight: 600; }
+  .bas { margin-top: auto; display: flex; gap: 14px; align-items: center; font-size: 22px; color: var(--mut); }
+  .bas i { width: 9px; height: 9px; border-radius: 50%; background: #2E8B57; }
+  .photo { height: 630px; background: url("../assets/img/clement-verdier.jpg") 50% 30% / cover no-repeat; border-left: 1px solid var(--ligne); }
+</style>
+</head>
+<body>
+  <div class="texte">
+    <p class="site">clement0242.github.io</p>
+    <h1>Clément<br><em>Verdier</em></h1>
+    <p class="titre" data-fr="Ingénieur data · <b>haute performance sportive</b>" data-en="Data engineer · <b>elite sport performance</b>"></p>
+    <p class="bas"><i></i><span data-fr="INSEP / FFBB · Paris" data-en="INSEP / French Basketball · Paris"></span></p>
+  </div>
+  <div class="photo"></div>
+<script>
+  var l = new URLSearchParams(location.search).get("lang") === "en" ? "en" : "fr";
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-fr]").forEach(function (n) { n.innerHTML = n.getAttribute("data-" + l); });
+</script>
+</body>
+</html>
