@@ -127,14 +127,15 @@
 
   /* --------------------------------------------------------------- RENDU */
 
-  // **gras**, liens http(s) et adresses mail — tout le reste reste du texte.
+  // **gras**, *italique*, liens http(s) et adresses mail — le reste reste du texte.
   function enrichir(parent, texte) {
-    var motif = /(\*\*[^*]+\*\*|https?:\/\/[^\s)]+|[\w.+-]+@[\w-]+\.[\w.]+)/g;
+    var motif = /(\*\*[^*]+\*\*|\*[^*\s][^*]*\*|https?:\/\/[^\s)]+|[\w.+-]+@[\w-]+\.[\w.]+)/g;
     var dernier = 0, m;
     while ((m = motif.exec(texte))) {
       if (m.index > dernier) parent.appendChild(document.createTextNode(texte.slice(dernier, m.index)));
       var t = m[0];
       if (t.slice(0, 2) === "**") parent.appendChild(el("strong", null, t.slice(2, -2)));
+      else if (t.charAt(0) === "*") parent.appendChild(el("em", null, t.slice(1, -1)));
       else {
         var propre = t.replace(/[.,;:!?]+$/, "");
         var a = el("a", null, propre);
