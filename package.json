@@ -1,0 +1,12 @@
+{
+  "name": "clement0242.github.io",
+  "private": true,
+  "description": "Site statique : aucune dépendance. Ces scripts ne servent qu'à régénérer le profil et à déployer l'assistant.",
+  "type": "module",
+  "scripts": {
+    "generer": "node outils/generer.mjs",
+    "verifier": "node outils/generer.mjs --check",
+    "tester": "node outils/tester-assistant.mjs",
+    "deployer": "node outils/generer.mjs && node outils/tester-assistant.mjs && cd chat-worker && npx wrangler deploy"
+  }
+}

@@ -70,6 +70,27 @@ Il n'y a donc **pas de PDF à maintenir séparément** : on corrige le HTML, le 
 suit. Les CV taillés pour une entreprise précise sont exclus par `.gitignore` —
 ils ne doivent pas se retrouver en ligne.
 
+## Le profil : une seule source
+
+**Tout le parcours vit dans `profil/profil.mjs`** (FR + EN) : expériences,
+formations, compétences, langues, localisation, et ce que seul l'assistant
+connaît (personnalité, stages détaillés, mémoire, projets). On ne retouche
+JAMAIS à la main les blocs entre `<!-- GEN:… -->` dans les pages : ils sont
+écrasés à la génération.
+
+```bash
+npm run generer     # réécrit les 4 pages + chat-worker/profil.js
+npm run verifier    # échoue si une page n'est plus à jour (avant un commit)
+npm run tester      # questions de référence sur l'assistant LOCAL
+npm run deployer    # generer → tester → déploie l'assistant (stoppe si un test échoue)
+```
+
+Un champ `site: false` n'apparaît que dans l'assistant ; un bloc `cv: {…}`
+donne la variante propre au CV. Les tests vivent dans
+`outils/cas-assistant.mjs` : ajouter un cas à chaque mauvaise réponse
+constatée en vrai. La clé de test se met dans `chat-worker/.dev.vars`
+(`OPENROUTER_API_KEY=…`, ignoré par Git).
+
 ## L'assistant conversationnel
 
 Les visiteurs posent leurs questions à un assistant IA qui ne connaît QUE
@@ -96,8 +117,8 @@ branchée). En cas de changement, coller la nouvelle URL dans `data-endpoint="�
 **quatre** pages (`index.html`, `en/index.html`, `cv/index.html`,
 `en/cv/index.html`). Tant que l'attribut est vide, l'assistant n'apparaît pas.
 
-Mettre à jour ce que sait l'assistant : modifier `chat-worker/profil.js` puis
-`npx wrangler deploy`. Tout ce qui y est écrit devient public.
+Mettre à jour ce que sait l'assistant : modifier `profil/profil.mjs` puis
+`npm run deployer`. Tout ce qui y est écrit devient public.
 
 ## Règles de conception à ne pas casser
 
