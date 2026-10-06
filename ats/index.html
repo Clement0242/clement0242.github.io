@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon CV passe-t-il votre ATS ? — Clément Verdier</title>
+<meta name="description" content="Collez une offre d'emploi : un petit algorithme de machine learning écrit par Clément Verdier la compare à son parcours et rend une note sur 100, points forts et points faibles compris. Tout tourne dans votre navigateur.">
+<meta name="author" content="Clément Verdier">
+<link rel="canonical" href="https://clement0242.github.io/ats/">
+<meta name="theme-color" content="#FAFAF7">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mon CV passe-t-il votre ATS ?">
+<meta property="og:description" content="Collez votre offre : un petit modèle maison la confronte à mon parcours et rend une note sur 100, avec les points + et les points −.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://clement0242.github.io/ats/">
+<meta property="og:image" content="https://clement0242.github.io/assets/img/apercu-fr.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Clément Verdier, ingénieur data · haute performance sportive">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="fr" href="https://clement0242.github.io/ats/">
+<link rel="alternate" hreflang="en" href="https://clement0242.github.io/en/ats/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className += " js";</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314171C'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial,sans-serif' font-weight='bold' font-size='16' fill='%23FAFAF7' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="evite" href="#contenu">Aller au contenu</a>
+
+<header class="barre">
+  <div class="barre-in">
+    <a class="sceau" href="../"><i>CV</i> Clément Verdier</a>
+    <nav class="liens" aria-label="Sections du site">
+      <a href="../#faire">Ce que je fais</a>
+      <a href="../#parcours">Parcours</a>
+      <a href="../#projets">Projets</a>
+      <a href="./" aria-current="page">Labo</a>
+      <a href="../cv/">CV</a>
+    </nav>
+    <div class="langue">
+      <a href="./" aria-current="true" hreflang="fr">FR</a>
+      <a href="../en/ats/" hreflang="en">EN</a>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="ats-bandeau">
+    <div class="enveloppe">
+      <p class="etiq">Labo <span>du machine learning à tester en direct</span></p>
+      <h1>Mon CV passe-t-il <em>votre ATS&nbsp;?</em></h1>
+      <p class="fonction">
+        Les recruteurs filtrent les CV avec des algorithmes. J'ai écrit le mien,
+        à l'envers : collez votre offre, il la lit, la confronte à mon parcours
+        et rend une note sur 100 — avec mes <b>points forts</b> et mes
+        <b>points faibles</b>. Il ne flatte pas : il calcule.
+      </p>
+      <p class="ou"><i aria-hidden="true"></i> La note est calculée dans votre navigateur. L'offre ne part vers une IA que si vous lui demandez son avis.</p>
+    </div>
+  </section>
+
+  <section class="ats-section">
+    <div class="enveloppe">
+      <div class="ats" data-ats>
+        <form class="ats-form">
+          <label class="ats-label" for="ats-offre">L'offre d'emploi</label>
+          <textarea id="ats-offre" rows="11" spellcheck="false" placeholder="Collez ici le texte de l'offre (intitulé, missions, profil recherché)… ou déposez son PDF."></textarea>
+          <div class="ats-boutons">
+            <button class="bouton" type="submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              Analyser l'offre
+            </button>
+            <button class="bouton creux" type="button" data-ats-importer>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9 15l3-3 3 3"/></svg>
+              Importer un PDF
+            </button>
+            <input type="file" accept=".pdf,.txt,application/pdf,text/plain" data-ats-fichier hidden>
+          </div>
+          <p class="ats-etat" data-ats-etat aria-live="polite"></p>
+          <div class="ats-boutons">
+            <span class="ats-ou">Pas d'offre sous la main ? Essayez avec</span>
+            <button class="ats-exemple" type="button" data-ats-exemple="0">un club de foot</button>
+            <button class="ats-exemple" type="button" data-ats-exemple="1">une fintech</button>
+            <button class="ats-exemple" type="button" data-ats-exemple="2">une boulangerie</button>
+          </div>
+        </form>
+
+        <details class="ats-rediger" data-ats-rediger hidden>
+          <summary>Pas d'offre rédigée ? Décrivez le poste en vrac, l'IA la met en forme</summary>
+          <div class="ats-rediger-corps">
+            <label class="ats-label" for="ats-demande">Ce que vous demandez</label>
+            <textarea id="ats-demande" rows="4" placeholder="ex. : analyser les données GPS des joueurs, Python, anglais, 2 ans d'expé…"></textarea>
+            <label class="ats-label" for="ats-propose">Ce que vous proposez</label>
+            <textarea id="ats-propose" rows="3" placeholder="ex. : CDI à Lyon, télétravail partiel, staff de 6 personnes…"></textarea>
+            <div class="ats-boutons">
+              <button class="bouton creux" type="button" data-ats-mettre-en-forme>Mettre en forme et analyser</button>
+            </div>
+            <p class="ats-etat" data-ats-rediger-etat aria-live="polite"></p>
+            <p class="ats-petit">Vos notes sont envoyées à un modèle d'IA gratuit (via OpenRouter), chargé de les reformuler sans rien y ajouter. La note est ensuite calculée ici, par l'algorithme.</p>
+          </div>
+        </details>
+
+        <noscript><p class="ats-sans">L'analyse a besoin de JavaScript. Le <a href="../cv/">CV</a>, lui, n'en a pas besoin.</p></noscript>
+
+        <div class="ats-resultat" data-ats-resultat hidden tabindex="-1" aria-live="polite">
+          <div class="ats-note">
+            <p class="ats-chiffre"><b data-ats-score>0</b><span>/100</span></p>
+            <div class="ats-verdict-bloc">
+              <p class="ats-verdict" data-ats-verdict></p>
+              <div class="ats-jauge" aria-hidden="true"><span data-ats-jauge></span></div>
+            </div>
+          </div>
+
+          <div class="ats-colonnes">
+            <div class="ats-col plus">
+              <h2>Points +</h2>
+              <ul data-ats-plus></ul>
+            </div>
+            <div class="ats-col moins">
+              <h2>Points −</h2>
+              <ul data-ats-moins></ul>
+            </div>
+          </div>
+
+          <div class="ats-ia" data-ats-ia hidden>
+            <p class="ats-mini">L'avis de l'IA <span>— neutre, rédigé à partir de l'analyse ci-dessus</span></p>
+            <div class="ats-ia-texte" data-ats-ia-texte aria-live="polite"></div>
+            <button class="bouton creux" type="button" data-ats-ia-bouton>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+              Demander l'avis de l'IA
+            </button>
+            <p class="ats-petit">Envoie l'offre et l'analyse à un modèle d'IA gratuit (via OpenRouter). Il peut se tromper : la note, elle, vient de l'algorithme.</p>
+          </div>
+
+          <ul class="ats-clins" data-ats-clins hidden></ul>
+
+          <div class="ats-ligne" data-ats-ligne-bloc>
+            <p class="ats-mini">La ligne de son parcours la plus proche de votre offre <span data-ats-ligne-sim></span></p>
+            <blockquote data-ats-ligne></blockquote>
+          </div>
+
+          <details class="ats-calculs">
+            <summary>Voir les calculs</summary>
+            <div data-ats-calculs></div>
+          </details>
+
+          <div class="actions">
+            <a class="bouton" data-ats-mail href="mailto:clement.verdier@laposte.net">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              Convaincu ? Écrivez-moi
+            </a>
+            <a class="bouton creux" href="../cv/">Voir le CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comment">
+    <div class="enveloppe">
+      <p class="etiq">Sous le capot <span>pas de LLM : du NLP classique, lisible de bout en bout</span></p>
+
+      <div class="registre">
+        <article class="fait">
+          <h3>1. Lire</h3>
+          <div><p>L'offre est découpée en phrases, mise en minuscules, débarrassée des accents et des mots vides. Les intertitres comptent : ce qui suit « Appréciés : » ou « Nice to have » pèse deux fois moins que ce qui est exigé.</p></div>
+        </article>
+        <article class="fait">
+          <h3>2. Repérer</h3>
+          <div><p>Un lexique d'une quarantaine de compétences, chacune avec ses synonymes français et anglais et mon niveau réel, de « non » à « au quotidien ». Ce que je n'ai pas devient un point −, écrit noir sur blanc.</p></div>
+        </article>
+        <article class="fait">
+          <h3>3. Comparer</h3>
+          <div><p>TF-IDF sur l'offre et sur chaque ligne de mon parcours, puis similarité cosinus : la machine trouve la ligne de mon CV la plus proche de votre besoin, même quand les mots-clés diffèrent.</p></div>
+        </article>
+        <article class="fait">
+          <h3>4. Noter</h3>
+          <div>
+            <p>Une régression logistique combine la couverture des compétences, la similarité, le domaine (sport ou non) et l'écart d'expérience. Les poids ? Calibrés à la main sur une poignée d'offres de référence. Oui : du sur-apprentissage artisanal. Un vrai modèle demanderait des offres étiquetées — avis aux recruteurs.</p>
+            <div class="outils"><span>JavaScript</span><span>NLP</span><span>TF-IDF</span><span>Régression logistique</span><span>Tests de non-régression</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-in">
+    <p class="pied-nom" style="margin:0">Clément Verdier</p>
+    <nav class="pied-liens" aria-label="Liens externes">
+      <a href="../">Accueil</a>
+      <a href="mailto:clement.verdier@laposte.net">Mail</a>
+      <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7">LinkedIn</a>
+      <a href="https://github.com/Clement0242">GitHub</a>
+      <a href="../cv/">CV</a>
+    </nav>
+    <p class="pied-note">
+      La note est calculée sur votre appareil, PDF compris. Seuls l'avis et la mise en forme par l'IA, sur demande, transmettent le texte à un modèle gratuit via OpenRouter.
+    </p>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/ats-profil.js" defer></script>
+<script src="../assets/js/ats.js" data-endpoint="https://clement-assistant.clement-verdier.workers.dev" defer></script>
+<script src="../assets/js/chat.js" data-endpoint="https://clement-assistant.clement-verdier.workers.dev" data-avatar="../assets/img/clement-verdier.jpg" defer></script>
+</body>
+</html>

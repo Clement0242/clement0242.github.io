@@ -15,11 +15,14 @@ index.html            page française (tout le contenu)
 cv/index.html         CV français — écran ET mise en page A4
 en/index.html         page anglaise
 en/cv/index.html      CV anglais
+ats/, en/ats/         l'ATS maison « Mon CV passe-t-il votre ATS ? » (FR / EN)
 assets/css/site.css   design système : couleurs, typo, composants, animations
 assets/css/cv.css     mise en page du CV (palette claire, propre au document)
 assets/js/site.js     carrousels, projecteur, navigation
 assets/js/cv.js       le bouton « imprimer »
 assets/js/chat.js     l'assistant « Une question sur Clément ? »
+assets/js/ats.js      l'ATS maison : moteur (TF-IDF, cosinus, score logistique) + interface
+assets/js/ats-profil.js  GÉNÉRÉ depuis profil/profil.mjs (lexique + lignes du parcours)
 chat-worker/          le relais de l'assistant (Cloudflare Worker) — garde la clé OpenRouter
 assets/img/projets/   TES CAPTURES D'ÉCRAN (voir LISEZ-MOI.txt dedans)
 ```
@@ -82,6 +85,7 @@ JAMAIS à la main les blocs entre `<!-- GEN:… -->` dans les pages : ils sont
 npm run generer     # réécrit les 4 pages + chat-worker/profil.js
 npm run verifier    # échoue si une page n'est plus à jour (avant un commit)
 npm run tester      # questions de référence sur l'assistant LOCAL
+npm run tester-ats  # offres de référence sur l'ATS maison (local, gratuit)
 npm run deployer    # generer → tester → déploie l'assistant (stoppe si un test échoue)
 npm run deployer-rapide   # idem avec 3 questions seulement (petites retouches)
 ```
@@ -128,6 +132,27 @@ branchée). En cas de changement, coller la nouvelle URL dans `data-endpoint="�
 
 Mettre à jour ce que sait l'assistant : modifier `profil/profil.mjs` puis
 `npm run deployer`. Tout ce qui y est écrit devient public.
+
+## L'ATS maison (section « Labo »)
+
+`ats/` : on colle une offre d'emploi, la page rend une note sur 100 avec les
+points + et les points −. **La note est calculée dans le navigateur** (le PDF
+d'une offre aussi, via pdf.js chargé à la demande depuis cdnjs). L'IA
+n'intervient que sur un clic, par le relais de l'assistant : modes
+`ats-avis` (avis neutre rédigé à partir du résultat de l'algo) et
+`ats-redaction` (offre mise en forme à partir de notes « je demande / je
+propose »). Ces deux modes consomment le même quota de 800 requêtes/jour ;
+toute retouche de leurs consignes (`chat-worker/worker.js`) demande
+`npm run deployer`.
+
+- Le lexique (compétences, synonymes, **niveau réel** de 0 à 3, phrase
+  affichée) est l'export `ats` de `profil/profil.mjs`. Après modification :
+  `npm run generer` puis `npm run tester-ats`.
+- Les poids du score sont en tête de `assets/js/ats.js` (`POIDS`). Toute
+  retouche se valide avec `npm run tester-ats` ; ajouter un cas dans
+  `outils/tester-ats.mjs` dès qu'une vraie offre donne une note absurde.
+- Les textes des pages (`ats/index.html`, `en/ats/index.html`) sont à la
+  main ; les textes dynamiques (verdicts, exemples) sont dans `ats.js`.
 
 ## Règles de conception à ne pas casser
 

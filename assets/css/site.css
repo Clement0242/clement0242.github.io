@@ -736,3 +736,204 @@ section + section { border-top: 1px solid var(--ligne); }
 @media (prefers-reduced-motion: reduce) {
   .chat-panneau, .chat-attente i { animation: none; }
 }
+
+/* ---------------------------------------------------- 19. L'ATS MAISON     */
+/* Page ats/ : remplie par ats.js. Même retenue que le reste : le vert de
+   « En production » marque les points +, l'encre les points −. Pas de rouge :
+   un point faible assumé n'est pas une alerte. */
+
+.ats-bandeau { padding-block: clamp(40px, 6vw, 80px) clamp(28px, 4vw, 48px); }
+.ats-bandeau h1 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: var(--t-titre); letter-spacing: -0.015em; line-height: 1.05;
+  margin-bottom: 0.45em;
+}
+.ats-bandeau h1 em { font-style: italic; color: var(--accent); }
+.ats-bandeau .fonction { max-width: 52ch; }
+.ats-bandeau .ou { margin-bottom: 0; }
+
+/* Collée au bandeau : pas de filet ni de grand blanc entre les deux. */
+.ats-section { padding-block: 0 clamp(56px, 8vw, 104px); }
+section.ats-section { border-top: 0; }
+
+.ats-label {
+  display: block; margin-bottom: 10px;
+  font-size: var(--t-micro); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mut);
+}
+.ats-form textarea {
+  display: block; width: 100%; min-height: 220px; resize: vertical;
+  padding: 16px 18px;
+  font: 400 16px/1.55 var(--texte); color: var(--encre);
+  background: var(--surface); border: 1px solid var(--ligne-2); border-radius: 12px;
+  box-shadow: var(--ombre-1);
+}
+.ats-form textarea:focus { outline: none; border-color: var(--accent); }
+.ats-boutons { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
+.ats-ou { font-size: var(--t-petit); color: var(--mut); margin-left: 6px; }
+.ats-exemple {
+  font: 500 0.8125rem/1.3 var(--texte);
+  padding: 8px 13px; border-radius: 999px; cursor: pointer;
+  color: var(--accent); background: var(--surface); border: 1px solid var(--ligne-2);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.ats-exemple:hover { background: var(--accent-w); border-color: var(--accent); }
+/* Sans script, un formulaire qui ne répond pas serait pire que pas de formulaire. */
+html:not(.js) .ats-form { display: none; }
+.ats-sans { color: var(--texte-2); }
+.ats-etat { margin: 10px 0 0; font-size: var(--t-petit); color: var(--accent); min-height: 0; }
+.ats-etat:empty { display: none; }
+.ats-petit { font-size: var(--t-micro); color: var(--mut); margin: 10px 0 0; max-width: 70ch; }
+
+/* « Pas d'offre rédigée ? » : replié par défaut, il ne doit pas voler la
+   vedette au champ principal. */
+.ats-rediger { margin-top: 18px; border-top: 1px solid var(--ligne); padding-top: 14px; }
+.ats-rediger[hidden] { display: none; }
+.ats-rediger summary { cursor: pointer; font-size: var(--t-petit); font-weight: 600; color: var(--accent); }
+.ats-rediger-corps { padding-top: 16px; display: grid; gap: 8px; }
+.ats-rediger-corps .ats-label { margin: 8px 0 0; }
+.ats-rediger-corps textarea {
+  display: block; width: 100%; resize: vertical; padding: 12px 14px;
+  font: 400 16px/1.5 var(--texte); color: var(--encre);
+  background: var(--surface); border: 1px solid var(--ligne-2); border-radius: 10px;
+}
+.ats-rediger-corps textarea:focus { outline: none; border-color: var(--accent); }
+
+/* L'avis de l'IA : un encadré à part, pour qu'on ne le confonde pas avec
+   le calcul de l'algorithme. */
+.ats-ia {
+  margin-bottom: clamp(20px, 3vw, 28px); padding: clamp(16px, 2.6vw, 24px);
+  background: var(--accent-w); border-radius: 10px;
+}
+.ats-ia[hidden] { display: none; }
+.ats-ia-texte { font-size: 0.9375rem; line-height: 1.6; color: var(--encre); }
+.ats-ia-texte:empty { display: none; }
+.ats-ia-texte p { margin: 0 0 0.6em; max-width: 70ch; }
+.ats-ia-texte ul { margin: 0 0 0.8em; padding-left: 20px; }
+.ats-ia-texte li { margin-bottom: 4px; }
+.ats-ia-texte + .bouton, .ats-ia-texte:not(:empty) + .bouton { margin-top: 6px; }
+.ats-ia .bouton[hidden] { display: none; }
+.ats-attente { color: var(--texte-2); font-style: italic; }
+
+.ats-resultat {
+  margin-top: clamp(28px, 4vw, 44px);
+  background: var(--surface); border: 1px solid var(--ligne); border-radius: 12px;
+  padding: clamp(22px, 4vw, 44px);
+  scroll-margin-top: 96px;
+  animation: leve 0.4s var(--sortie) both;
+}
+.ats-resultat:focus { outline: none; }
+.ats-resultat[hidden] { display: none; }
+
+.ats-note {
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 44px); align-items: center;
+  padding-bottom: clamp(20px, 3vw, 30px); border-bottom: 1px solid var(--ligne);
+}
+.ats-chiffre { margin: 0; white-space: nowrap; line-height: 0.9; }
+.ats-chiffre b {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(4.2rem, 11vw, 7rem); letter-spacing: -0.03em; color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.ats-chiffre span { font-size: 1.125rem; color: var(--mut); margin-left: 4px; }
+.ats-verdict { font-family: var(--serif); font-size: clamp(1.3rem, 2.3vw, 1.7rem); line-height: 1.3; color: var(--encre); margin-bottom: 16px; }
+.ats-jauge { height: 4px; border-radius: 4px; background: var(--creux); overflow: hidden; max-width: 420px; }
+.ats-jauge span { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.8s var(--sortie); }
+@media (max-width: 560px) { .ats-note { grid-template-columns: 1fr; gap: 10px; } }
+
+.ats-colonnes {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: clamp(22px, 4vw, 48px);
+  padding-block: clamp(22px, 3vw, 32px);
+}
+.ats-col[hidden] { display: none; }
+.ats-col h2 {
+  font-size: var(--t-micro); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mut); margin-bottom: 14px;
+}
+.ats-col ul { list-style: none; margin: 0; padding: 0; }
+.ats-col li {
+  position: relative; padding: 12px 0 12px 30px;
+  border-top: 1px solid var(--ligne);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px;
+}
+.ats-col li::before {
+  position: absolute; left: 0; top: 13px;
+  width: 19px; height: 19px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 0.8125rem; font-weight: 700; line-height: 1;
+}
+.ats-col.plus li::before  { content: "+"; background: #E7F3EC; color: #1F6B43; }
+.ats-col.moins li::before { content: "−"; background: var(--creux); color: var(--encre); }
+.ats-col li b { font-size: 0.9375rem; }
+.ats-tag { font-size: var(--t-micro); color: var(--mut); }
+.ats-dit { flex-basis: 100%; font-size: 0.9375rem; line-height: 1.55; color: var(--texte-2); }
+
+.ats-clins {
+  list-style: none; margin: 0 0 clamp(20px, 3vw, 28px); padding: 14px 18px;
+  background: var(--fond); border: 1px dashed var(--ligne-2); border-radius: 10px;
+  font-size: 0.9375rem; color: var(--texte-2);
+}
+.ats-clins li + li { margin-top: 6px; }
+.ats-clins[hidden] { display: none; }
+
+.ats-mini { font-size: var(--t-micro); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mut); margin-bottom: 10px; max-width: none; }
+.ats-mini span { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.ats-ligne { padding-top: clamp(18px, 3vw, 26px); border-top: 1px solid var(--ligne); }
+.ats-ligne[hidden] { display: none; }
+.ats-ligne blockquote {
+  margin: 0; padding-left: 16px; border-left: 2px solid var(--accent);
+  font-family: var(--serif); font-size: clamp(1.15rem, 2vw, 1.35rem); line-height: 1.4; color: var(--encre);
+  max-width: 62ch;
+}
+
+.ats-calculs { margin-top: clamp(22px, 3vw, 30px); border-top: 1px solid var(--ligne); padding-top: 16px; }
+.ats-calculs summary { cursor: pointer; font-size: var(--t-petit); font-weight: 600; color: var(--accent); }
+.ats-calculs[open] summary { margin-bottom: 16px; }
+.ats-table { width: 100%; border-collapse: collapse; font-size: var(--t-petit); margin-bottom: 14px; }
+.ats-table th { text-align: left; font-size: var(--t-micro); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mut); padding: 0 10px 8px 0; }
+.ats-table td { padding: 8px 10px 8px 0; border-top: 1px solid var(--ligne); color: var(--texte-2); vertical-align: top; }
+.ats-table td + td { font-family: var(--mono); font-size: 0.8125rem; white-space: nowrap; color: var(--encre); }
+.ats-formule { font-family: var(--mono); font-size: 0.8125rem; background: var(--creux); padding: 10px 12px; border-radius: 6px; max-width: none; overflow-x: auto; }
+.ats-termes { display: flex; flex-wrap: wrap; gap: 6px; max-width: none; }
+.ats-termes span {
+  font-family: var(--mono); font-size: var(--t-micro);
+  padding: 3px 9px; border-radius: 999px; background: var(--creux); color: var(--texte-2);
+}
+.ats-termes span.connu { color: var(--accent); background: var(--accent-w); text-decoration: underline; text-underline-offset: 3px; }
+
+.ats-resultat .actions { margin-top: clamp(22px, 3vw, 30px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ats-resultat { animation: none; }
+  .ats-jauge span { transition: none; }
+}
+
+/* ------------------------------------------- 20. LE LABO (page d'accueil)  */
+
+.labo-carte {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(18px, 4vw, 48px); align-items: end;
+  padding: clamp(24px, 4vw, 44px);
+  background: var(--surface); border: 1px solid var(--ligne); border-radius: 12px;
+  text-decoration: none; color: var(--encre);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.labo-carte:hover { color: var(--encre); border-color: var(--ligne-2); box-shadow: var(--ombre-2); }
+.labo-carte h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 3.2vw, 2.4rem); letter-spacing: -0.01em; margin-bottom: 12px; }
+.labo-carte p { color: var(--texte-2); font-size: 1rem; line-height: 1.65; margin-bottom: 16px; max-width: 60ch; }
+.labo-go {
+  display: inline-flex; align-items: center; gap: 9px; white-space: nowrap;
+  padding: 12px 20px; border-radius: 999px;
+  background: var(--encre); color: var(--fond);
+  font-size: 0.9375rem; font-weight: 600;
+  transition: background 0.15s ease;
+}
+.labo-go svg { width: 16px; height: 16px; transition: transform 0.2s var(--sortie); }
+.labo-carte:hover .labo-go { background: var(--accent); }
+.labo-carte:hover .labo-go svg { transform: translateX(3px); }
+@media (max-width: 760px) {
+  .labo-carte { grid-template-columns: 1fr; align-items: start; }
+  .labo-go { justify-self: start; }
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does my CV pass your ATS? — Clément Verdier</title>
+<meta name="description" content="Paste a job ad: a small machine-learning algorithm written by Clément Verdier compares it with his background and returns a score out of 100, strengths and weaknesses included. Everything runs in your browser.">
+<meta name="author" content="Clément Verdier">
+<link rel="canonical" href="https://clement0242.github.io/en/ats/">
+<meta name="theme-color" content="#FAFAF7">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Does my CV pass your ATS?">
+<meta property="og:description" content="Paste your job ad: a small home-made model compares it with my background and returns a score out of 100, with the pluses and the minuses.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://clement0242.github.io/en/ats/">
+<meta property="og:image" content="https://clement0242.github.io/assets/img/apercu-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Clément Verdier, data engineer · elite sport performance">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="fr" href="https://clement0242.github.io/ats/">
+<link rel="alternate" hreflang="en" href="https://clement0242.github.io/en/ats/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className += " js";</script>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314171C'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial,sans-serif' font-weight='bold' font-size='16' fill='%23FAFAF7' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="evite" href="#contenu">Skip to content</a>
+
+<header class="barre">
+  <div class="barre-in">
+    <a class="sceau" href="../"><i>CV</i> Clément Verdier</a>
+    <nav class="liens" aria-label="Site sections">
+      <a href="../#work">What I do</a>
+      <a href="../#career">Career</a>
+      <a href="../#projects">Projects</a>
+      <a href="./" aria-current="page">Lab</a>
+      <a href="../cv/">CV</a>
+    </nav>
+    <div class="langue">
+      <a href="../../ats/" hreflang="fr">FR</a>
+      <a href="./" aria-current="true" hreflang="en">EN</a>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="ats-bandeau">
+    <div class="enveloppe">
+      <p class="etiq">Lab <span>machine learning you can try live</span></p>
+      <h1>Does my CV pass <em>your ATS?</em></h1>
+      <p class="fonction">
+        Recruiters screen CVs with algorithms. I wrote my own, the other way
+        round: paste your job ad, it reads it, holds it up against my background
+        and returns a score out of 100 — with my <b>strengths</b> and my
+        <b>weaknesses</b>. It doesn't flatter: it computes.
+      </p>
+      <p class="ou"><i aria-hidden="true"></i> The score is computed in your browser. The job ad only goes to an AI if you ask for its review.</p>
+    </div>
+  </section>
+
+  <section class="ats-section">
+    <div class="enveloppe">
+      <div class="ats" data-ats>
+        <form class="ats-form">
+          <label class="ats-label" for="ats-offre">The job ad</label>
+          <textarea id="ats-offre" rows="11" spellcheck="false" placeholder="Paste the job ad here (title, responsibilities, requirements)… or drop its PDF."></textarea>
+          <div class="ats-boutons">
+            <button class="bouton" type="submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+              Analyse the job ad
+            </button>
+            <button class="bouton creux" type="button" data-ats-importer>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9 15l3-3 3 3"/></svg>
+              Upload a PDF
+            </button>
+            <input type="file" accept=".pdf,.txt,application/pdf,text/plain" data-ats-fichier hidden>
+          </div>
+          <p class="ats-etat" data-ats-etat aria-live="polite"></p>
+          <div class="ats-boutons">
+            <span class="ats-ou">No job ad at hand? Try with</span>
+            <button class="ats-exemple" type="button" data-ats-exemple="0">a football club</button>
+            <button class="ats-exemple" type="button" data-ats-exemple="1">a fintech</button>
+            <button class="ats-exemple" type="button" data-ats-exemple="2">a bakery</button>
+          </div>
+        </form>
+
+        <details class="ats-rediger" data-ats-rediger hidden>
+          <summary>No written job ad? Jot down the role, the AI formats it</summary>
+          <div class="ats-rediger-corps">
+            <label class="ats-label" for="ats-demande">What you're asking for</label>
+            <textarea id="ats-demande" rows="4" placeholder="e.g. analyse players' GPS data, Python, English, 2 years' experience…"></textarea>
+            <label class="ats-label" for="ats-propose">What you're offering</label>
+            <textarea id="ats-propose" rows="3" placeholder="e.g. permanent contract in London, hybrid, staff of 6…"></textarea>
+            <div class="ats-boutons">
+              <button class="bouton creux" type="button" data-ats-mettre-en-forme>Format and analyse</button>
+            </div>
+            <p class="ats-etat" data-ats-rediger-etat aria-live="polite"></p>
+            <p class="ats-petit">Your notes are sent to a free AI model (via OpenRouter), instructed to rephrase them without adding anything. The score is then computed here, by the algorithm.</p>
+          </div>
+        </details>
+
+        <noscript><p class="ats-sans">The analysis needs JavaScript. The <a href="../cv/">CV</a> doesn't.</p></noscript>
+
+        <div class="ats-resultat" data-ats-resultat hidden tabindex="-1" aria-live="polite">
+          <div class="ats-note">
+            <p class="ats-chiffre"><b data-ats-score>0</b><span>/100</span></p>
+            <div class="ats-verdict-bloc">
+              <p class="ats-verdict" data-ats-verdict></p>
+              <div class="ats-jauge" aria-hidden="true"><span data-ats-jauge></span></div>
+            </div>
+          </div>
+
+          <div class="ats-colonnes">
+            <div class="ats-col plus">
+              <h2>Pluses</h2>
+              <ul data-ats-plus></ul>
+            </div>
+            <div class="ats-col moins">
+              <h2>Minuses</h2>
+              <ul data-ats-moins></ul>
+            </div>
+          </div>
+
+          <div class="ats-ia" data-ats-ia hidden>
+            <p class="ats-mini">The AI's review <span>— neutral, written from the analysis above</span></p>
+            <div class="ats-ia-texte" data-ats-ia-texte aria-live="polite"></div>
+            <button class="bouton creux" type="button" data-ats-ia-bouton>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+              Ask the AI for a review
+            </button>
+            <p class="ats-petit">Sends the job ad and the analysis to a free AI model (via OpenRouter). It can be wrong: the score itself comes from the algorithm.</p>
+          </div>
+
+          <ul class="ats-clins" data-ats-clins hidden></ul>
+
+          <div class="ats-ligne" data-ats-ligne-bloc>
+            <p class="ats-mini">The line of his background closest to your job ad <span data-ats-ligne-sim></span></p>
+            <blockquote data-ats-ligne></blockquote>
+          </div>
+
+          <details class="ats-calculs">
+            <summary>Show the maths</summary>
+            <div data-ats-calculs></div>
+          </details>
+
+          <div class="actions">
+            <a class="bouton" data-ats-mail href="mailto:clement.verdier@laposte.net">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              Convinced? Write to me
+            </a>
+            <a class="bouton creux" href="../cv/">See the CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comment">
+    <div class="enveloppe">
+      <p class="etiq">Under the hood <span>no LLM: classic NLP, readable end to end</span></p>
+
+      <div class="registre">
+        <article class="fait">
+          <h3>1. Read</h3>
+          <div><p>The job ad is split into sentences, lower-cased, stripped of accents and stop words. Headings matter: whatever follows “Nice to have” or “Bonus” weighs half as much as what is required.</p></div>
+        </article>
+        <article class="fait">
+          <h3>2. Spot</h3>
+          <div><p>A lexicon of some forty skills, each with its French and English synonyms and my real level, from “no” to “every day”. What I don't have becomes a minus, in black and white.</p></div>
+        </article>
+        <article class="fait">
+          <h3>3. Compare</h3>
+          <div><p>TF-IDF over the job ad and every line of my background, then cosine similarity: the machine finds the line of my CV closest to your need, even when the keywords differ.</p></div>
+        </article>
+        <article class="fait">
+          <h3>4. Score</h3>
+          <div>
+            <p>A logistic regression combines skill coverage, similarity, domain (sport or not) and the experience gap. The weights? Hand-calibrated on a handful of reference job ads. Yes: artisanal overfitting. A real model would need labelled job ads — recruiters, you know where to find me.</p>
+            <div class="outils"><span>JavaScript</span><span>NLP</span><span>TF-IDF</span><span>Logistic regression</span><span>Regression tests</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-in">
+    <p class="pied-nom" style="margin:0">Clément Verdier</p>
+    <nav class="pied-liens" aria-label="External links">
+      <a href="../">Home</a>
+      <a href="mailto:clement.verdier@laposte.net">Email</a>
+      <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7">LinkedIn</a>
+      <a href="https://github.com/Clement0242">GitHub</a>
+      <a href="../cv/">CV</a>
+    </nav>
+    <p class="pied-note">
+      The score is computed on your device, PDFs included. Only the AI review and formatting, on request, send the text to a free model via OpenRouter.
+    </p>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js" defer></script>
+<script src="../../assets/js/ats-profil.js" defer></script>
+<script src="../../assets/js/ats.js" data-endpoint="https://clement-assistant.clement-verdier.workers.dev" defer></script>
+<script src="../../assets/js/chat.js" data-endpoint="https://clement-assistant.clement-verdier.workers.dev" data-avatar="../../assets/img/clement-verdier.jpg" defer></script>
+</body>
+</html>

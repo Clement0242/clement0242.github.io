@@ -1,5 +1,6 @@
 /* Régénère, depuis profil/profil.mjs, les blocs marqués <!-- GEN:… --> des
-   quatre pages et chat-worker/profil.js. Aucune dépendance : `node`.
+   quatre pages, chat-worker/profil.js et assets/js/ats-profil.js.
+   Aucune dépendance : `node`.
 
      npm run generer            écrit les fichiers
      npm run generer -- --check  échoue si un fichier n'est pas à jour
@@ -134,6 +135,35 @@ export const PROFIL = ${JSON.stringify(texte)};
 `;
 }
 
+/* ------------------------------------------------------------------ ATS */
+/* Le lexique de compétences, plus le « corpus » : toutes les lignes du
+   parcours (FR et EN, assistant compris) contre lesquelles l'offre est
+   comparée par TF-IDF. Les phrases `dit` de l'ATS n'y entrent PAS : « jamais
+   Spark en production » ferait monter la similarité avec une offre Spark. */
+
+function profilAts() {
+  const lignes = [];
+  const ajouter = (t) => { if (t && !lignes.includes(t)) lignes.push(t); };
+  for (const e of [...P.experiences, ...P.formations]) {
+    for (const l of ["fr", "en"]) {
+      if (e.site !== false) {
+        e.puces[l].forEach(ajouter);
+        if (e.cv && e.cv.puces) e.cv.puces[l].forEach(ajouter);
+      }
+    }
+    (e.assistant || []).forEach(ajouter);
+  }
+  [P.identite.resume, ...P.domaines, ...P.competences.assistant, ...P.projets, ...P.interventions].forEach(ajouter);
+  P.competences.cv.forEach((g) => ["fr", "en"].forEach((l) => ajouter(`${g.titre[l]} : ${g.items[l].join(", ")}`)));
+
+  const donnees = { debutPro: P.ats.debutPro, competences: P.ats.competences, corpus: lignes };
+  return `/* FICHIER GÉNÉRÉ par outils/generer.mjs depuis profil/profil.mjs (export « ats »).
+   NE PAS MODIFIER À LA MAIN : corriger profil/profil.mjs puis \`npm run generer\`. */
+
+window.ATS_PROFIL = ${JSON.stringify(donnees, null, 1)};
+`;
+}
+
 /* ------------------------------------------------------------- ÉCRITURE */
 
 function remplacer(fichier, blocs) {
@@ -176,6 +206,7 @@ for (const [page, l] of [["cv/index.html", "fr"], ["en/cv/index.html", "en"]]) {
 }
 
 ecrire("chat-worker/profil.js", profilAssistant());
+ecrire("assets/js/ats-profil.js", profilAts());
 
 if (VERIF && perimes.length) {
   console.error("Pas à jour (lancer `npm run generer`) :\n  " + perimes.join("\n  "));
