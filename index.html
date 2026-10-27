@@ -298,7 +298,7 @@
   <!-- ========================================================= PROJETS -->
   <section id="projets">
     <div class="enveloppe">
-      <p class="etiq">Projets <span>deux applications en production, en vidéo</span></p>
+      <p class="etiq">Projets <span>deux applications en production, deux études open source</span></p>
 
       <div class="projets">
 
@@ -370,6 +370,92 @@
               <a class="depot" href="assets/video/monitoring-basket.mp4" download>
                 Vidéo · MP4, 5 Mo
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M12 16l-5-5M12 16l5-5M5 20h14"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- .................................................. NCAA SCOUTING LAB -->
+        <article class="projet">
+          <div class="vues" data-vues="Laboratoire de scouting NCAA">
+            <div class="vues-piste">
+              <figure class="vue">
+                <img src="assets/img/projets/ncaa-scouting-01-benchmark.jpg" alt="Graphique et tableau comparant quatre modèles de langage : taux de bonnes réponses en fonction du coût par question, puis réussite par catégorie de questions." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="assets/img/projets/ncaa-scouting-02-shot-chart.jpg" alt="Demi-terrain de basket où une carte de chaleur bleue montre les zones de tir d’un joueur, avec sous le terrain sa part de tirs par zone comparée à la moyenne." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+            </div>
+            <button class="vues-nav prec" type="button" aria-label="Capture précédente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="vues-nav suiv" type="button" aria-label="Capture suivante">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="vues-points"></div>
+          </div>
+          <div class="projet-corps">
+            <h3>Scouting NCAA — modèles publiés et agent IA évalué</h3>
+            <p>
+              Pipeline de 116&nbsp;000 saisons-joueurs et 530&nbsp;000 actions de
+              Division&nbsp;I, cartes de tirs, momentum et modèle de draft gelé avant la
+              draft 2026 (9 de son top&nbsp;10 draftés, AUC&nbsp;0,97). Un agent IA rédige
+              les rapports de scouting par appels d'outils&nbsp;: sorties structurées,
+              garde-fous, chiffres vérifiés, benchmark de quatre modèles.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Open source</span>
+              <span>Python</span><span>DuckDB</span><span>LLM</span><span>MCP</span>
+              <a class="depot" href="https://clement0242.github.io/ncaa-scouting-lab/">
+                Tableau de bord
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+              <a class="depot" href="https://github.com/Clement0242/ncaa-scouting-lab">
+                Code
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ............................................. BASKETBALL AGING CURVES -->
+        <article class="projet">
+          <div class="vues" data-vues="Courbes de progression NCAA">
+            <div class="vues-piste">
+              <figure class="vue">
+                <img src="assets/img/projets/aging-curves-01-progression.jpg" alt="Graphique : note offensive attendue d’un joueur selon son année universitaire, de 1 à 5, avec intervalles de crédibilité à 50 et 90 %. Le plus grand saut a lieu entre la 1re et la 2e année." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="assets/img/projets/aging-curves-02-conferences.jpg" alt="Deux panneaux par conférence universitaire : à gauche le niveau en 1re année, très variable ; à droite la vitesse de progression, quasi identique partout." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+            </div>
+            <button class="vues-nav prec" type="button" aria-label="Capture précédente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="vues-nav suiv" type="button" aria-label="Capture suivante">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="vues-points"></div>
+          </div>
+          <div class="projet-corps">
+            <h3>Courbes de progression des joueurs NCAA</h3>
+            <p>
+              Modèle bayésien hiérarchique de la progression des joueurs de
+              Division&nbsp;I, sur 34&nbsp;670 saisons. La moitié du gain se fait entre la
+              première et la deuxième année&nbsp;; les conférences diffèrent par
+              leur niveau, pas par leur vitesse de progression, qui reste individuelle.
+              Le rapport montre aussi où les modèles divergent, et pourquoi.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Open source</span>
+              <span>R</span><span>brms</span><span>Stan</span><span>Quarto</span>
+              <a class="depot" href="https://clement0242.github.io/basketball-aging-curves/">
+                Rapport
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+              <a class="depot" href="https://github.com/Clement0242/basketball-aging-curves">
+                Code
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </a>
             </div>
           </div>

@@ -470,6 +470,9 @@ section + section { border-top: 1px solid var(--ligne); }
   display: inline-flex; align-items: center; gap: 6px;
   text-decoration: none; color: var(--accent); padding: 4px 6px;
 }
+/* Deux liens (page en ligne + code) : seul le premier pousse à droite,
+   sinon l'espace libre se répartit entre eux et le second flotte au milieu. */
+.projet-meta .depot + .depot { margin-left: 0; }
 .projet-meta .depot svg { width: 13px; height: 13px; transition: transform 0.2s var(--sortie); }
 .projet-meta .depot:hover svg { transform: translate(2px, -2px); }
 .projet-meta .depot[download]:hover svg { transform: translateY(2px); }
