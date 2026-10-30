@@ -154,6 +154,21 @@ toute retouche de leurs consignes (`chat-worker/worker.js`) demande
 - Les textes des pages (`ats/index.html`, `en/ats/index.html`) sont à la
   main ; les textes dynamiques (verdicts, exemples) sont dans `ats.js`.
 
+## La mesure d'audience (Umami)
+
+Tableau de bord : <https://cloud.umami.is> (Umami Cloud, offre gratuite).
+Open source, sans cookie, aucune donnée personnelle : pays/ville, provenance,
+appareil, pages vues — jamais l'identité d'un visiteur.
+
+- Le script est dans le `<head>` des 6 pages (FR/EN × accueil, CV, ATS). Toute
+  nouvelle page doit le reprendre. `data-domains` ignore les ouvertures en local.
+- Clics suivis sans JS, par attribut `data-umami-event` : `contact` (mail /
+  linkedin), `cv-imprimer`, `projet` (vidéos, tableaux de bord, code),
+  `ats-noter`, `ats-importer-pdf`, `ats-avis-ia`. Pour en suivre un nouveau,
+  ajouter l'attribut à l'élément.
+- Astuce candidature : envoyer `https://clement0242.github.io/cv/?utm_source=entreprise`
+  → la visite apparaît dans Umami sous cette source.
+
 ## Règles de conception à ne pas casser
 
 - **Rien d'essentiel ne dépend de JavaScript.** Toutes les sections sont

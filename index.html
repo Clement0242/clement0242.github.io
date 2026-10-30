@@ -29,6 +29,10 @@
 <script>document.documentElement.className += " js";</script>
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314171C'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial,sans-serif' font-weight='bold' font-size='16' fill='%23FAFAF7' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E">
+<!-- Mesure d'audience : Umami Cloud (open source, sans cookie, aucune donnée
+     personnelle). data-domains : les ouvertures en local (file://) ne comptent pas.
+     Les clics suivis portent un attribut data-umami-event, sans JS en plus. -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="7f405e2a-5634-47e5-a400-0ea200ea88eb" data-domains="clement0242.github.io"></script>
 </head>
 <body>
 
@@ -331,7 +335,7 @@
             <div class="projet-meta">
               <span class="etat vif">En production</span>
               <span>Django</span><span>MySQL</span><span>Python</span>
-              <a class="depot" href="assets/video/scoutbase.mp4" download>
+              <a class="depot" href="assets/video/scoutbase.mp4" data-umami-event="projet" data-umami-event-lien="scoutbase-video" download>
                 Vidéo · MP4, 7 Mo
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M12 16l-5-5M12 16l5-5M5 20h14"/></svg>
               </a>
@@ -367,7 +371,7 @@
             <div class="projet-meta">
               <span class="etat calme">Fédération</span>
               <span>Django</span><span>Python</span>
-              <a class="depot" href="assets/video/monitoring-basket.mp4" download>
+              <a class="depot" href="assets/video/monitoring-basket.mp4" data-umami-event="projet" data-umami-event-lien="monitoring-video" download>
                 Vidéo · MP4, 5 Mo
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M12 16l-5-5M12 16l5-5M5 20h14"/></svg>
               </a>
@@ -406,11 +410,11 @@
             <div class="projet-meta">
               <span class="etat calme">Open source</span>
               <span>Python</span><span>DuckDB</span><span>LLM</span><span>MCP</span>
-              <a class="depot" href="https://clement0242.github.io/ncaa-scouting-lab/">
+              <a class="depot" href="https://clement0242.github.io/ncaa-scouting-lab/" data-umami-event="projet" data-umami-event-lien="ncaa-tableau-de-bord">
                 Tableau de bord
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </a>
-              <a class="depot" href="https://github.com/Clement0242/ncaa-scouting-lab">
+              <a class="depot" href="https://github.com/Clement0242/ncaa-scouting-lab" data-umami-event="projet" data-umami-event-lien="ncaa-code">
                 Code
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </a>
@@ -449,11 +453,11 @@
             <div class="projet-meta">
               <span class="etat calme">Open source</span>
               <span>R</span><span>brms</span><span>Stan</span><span>Quarto</span>
-              <a class="depot" href="https://clement0242.github.io/basketball-aging-curves/">
+              <a class="depot" href="https://clement0242.github.io/basketball-aging-curves/" data-umami-event="projet" data-umami-event-lien="progression-rapport">
                 Rapport
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </a>
-              <a class="depot" href="https://github.com/Clement0242/basketball-aging-curves">
+              <a class="depot" href="https://github.com/Clement0242/basketball-aging-curves" data-umami-event="projet" data-umami-event-lien="progression-code">
                 Code
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </a>
@@ -539,7 +543,7 @@
           </div>
 
           <div class="coord">
-            <a href="mailto:clement.verdier@laposte.net">
+            <a href="mailto:clement.verdier@laposte.net" data-umami-event="contact" data-umami-event-canal="mail">
               <i>Mail</i><b>clement.verdier@laposte.net</b>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
             </a>
@@ -547,7 +551,7 @@
               <i>Tél.</i><b>07 82 19 99 98</b>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
             </a>
-            <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7" rel="me">
+            <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7" data-umami-event="contact" data-umami-event-canal="linkedin" rel="me">
               <i>LinkedIn</i><b>Clément Verdier</b>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
             </a>
@@ -571,8 +575,8 @@
   <div class="pied-in">
     <p class="pied-nom" style="margin:0">Clément Verdier</p>
     <nav class="pied-liens" aria-label="Liens externes">
-      <a href="mailto:clement.verdier@laposte.net">Mail</a>
-      <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7">LinkedIn</a>
+      <a href="mailto:clement.verdier@laposte.net" data-umami-event="contact" data-umami-event-canal="mail">Mail</a>
+      <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7" data-umami-event="contact" data-umami-event-canal="linkedin">LinkedIn</a>
       <a href="https://github.com/Clement0242">GitHub</a>
       <a href="cv/">CV</a>
       <a href="en/" hreflang="en">English</a>

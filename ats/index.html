@@ -28,6 +28,10 @@
 <script>document.documentElement.className += " js";</script>
 <link rel="stylesheet" href="../assets/css/site.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314171C'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial,sans-serif' font-weight='bold' font-size='16' fill='%23FAFAF7' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E">
+<!-- Mesure d'audience : Umami Cloud (open source, sans cookie, aucune donnée
+     personnelle). data-domains : les ouvertures en local (file://) ne comptent pas.
+     Les clics suivis portent un attribut data-umami-event, sans JS en plus. -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="7f405e2a-5634-47e5-a400-0ea200ea88eb" data-domains="clement0242.github.io"></script>
 </head>
 <body>
 
@@ -73,11 +77,11 @@
           <label class="ats-label" for="ats-offre">L'offre d'emploi</label>
           <textarea id="ats-offre" rows="11" spellcheck="false" placeholder="Collez ici le texte de l'offre (intitulé, missions, profil recherché)… ou déposez son PDF."></textarea>
           <div class="ats-boutons">
-            <button class="bouton" type="submit">
+            <button class="bouton" type="submit" data-umami-event="ats-noter">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
               Analyser l'offre
             </button>
-            <button class="bouton creux" type="button" data-ats-importer>
+            <button class="bouton creux" type="button" data-ats-importer data-umami-event="ats-importer-pdf">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9 15l3-3 3 3"/></svg>
               Importer un PDF
             </button>
@@ -132,7 +136,7 @@
           <div class="ats-ia" data-ats-ia hidden>
             <p class="ats-mini">L'avis de l'IA <span>— neutre, rédigé à partir de l'analyse ci-dessus</span></p>
             <div class="ats-ia-texte" data-ats-ia-texte aria-live="polite"></div>
-            <button class="bouton creux" type="button" data-ats-ia-bouton>
+            <button class="bouton creux" type="button" data-ats-ia-bouton data-umami-event="ats-avis-ia">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
               Demander l'avis de l'IA
             </button>
@@ -198,8 +202,8 @@
     <p class="pied-nom" style="margin:0">Clément Verdier</p>
     <nav class="pied-liens" aria-label="Liens externes">
       <a href="../">Accueil</a>
-      <a href="mailto:clement.verdier@laposte.net">Mail</a>
-      <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7">LinkedIn</a>
+      <a href="mailto:clement.verdier@laposte.net" data-umami-event="contact" data-umami-event-canal="mail">Mail</a>
+      <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7" data-umami-event="contact" data-umami-event-canal="linkedin">LinkedIn</a>
       <a href="https://github.com/Clement0242">GitHub</a>
       <a href="../cv/">CV</a>
     </nav>
