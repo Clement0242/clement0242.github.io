@@ -301,7 +301,7 @@
   <!-- ========================================================== PROJECTS -->
   <section id="projects">
     <div class="enveloppe">
-      <p class="etiq">Projects <span>two production apps, four open-source projects</span></p>
+      <p class="etiq">Projects <span>two production apps, six open-source projects</span></p>
 
       <div class="projets">
 
@@ -378,7 +378,7 @@
           </div>
         </article>
 
-        <!-- ................................................... .........SPRINTFV -->
+        <!-- ........................................................... SPRINTFV -->
         <article class="projet">
           <div class="vues" data-vues="sprintfv">
             <div class="vues-piste">
@@ -410,7 +410,101 @@
             <div class="projet-meta">
               <span class="etat calme">Open source</span>
               <span>Python</span><span>SciPy</span><span>Biomechanics</span>
+              <a class="depot" href="https://clement0242.github.io/sprintfv/" data-umami-event="projet" data-umami-event-lien="sprintfv-page">
+                Project page
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
               <a class="depot" href="https://github.com/Clement0242/sprintfv" data-umami-event="projet" data-umami-event-lien="sprintfv-code">
+                Code
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ................................................ DATA GOVERNANCE -->
+        <article class="projet">
+          <div class="vues" data-vues="Athlete data governance">
+            <div class="vues-piste">
+              <figure class="vue">
+                <img src="../assets/img/projets/gouvernance-01-lignage.jpg" alt="Lineage diagram of the warehouse: raw sources, staging, intermediate and published tables." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="../assets/img/projets/gouvernance-02-constats.jpg" alt="Cards describing defects the quality rules found in the published dataset, such as heart rate frozen at 82 bpm." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+            </div>
+            <button class="vues-nav prec" type="button" aria-label="Previous screenshot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="vues-nav suiv" type="button" aria-label="Next screenshot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="vues-points"></div>
+          </div>
+          <div class="projet-corps">
+            <h3>Athlete data governance</h3>
+            <p>
+              A governed warehouse (dbt, DuckDB) on two seasons of an elite women's
+              football squad: questionnaires, injuries, GNSS and heart rate, 99&nbsp;GB
+              streamed without being stored. Data dictionary with units and
+              sensitivity levels, enforced contracts, 108 quality rules. They found
+              real defects in the published dataset: heart rate frozen at 82&nbsp;bpm in
+              2,871 recordings, missing sessions, players pseudonymised twice.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Open source</span>
+              <span>dbt</span><span>DuckDB</span><span>SQL</span>
+              <a class="depot" href="https://clement0242.github.io/athlete-data-governance/" data-umami-event="projet" data-umami-event-lien="gouvernance-page">
+                Project page
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+              <a class="depot" href="https://github.com/Clement0242/athlete-data-governance" data-umami-event="projet" data-umami-event-lien="gouvernance-code">
+                Code
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- .................................................. LOAD & INJURY -->
+        <article class="projet">
+          <div class="vues" data-vues="Load states and injuries">
+            <div class="vues-piste">
+              <figure class="vue">
+                <img src="../assets/img/projets/charge-blessure-01-mils.jpg" alt="Two seasons of one player: daily session load coloured by hidden load state, with the probability of each state below." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="../assets/img/projets/charge-blessure-02-couplage.jpg" alt="Matrix of within-player correlations between questionnaire, heart-rate, GNSS and accelerometer loads." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="../assets/img/projets/charge-blessure-03-blessures.jpg" alt="Within-player AUC of seven indicators for an injury in the next seven days; every interval includes 0.5." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+            </div>
+            <button class="vues-nav prec" type="button" aria-label="Previous screenshot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="vues-nav suiv" type="button" aria-label="Next screenshot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="vues-points"></div>
+          </div>
+          <div class="projet-corps">
+            <h3>Load states, heart rate × GPS and injuries</h3>
+            <p>
+              On the governed data: within-player coupling of perceived, cardiac and
+              GNSS load; hidden load states with MILS (INSEP), reimplemented in Python
+              and checked against hmmlearn; and an honest test of injury warning. No
+              indicator beats chance with any confidence, as the literature finds, and
+              the page shows why a pooled AUC would have said otherwise.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Open source</span>
+              <span>Python</span><span>HMM</span><span>Sport science</span>
+              <a class="depot" href="https://clement0242.github.io/football-load-injury/" data-umami-event="projet" data-umami-event-lien="charge-blessure-page">
+                Project page
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+              <a class="depot" href="https://github.com/Clement0242/football-load-injury" data-umami-event="projet" data-umami-event-lien="charge-blessure-code">
                 Code
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </a>

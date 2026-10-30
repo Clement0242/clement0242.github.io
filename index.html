@@ -302,7 +302,7 @@
   <!-- ========================================================= PROJETS -->
   <section id="projets">
     <div class="enveloppe">
-      <p class="etiq">Projets <span>deux applications en production, quatre projets open source</span></p>
+      <p class="etiq">Projets <span>deux applications en production, six projets open source</span></p>
 
       <div class="projets">
 
@@ -379,7 +379,7 @@
           </div>
         </article>
 
-        <!-- ................................................... .........SPRINTFV -->
+        <!-- ........................................................... SPRINTFV -->
         <article class="projet">
           <div class="vues" data-vues="sprintfv">
             <div class="vues-piste">
@@ -411,7 +411,103 @@
             <div class="projet-meta">
               <span class="etat calme">Open source</span>
               <span>Python</span><span>SciPy</span><span>Biomécanique</span>
+              <a class="depot" href="https://clement0242.github.io/sprintfv/" data-umami-event="projet" data-umami-event-lien="sprintfv-page">
+                Page du projet
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
               <a class="depot" href="https://github.com/Clement0242/sprintfv" data-umami-event="projet" data-umami-event-lien="sprintfv-code">
+                Code
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ................................................ DATA GOVERNANCE -->
+        <article class="projet">
+          <div class="vues" data-vues="Gouvernance de données athlètes">
+            <div class="vues-piste">
+              <figure class="vue">
+                <img src="assets/img/projets/gouvernance-01-lignage.jpg" alt="Schéma de lignage de l’entrepôt : sources brutes, staging, intermédiaire et tables publiées." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="assets/img/projets/gouvernance-02-constats.jpg" alt="Cartes décrivant les défauts trouvés par les règles qualité dans le jeu de données publié, comme une fréquence cardiaque figée à 82 bpm." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+            </div>
+            <button class="vues-nav prec" type="button" aria-label="Capture précédente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="vues-nav suiv" type="button" aria-label="Capture suivante">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="vues-points"></div>
+          </div>
+          <div class="projet-corps">
+            <h3>Gouvernance de données athlètes</h3>
+            <p>
+              Un entrepôt gouverné (dbt, DuckDB) sur deux saisons d’une équipe
+              féminine élite : questionnaires, blessures, GPS et fréquence
+              cardiaque, 99&nbsp;Go lus sans être stockés. Dictionnaire de données avec
+              unités et niveaux de sensibilité, contrats imposés, 108 règles qualité.
+              Elles ont trouvé de vrais défauts dans le jeu publié : fréquence
+              cardiaque figée à 82&nbsp;bpm dans 2&nbsp;871 enregistrements, séances
+              manquantes, joueuses pseudonymisées deux fois.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Open source</span>
+              <span>dbt</span><span>DuckDB</span><span>SQL</span>
+              <a class="depot" href="https://clement0242.github.io/athlete-data-governance/" data-umami-event="projet" data-umami-event-lien="gouvernance-page">
+                Page du projet
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+              <a class="depot" href="https://github.com/Clement0242/athlete-data-governance" data-umami-event="projet" data-umami-event-lien="gouvernance-code">
+                Code
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- .................................................. LOAD & INJURY -->
+        <article class="projet">
+          <div class="vues" data-vues="États de charge et blessures">
+            <div class="vues-piste">
+              <figure class="vue">
+                <img src="assets/img/projets/charge-blessure-01-mils.jpg" alt="Deux saisons d’une joueuse : charge quotidienne colorée par état de charge caché, avec la probabilité de chaque état en dessous." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="assets/img/projets/charge-blessure-02-couplage.jpg" alt="Matrice des corrélations intra-joueuse entre charge ressentie, cardiaque, GPS et accéléromètre." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="assets/img/projets/charge-blessure-03-blessures.jpg" alt="AUC intra-joueuse de sept indicateurs pour une blessure dans les sept jours ; tous les intervalles contiennent 0,5." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+            </div>
+            <button class="vues-nav prec" type="button" aria-label="Capture précédente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="vues-nav suiv" type="button" aria-label="Capture suivante">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="vues-points"></div>
+          </div>
+          <div class="projet-corps">
+            <h3>États de charge, FC × GPS et blessures</h3>
+            <p>
+              Sur les données gouvernées : couplage intra-joueuse des charges ressentie,
+              cardiaque et GPS ; états de charge cachés avec MILS (INSEP), réimplémenté
+              en Python et validé contre hmmlearn ; et un test honnête de l’alerte
+              blessure. Aucun indicateur ne fait mieux que le hasard avec certitude,
+              comme dans la littérature, et la page montre pourquoi une AUC poolée
+              aurait dit le contraire.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Open source</span>
+              <span>Python</span><span>HMM</span><span>Sciences du sport</span>
+              <a class="depot" href="https://clement0242.github.io/football-load-injury/" data-umami-event="projet" data-umami-event-lien="charge-blessure-page">
+                Page du projet
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+              <a class="depot" href="https://github.com/Clement0242/football-load-injury" data-umami-event="projet" data-umami-event-lien="charge-blessure-code">
                 Code
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </a>
