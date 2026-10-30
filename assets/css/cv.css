@@ -208,6 +208,9 @@ html:not(.js) .cv-actions { display: none; }
   .cv-corps { grid-template-columns: 1fr 52mm; gap: 9mm; }
   .cv-h2 { font-size: 7.6pt; margin-bottom: 7pt; }
   .cv-h2:not(:first-child) { margin-top: 12pt; }
+  /* Un titre de section ne reste jamais seul en bas de page : il suit son
+     premier bloc (sinon « Formation » finit orphelin en bas de la page 1). */
+  .cv-h2 { break-after: avoid; }
   .cv-bloc { margin-bottom: 8pt; }
   .cv-bloc h3 { font-size: 9.6pt; }
   .cv-bloc time { font-size: 8pt; color: #000; }

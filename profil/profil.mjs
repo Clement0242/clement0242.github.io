@@ -47,10 +47,11 @@ export const personnalite = [
 ];
 
 /* ------------------------------------------------------------ EXPÉRIENCE */
-/* ⚠️ Dates À CONFIRMER par Clément (04/10/2026) : le stage « INSEP janv.
-   2024 → janv. 2025 » chevauche l'échange en Argentine (mars 2024 → fév.
-   2025) et ses rapports parlent d'un stage aviron (avril → août 2024) puis
-   d'un stage basket (2024-2025). Corriger ici, une seule fois. */
+/* Dates confirmées par Clément (30/10/2026) : le stage INSEP a continué à
+   distance pendant l'échange en Argentine (d'où le chevauchement), et le
+   master STAPS a été suivi entièrement à distance, en parallèle du poste.
+   Les deux sont dits dans le champ « lieu » pour qu'un recruteur ne bute pas
+   sur les dates. */
 
 export const experiences = [
   {
@@ -133,7 +134,7 @@ export const experiences = [
     periode: { fr: ["Jan. 2024", "jan. 2025"], en: ["Jan. 2024", "Jan. 2025"] }, iso: "2024-01",
     titre: { fr: "Data analyst — stage", en: "Data analyst — internship" },
     org: { fr: "INSEP", en: "INSEP" },
-    lieu: { fr: "Paris", en: "Paris" },
+    lieu: { fr: "Paris, puis à distance depuis l'Argentine", en: "Paris, then remotely from Argentina" },
     puces: {
       fr: [
         "Nettoyage, traitement et modélisation de données quantitatives de haute performance.",
@@ -201,7 +202,7 @@ export const formations = [
     periode: { fr: ["2025", "2026"], en: ["2025", "2026"] }, iso: "2025",
     titre: { fr: "Master — Entraînement et optimisation de la performance sportive", en: "MSc — Training and optimisation of athletic performance" },
     org: { fr: "Université Jean Monnet, STAPS", en: "Université Jean Monnet, Sport Science" },
-    lieu: { fr: "Saint-Étienne", en: "Saint-Étienne" },
+    lieu: { fr: "Saint-Étienne — à distance, en parallèle du poste", en: "Saint-Étienne — fully remote, alongside the job" },
     puces: {
       fr: ["Physiologie de l'effort, biomécanique, planification de la charge d'entraînement, recherche appliquée au sport d'élite."],
       en: ["Exercise physiology, biomechanics, training-load planning, applied research in elite sport."],
@@ -249,8 +250,8 @@ export const formations = [
     org: { fr: "Universidad Nacional del Sur", en: "Universidad Nacional del Sur" },
     lieu: { fr: "Bahía Blanca, Argentine", en: "Bahía Blanca, Argentina" },
     puces: {
-      fr: ["Une année académique complète suivie en espagnol. C'est de là que vient le C1."],
-      en: ["A full academic year taught in Spanish. That is where the C1 comes from."],
+      fr: ["Une année académique complète suivie en espagnol. C'est de là que vient le C1. Le stage INSEP a continué à distance pendant ce temps."],
+      en: ["A full academic year taught in Spanish. That is where the C1 comes from. The INSEP internship carried on remotely meanwhile."],
     },
     cv: {
       titre: { fr: "Échange universitaire — Informatique et statistiques", en: "Exchange year — computer science and statistics" },
@@ -274,11 +275,11 @@ export const competences = {
       items: { fr: ["Gouvernance de la donnée", "Cartographie des flux, API, SQL", "Dictionnaires de données", "Contrôle qualité, documentation"],
                en: ["Data governance", "Flow mapping, APIs, SQL", "Data dictionaries", "Quality control, documentation"] } },
     { titre: { fr: "Data science", en: "Data science" },
-      items: { fr: ["Python — Pandas, NumPy, Scikit-learn", "Machine learning — clustering, modèles mixtes, bayésien", "R, statistiques appliquées", "SQL, modélisation décisionnelle"],
-               en: ["Python — Pandas, NumPy, Scikit-learn", "Machine learning — clustering, mixed models, Bayesian", "R, applied statistics", "SQL, decision modelling"] } },
+      items: { fr: ["Python — Pandas, NumPy, Scikit-learn", "Machine learning — clustering, modèles mixtes", "Bayésien — Stan, brms", "R, SQL, DuckDB", "Agents IA — LLM, appels d'outils, MCP"],
+               en: ["Python — Pandas, NumPy, Scikit-learn", "Machine learning — clustering, mixed models", "Bayesian — Stan, brms", "R, SQL, DuckDB", "AI agents — LLMs, tool calling, MCP"] } },
     { titre: { fr: "Sciences du sport", en: "Sport science" },
-      items: { fr: ["Physiologie de l'effort", "Modélisation de la charge", "Profils force-vitesse, GPS / LPS"],
-               en: ["Exercise physiology", "Training-load modelling", "Force–velocity profiles, GPS / LPS"] } },
+      items: { fr: ["Physiologie de l'effort", "Modélisation de la charge", "Profils force-vitesse, GPS / LPS", "Données de tracking (25 Hz)"],
+               en: ["Exercise physiology", "Training-load modelling", "Force–velocity profiles, GPS / LPS", "Tracking data (25 Hz)"] } },
     { titre: { fr: "Restitution", en: "Reporting" },
       items: { fr: ["Power BI — DAX, Power Query", "Streamlit, R Shiny", "Excel avancé, M365"],
                en: ["Power BI — DAX, Power Query", "Streamlit, R Shiny", "Advanced Excel, M365"] } },
@@ -304,6 +305,19 @@ export const divers = {
   en: ["Full driving licence, own vehicle", "Based in Paris, mobile across France"],
 };
 
+/* Projets open source montrés sur le CV (une ligne chacun : il tient en 2 pages). */
+export const projetsCv = [
+  { nom: "NCAA Scouting Lab", lien: "github.com/Clement0242/ncaa-scouting-lab",
+    texte: { fr: "116 000 saisons-joueurs, cartes de tirs, modèle de draft figé avant la draft 2026 (9 de son top 10 draftés) et agent IA évalué.",
+             en: "116,000 player-seasons, shot charts, a draft model frozen before the 2026 draft (9 of its top 10 drafted) and an evaluated AI agent." } },
+  { nom: { fr: "Courbes de progression NCAA", en: "NCAA development curves" }, lien: "github.com/Clement0242/basketball-aging-curves",
+    texte: { fr: "Modèle bayésien hiérarchique (brms, Stan) de la progression des joueurs sur 34 670 saisons.",
+             en: "Bayesian hierarchical model (brms, Stan) of player development over 34,670 seasons." } },
+  { nom: { fr: "Analyse de tracking football", en: "Football tracking analysis" }, lien: "github.com/Clement0242/football-tracking-analysis",
+    texte: { fr: "Données de tracking à 25 Hz : charge, profils accélération-vitesse, puissance métabolique et pitch control.",
+             en: "25 Hz tracking data: running load, acceleration–speed profiles, metabolic power and pitch control." } },
+];
+
 /* ------------------------------------------------- RESTE : ASSISTANT SEUL */
 
 export const domaines = [
@@ -318,6 +332,7 @@ export const projets = [
   "Monitoring athlètes basketball (Fédération Française de Basketball, application interne — pas sur GitHub) : agrégation des mesures de charge et de bien-être, restitution aux staffs, alertes sur les écarts.",
   "NCAA Scouting Lab (public, octobre 2026) : scouting du basket universitaire américain (NCAA Division I) avec des méthodes statistiques publiées et un agent IA évalué. Pipeline DuckDB de 116 000 saisons-joueurs (2014-2026) et 530 000 actions ; cartes de tirs par processus de Cox log-gaussien (Cao et al. 2025) ; profils de tireurs (Jiao, Hu & Yan 2020) ; momentum (Skotis et al.) ; modèle de draft (gradient boosting calibré) gelé avant la draft 2026 : 9 de son top 10 draftés, AUC 0,969. Agent IA qui rédige des rapports de scouting par appels d'outils : sorties structurées Pydantic, vérification de chaque chiffre, garde-fous contre l'injection, traces, serveur MCP, benchmark de 4 modèles sur 21 questions. Tableau de bord : https://clement0242.github.io/ncaa-scouting-lab/ — code : https://github.com/Clement0242/ncaa-scouting-lab",
   "Courbes de progression NCAA (public, octobre 2026) : modèle bayésien hiérarchique (R, brms, Stan, rapport Quarto) de la progression des joueurs NCAA Division I sur 34 670 saisons (2015-2026). La moitié du gain se fait entre la 1re et la 2e année ; les conférences diffèrent par leur niveau, pas par leur vitesse de progression, qui est individuelle ; comparaison avec un modèle fréquentiste (lme4) et explication de leurs divergences. Rapport : https://clement0242.github.io/basketball-aging-curves/ — code : https://github.com/Clement0242/basketball-aging-curves",
+  "Analyse de tracking football (public, octobre 2026) : données de tracking à 25 Hz (Metrica Sports, deux matchs professionnels) — charge de course, accélérations et décélérations, profils accélération-vitesse in situ (Morin et al. 2021), pires scénarios (5 minutes les plus intenses = 1,23 à 1,34 × la moyenne du match), puissance mécanique et métabolique avec chaque équation détaillée (di Prampero & Osgnach) qui retrouve les valeurs publiées sans réglage (part anaérobie 39 % vs 40 % publié), et pitch control de Spearman vectorisé. Code : https://github.com/Clement0242/football-tracking-analysis",
   "Récupération de données LPS (public) : client Python pour l'API Kinexon. https://github.com/Clement0242/Kinexon_API_recuperation",
   "Client API Kinvent (public) : participants, protocoles, métriques de force et d'équilibre. https://github.com/Clement0242/Kinvent_api",
   "Extraction des statistiques FFBB (public) : scraper des feuilles de match officielles (NM1, LF2, Pro B). https://github.com/Clement0242/Scrap_NM1_LF2",

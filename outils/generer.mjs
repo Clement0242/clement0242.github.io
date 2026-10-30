@@ -62,6 +62,18 @@ const competencesCv = (l) => P.competences.cv.map((g) => [
   `        </div>`,
 ].join("\n")).join("\n\n");
 
+// Projets open source du CV : un seul bloc, une ligne par projet (nom en gras).
+const projetsCv = (l) => [
+  `        <section class="cv-bloc">`,
+  `          <ul>`,
+  ...P.projetsCv.map((x) => {
+    const nom = typeof x.nom === "string" ? x.nom : x.nom[l];
+    return `            <li><b>${esc(nom)}</b> — ${esc(x.texte[l])} <a href="https://${esc(x.lien)}">${esc(x.lien.replace("github.com/Clement0242/", ""))}</a></li>`;
+  }),
+  `          </ul>`,
+  `        </section>`,
+].join("\n");
+
 const languesCv = (l) => P.langues.map((x) => [
   `        <div class="cv-langue">`,
   `          <b>${esc(x.nom[l])}</b><i>${esc(x.niveau[l])}</i>`,
@@ -199,6 +211,7 @@ for (const [page, l] of [["cv/index.html", "fr"], ["en/cv/index.html", "en"]]) {
     lieu: `        <span>${esc(P.identite.lieuCv[l])}</span>`,
     experiences: visibles(P.experiences).map((e) => blocCv(e, l)).join("\n\n"),
     formations: "\n" + visibles(P.formations).map((e) => blocCv(e, l)).join("\n\n"),
+    projets: projetsCv(l),
     competences: competencesCv(l),
     langues: languesCv(l),
     divers: diversCv(l),
