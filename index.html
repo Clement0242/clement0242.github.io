@@ -302,7 +302,7 @@
   <!-- ========================================================= PROJETS -->
   <section id="projets">
     <div class="enveloppe">
-      <p class="etiq">Projets <span>deux applications en production, trois études open source</span></p>
+      <p class="etiq">Projets <span>deux applications en production, quatre projets open source</span></p>
 
       <div class="projets">
 
@@ -374,6 +374,46 @@
               <a class="depot" href="assets/video/monitoring-basket.mp4" data-umami-event="projet" data-umami-event-lien="monitoring-video" download>
                 Vidéo · MP4, 5 Mo
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M12 16l-5-5M12 16l5-5M5 20h14"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ................................................... .........SPRINTFV -->
+        <article class="projet">
+          <div class="vues" data-vues="sprintfv">
+            <div class="vues-piste">
+              <figure class="vue">
+                <img src="assets/img/projets/sprintfv-01-profil-fv.jpg" alt="À gauche, un sprint mesuré au radar et la courbe de vitesse ajustée ; à droite, la force horizontale et la puissance selon la vitesse, qui donnent F0, V0 et Pmax." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+              <figure class="vue">
+                <img src="assets/img/projets/sprintfv-02-in-situ.jpg" alt="Nuages vitesse-accélération d’un entraînement de basket avec deux profils ajustés : une droite, et une enveloppe hyperbolique qui s’infléchit à basse vitesse." width="1600" height="1000" loading="lazy" decoding="async">
+              </figure>
+            </div>
+            <button class="vues-nav prec" type="button" aria-label="Capture précédente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="vues-nav suiv" type="button" aria-label="Capture suivante">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="vues-points"></div>
+          </div>
+          <div class="projet-corps">
+            <h3>sprintfv — profil force-vitesse du sprint en Python</h3>
+            <p>
+              Bibliothèque Python testée, installable avec pip. Radar, cellules ou
+              GPS/LPS en entrée ; profil force-vitesse de Samozino, profil optimal
+              et profil accélération-vitesse in situ en sortie (linéaire,
+              hyperbolique, Tukey, intervalle de prédiction). Un filtre de Kalman
+              paramétrable pour les positions brutes. Validée contre la référence R
+              {shorts} : toutes ses valeurs publiées sont retrouvées.
+            </p>
+            <div class="projet-meta">
+              <span class="etat calme">Open source</span>
+              <span>Python</span><span>SciPy</span><span>Biomécanique</span>
+              <a class="depot" href="https://github.com/Clement0242/sprintfv" data-umami-event="projet" data-umami-event-lien="sprintfv-code">
+                Code
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </a>
             </div>
           </div>
