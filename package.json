@@ -9,7 +9,9 @@
     "tester": "node outils/tester-assistant.mjs",
     "tester-rapide": "node outils/tester-assistant.mjs --rapide",
     "tester-ats": "node outils/tester-ats.mjs",
+    "tester-detente": "node outils/tester-detente.mjs",
     "deployer": "node outils/generer.mjs && node outils/tester-assistant.mjs && cd chat-worker && npx wrangler deploy",
-    "deployer-rapide": "node outils/generer.mjs && node outils/tester-assistant.mjs --rapide && cd chat-worker && npx wrangler deploy"
+    "deployer-rapide": "node outils/generer.mjs && node outils/tester-assistant.mjs --rapide && cd chat-worker && npx wrangler deploy",
+    "stats": "node outils/stats-ats.mjs"
   }
 }

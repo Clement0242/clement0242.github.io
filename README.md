@@ -154,6 +154,31 @@ toute retouche de leurs consignes (`chat-worker/worker.js`) demande
 - Les textes des pages (`ats/index.html`, `en/ats/index.html`) sont à la
   main ; les textes dynamiques (verdicts, exemples) sont dans `ats.js`.
 
+### Ce que testent les recruteurs
+
+Chaque analyse (hors exemples) envoie au relais une statistique anonyme :
+note, ids des compétences repérées, années demandées, langue, source. Jamais
+le texte de l'offre ni l'IP. Pour lire le résumé :
+
+```bash
+npm run stats        # 30 derniers jours ; `npm run stats -- 7` pour 7 jours
+```
+
+Le jeton de lecture est dans `chat-worker/.dev.vars` (`STATS_TOKEN=…`, non
+versionné) et doit être identique au secret Cloudflare
+(`npx wrangler secret put STATS_TOKEN` dans `chat-worker/`).
+
+L'ATS sait aussi : partager un résultat par lien (`#r=…`, la note et les
+compétences, jamais l'offre), l'imprimer sur une page A4, et répondre à « Et
+si… ? » sur chaque point − (même offre, ce point comblé).
+
+## Le test de détente (section « Labo »)
+
+`detente/` : on saute téléphone contre la poitrine ; l'accéléromètre donne le
+temps de vol t, la hauteur vaut h = g·t²/8. Tout reste sur le téléphone.
+Moteur testé sur des sauts synthétiques : `npm run tester-detente`. Il
+sous-estime légèrement (1 à 2 cm à 60 Hz), ce qui est le bon côté.
+
 ## Règles de conception à ne pas casser
 
 - **Rien d'essentiel ne dépend de JavaScript.** Toutes les sections sont

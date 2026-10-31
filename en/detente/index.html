@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How high can you jump? — Clément Verdier</title>
+<meta name="description" content="A vertical jump test with your phone: the accelerometer measures your flight time, your height follows. Compare yourself with pro basketball players. Nothing is sent.">
+<meta name="author" content="Clément Verdier">
+<link rel="canonical" href="https://clement0242.github.io/en/detente/">
+<meta name="theme-color" content="#FAFAF7">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="How high can you jump?">
+<meta property="og:description" content="A vertical jump test with your phone: jump, the accelerometer does the rest. Compare yourself with pro basketball players.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://clement0242.github.io/en/detente/">
+<meta property="og:image" content="https://clement0242.github.io/assets/img/apercu-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Clément Verdier, data engineer · elite sport performance">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="fr" href="https://clement0242.github.io/detente/">
+<link rel="alternate" hreflang="en" href="https://clement0242.github.io/en/detente/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className += " js";</script>
+<link rel="stylesheet" href="../../assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314171C'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial,sans-serif' font-weight='bold' font-size='16' fill='%23FAFAF7' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="evite" href="#contenu">Skip to content</a>
+
+<header class="barre">
+  <div class="barre-in">
+    <a class="sceau" href="../"><i>CV</i> Clément Verdier</a>
+    <nav class="liens" aria-label="Site sections">
+      <a href="../#work">What I do</a>
+      <a href="../#career">Career</a>
+      <a href="../#projects">Projects</a>
+      <a href="../#lab" aria-current="page">Lab</a>
+      <a href="../cv/">CV</a>
+    </nav>
+    <div class="langue">
+      <a href="../../detente/" hreflang="fr">FR</a>
+      <a href="./" aria-current="true" hreflang="en">EN</a>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="ats-bandeau">
+    <div class="enveloppe">
+      <p class="etiq">Lab <span>try it with your phone</span></p>
+      <h1>How high can <em>you jump?</em></h1>
+      <p class="fonction">
+        At INSEP, I measure jumps on force plates. Your phone doesn't have one,
+        but it has an <b>accelerometer</b>: jump with it, it measures your
+        flight time and works out your height. Then compare yourself with pro
+        basketball players.
+      </p>
+      <p class="ou"><i aria-hidden="true"></i> Everything happens on your phone: nothing is sent or stored.</p>
+    </div>
+  </section>
+
+  <section class="ats-section">
+    <div class="enveloppe">
+      <div class="detente" data-detente>
+
+        <ol class="detente-etapes">
+          <li><b>Hold the phone flat against your chest</b>, arms crossed over it. Your arms shouldn't help.</li>
+          <li><b>Tap “Start”</b>, wait for “Jump!” (and the vibration).</li>
+          <li><b>Jump once, as high as you can</b>, and land on the balls of your feet, legs straight.</li>
+        </ol>
+
+        <div class="detente-commandes">
+          <button class="bouton detente-go" type="button" data-detente-go>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            Start
+          </button>
+          <button class="ats-exemple" type="button" data-detente-exemple>See an example jump</button>
+        </div>
+        <p class="detente-message" data-detente-message aria-live="assertive"></p>
+        <p class="ats-petit">Stable floor, no socks on parquet, and hold the phone tight: screens are not covered by this website.</p>
+
+        <noscript><p class="ats-sans">The test needs JavaScript (and a phone).</p></noscript>
+
+        <div class="detente-resultat" data-detente-resultat hidden>
+          <div class="ats-note">
+            <p class="ats-chiffre"><b data-detente-cm>0</b><span>cm</span></p>
+            <div>
+              <p class="ats-verdict" data-detente-verdict></p>
+              <p class="ats-tag" data-detente-vol></p>
+            </div>
+          </div>
+
+          <ul class="detente-echelle" data-detente-echelle></ul>
+          <ul class="detente-essais" data-detente-essais hidden></ul>
+
+          <figure class="detente-figure">
+            <svg class="detente-courbe" data-detente-courbe role="img" aria-label="Acceleration curve of the jump"></svg>
+            <figcaption data-detente-legende></figcaption>
+          </figure>
+
+          <p class="ats-petit">Benchmarks: published orders of magnitude for a countermovement jump, hands on chest. Phone accuracy: about ± 2 cm (60 to 100 readings per second, against often 1,000 on a force plate).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comment">
+    <div class="enveloppe">
+      <p class="etiq">Under the hood <span>high-school physics and a bit of signal processing</span></p>
+      <div class="registre">
+        <article class="fait">
+          <h3>1. Listen</h3>
+          <div><p>The phone reports its acceleration 60 to 100 times per second, gravity included. Standing still, it reads 1&nbsp;g; during push-off, over 2&nbsp;g.</p></div>
+        </article>
+        <article class="fait">
+          <h3>2. Find the flight</h3>
+          <div><p>In the air, the phone is in free fall: its accelerometer reads almost 0&nbsp;g. Take-off and landing are the two crossings of a low threshold, placed to the millisecond by interpolating between two readings.</p></div>
+        </article>
+        <article class="fait">
+          <h3>3. Work out the height</h3>
+          <div>
+            <p>Going up and coming down takes a time t; the height reached is h = g·t²/8. It's the method used by contact mats and the My Jump app. Tremors that are too short and thrown phones (over a second of flight) are rejected.</p>
+            <div class="outils"><span>DeviceMotion</span><span>Signal processing</span><span>Interpolation</span><span>JavaScript</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-in">
+    <p class="pied-nom" style="margin:0">Clément Verdier</p>
+    <nav class="pied-liens" aria-label="External links">
+      <a href="../">Home</a>
+      <a href="../ats/">My CV vs your job ad</a>
+      <a href="mailto:clement.verdier@laposte.net">Email</a>
+      <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7">LinkedIn</a>
+      <a href="../cv/">CV</a>
+    </nav>
+    <p class="pied-note">No measurement is sent or kept: everything stays on your phone.</p>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js" defer></script>
+<script src="../../assets/js/detente.js" defer></script>
+</body>
+</html>

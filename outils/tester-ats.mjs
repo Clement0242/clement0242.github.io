@@ -79,6 +79,26 @@ const CONTROLES = [
     return r.trouves.find((t) => t.c.id === "bigdata").souhait && !r.trouves.find((t) => t.c.id === "python").souhait;
   }],
   ["« tableau de bord » ≠ Tableau mais = BI", () => ATS.analyser("Construire un tableau de bord.", { maintenant }).trouves.some((t) => t.c.id === "bi")],
+  ["« Et si » : combler Spark fait monter la note", () => {
+    const r = ATS.analyser(CAS[2].texte, { maintenant });
+    return ATS.noter(r, { niveaux: { bigdata: 3 } }).score > r.score && ATS.noter(r).score === r.score;
+  }],
+  ["« Et si » : l'expérience comblée fait monter la note", () => {
+    const r = ATS.analyser(CAS[2].texte, { maintenant });
+    return ATS.noter(r, { ecart: 0 }).score > r.score;
+  }],
+  ["lien partagé : aller-retour fidèle, sans texte d'offre", () => {
+    const r = ATS.analyser(CAS[0].texte, { maintenant });
+    const res = ATS.resumer(r);
+    const json = JSON.stringify(res);
+    const relu = ATS.relire(JSON.parse(json));
+    return relu.score === r.score && relu.trouves.length === r.trouves.length
+      && !/joueurs|staff|Power BI/i.test(json);
+  }],
+  ["lien partagé abîmé : ni plantage ni note absurde", () => {
+    const relu = ATS.relire({ s: 999, c: ["inconnu", "~python"], x: 0 });
+    return relu.score === 100 && relu.trouves.length === 1 && relu.trouves[0].souhait;
+  }],
 ];
 
 let echecs = 0;
