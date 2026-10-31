@@ -99,6 +99,7 @@ npm run verifier    # échoue si une page n'est plus à jour (avant un commit)
 npm run tester      # questions de référence sur l'assistant LOCAL
 npm run tester-ats  # offres de référence sur l'ATS maison (local, gratuit)
 npm run deployer    # generer → tester → déploie l'assistant (stoppe si un test échoue)
+# Le relais sert aussi le chat « AI Analyst » du tableau de bord RH (mode people-analytics).
 npm run deployer-rapide   # idem avec 3 questions seulement (petites retouches)
 ```
 
