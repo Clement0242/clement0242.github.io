@@ -181,14 +181,6 @@
     var liste = phrases(texte);
     var trouves = reperer(liste);
 
-    // Couverture : Σ poids · niveau/3 sur les compétences demandées.
-    var num = 0, den = 0;
-    trouves.forEach(function (t) {
-      var w = (t.c.poids || 1) * (t.souhait ? 0.5 : 1);
-      num += w * t.c.niveau / 3; den += w;
-    });
-    var couverture = den ? num / den : 0;
-
     // TF-IDF : l'offre est un document de plus dans le corpus.
     var offre = jetons(texte);
     var docs = CORPUS.concat([offre]);
@@ -220,32 +212,50 @@
 
     var sport = trouves.some(function (t) { return DU_SPORT.indexOf(t.c.id) >= 0; }) ? 1 : 0;
 
-    var variables = {
-      couverture: couverture,
-      similarite: Math.min(1, similarite / SIM_PLEINE),
-      sport: sport,
-      ecart: Math.min(ecart, 5)
-    };
-    var z = POIDS.b0 +
-      POIDS.couverture * variables.couverture +
-      POIDS.similarite * variables.similarite +
-      POIDS.sport * variables.sport -
-      POIDS.ecart * variables.ecart;
-
-    return {
+    var r = {
       mots: mots,
       trop_court: mots < 25,
-      score: Math.round(100 * sigma(z)),
-      z: z,
-      variables: variables,
       poids: POIDS,
       similarite: similarite,
       trouves: trouves,
       xp: { demandees: demandees, au: au },
       ligne: meilleure.i >= 0 ? { texte: P.corpus[meilleure.i], sim: meilleure.sim } : null,
       termes: termes,
-      clins: clins(n)
+      clins: clins(n),
+      variables: {
+        similarite: Math.min(1, similarite / SIM_PLEINE),
+        sport: sport,
+        ecart: Math.min(ecart, 5)
+      }
     };
+    var note = noter(r);
+    r.variables.couverture = note.couverture;
+    r.z = note.z;
+    r.score = note.score;
+    return r;
+  }
+
+  /* La note seule, à partir d'une offre DÉJÀ lue. Instantané : c'est ce qui
+     permet « Et si… ? » — même offre, un niveau ou l'expérience changés.
+       si.niveaux : { id: niveau }   si.ecart : années manquantes */
+  function noter(r, si) {
+    si = si || {};
+    var niveaux = si.niveaux || {};
+    var num = 0, den = 0;
+    r.trouves.forEach(function (t) {
+      var w = (t.c.poids || 1) * (t.souhait ? 0.5 : 1);
+      var niv = niveaux[t.c.id] != null ? niveaux[t.c.id] : t.c.niveau;
+      num += w * niv / 3; den += w;
+    });
+    var couverture = den ? num / den : 0;
+    var v = r.variables;
+    var ecart = si.ecart != null ? si.ecart : v.ecart;
+    var z = POIDS.b0 +
+      POIDS.couverture * couverture +
+      POIDS.similarite * v.similarite +
+      POIDS.sport * v.sport -
+      POIDS.ecart * ecart;
+    return { couverture: couverture, z: z, score: Math.round(100 * sigma(z)) };
   }
 
   /* Les petites remarques sur l'offre elle-même (jamais de points). */
@@ -257,7 +267,42 @@
     return c;
   }
 
-  racine.ATS = { analyser: analyser, normaliser: normaliser, jetons: jetons };
+  /* Le lien partageable : la note et les compétences repérées, JAMAIS le
+     texte de l'offre. « ~ » devant un id = compétence seulement souhaitée.
+       { s: note, c: ["python", "~dl", …], x: [demandées, au compteur] | 0 } */
+  function resumer(r) {
+    return {
+      s: r.score,
+      c: r.trouves.map(function (t) { return (t.souhait ? "~" : "") + t.c.id; }),
+      x: r.xp.demandees === null ? 0 : [r.xp.demandees, Math.round(r.xp.au)]
+    };
+  }
+
+  /* Le résumé → un objet que l'interface sait afficher. Les ids inconnus
+     (lexique modifié depuis le partage) sont ignorés sans bruit. */
+  function relire(res) {
+    var parId = {};
+    P.competences.forEach(function (c) { parId[c.id] = c; });
+    var trouves = (res.c || []).map(function (id) {
+      var souhait = id.charAt(0) === "~";
+      var c = parId[souhait ? id.slice(1) : id];
+      return c ? { c: c, vu: null, souhait: souhait } : null;
+    }).filter(Boolean);
+    var x = res.x || 0;
+    return {
+      partage: true,
+      score: Math.max(0, Math.min(100, +res.s || 0)),
+      trouves: trouves,
+      xp: x ? { demandees: +x[0], au: +x[1] } : { demandees: null, au: 0 },
+      variables: {
+        sport: trouves.some(function (t) { return DU_SPORT.indexOf(t.c.id) >= 0; }) ? 1 : 0,
+        ecart: x ? Math.max(0, +x[0] - +x[1] - 0.5) : 0
+      },
+      clins: [], ligne: null, trop_court: false
+    };
+  }
+
+  racine.ATS = { analyser: analyser, noter: noter, resumer: resumer, relire: relire, normaliser: normaliser, jetons: jetons };
 
   /* ===================================================== 2. L'INTERFACE */
 
@@ -309,6 +354,12 @@
     redigeAttente: "The AI is formatting your notes…",
     redigeOk: "Job ad formatted from your notes — check it above, then the analysis follows.",
     redigeVide: "Write at least a few words in one of the two fields.",
+    etSi: "What if…?",
+    etSiRes: function (nom, a, b) { return "With “" + nom + "” at a strong level: " + a + " → " + b + "/100"; },
+    xpSi: function (d) { return d + " years of experience"; },
+    xpSiRes: function (nom, a, b) { return "With " + nom + ": " + a + " → " + b + "/100"; },
+    copie: "Link copied. It holds the score and the skills spotted — not your job ad.",
+    copieManuelle: "Copy this link: ",
     calc: {
       variable: "Variable", valeur: "Value", poids: "Weight",
       couverture: "Weighted coverage of the skills asked",
@@ -355,6 +406,12 @@
     redigeAttente: "L'IA met vos notes en forme…",
     redigeOk: "Offre mise en forme à partir de vos notes — vérifiez-la ci-dessus ; l'analyse suit.",
     redigeVide: "Écrivez au moins quelques mots dans l'un des deux champs.",
+    etSi: "Et si… ?",
+    etSiRes: function (nom, a, b) { return "Avec « " + nom + " » au niveau solide : " + a + " → " + b + "/100"; },
+    xpSi: function (d) { return d + " ans d'expérience"; },
+    xpSiRes: function (nom, a, b) { return "Avec " + nom + " : " + a + " → " + b + "/100"; },
+    copie: "Lien copié. Il contient la note et les compétences repérées — pas votre offre.",
+    copieManuelle: "Copiez ce lien : ",
     calc: {
       variable: "Variable", valeur: "Valeur", poids: "Poids",
       couverture: "Couverture pondérée des compétences demandées",
@@ -396,12 +453,26 @@
     return EN ? s : s.replace(".", ",");
   }
 
-  function puce(nom, texte, details) {
+  function puce(nom, texte, details, siBouton) {
     var li = el("li");
     li.appendChild(el("b", null, nom));
     if (details) li.appendChild(el("span", "ats-tag", details));
     li.appendChild(el("span", "ats-dit", texte));
+    if (siBouton) li.appendChild(siBouton);
     return li;
+  }
+
+  /* « Et si… ? » : même offre, ce point − comblé. On montre l'écart de note
+     réel plutôt qu'un discours : c'est le modèle qui répond. */
+  function boutonSi(r, nom, si, phrase) {
+    var b = el("button", "ats-si", T.etSi);
+    b.type = "button";
+    b.addEventListener("click", function () {
+      var apres = noter(r, si).score;
+      var res = el("span", "ats-si-res", (phrase || T.etSiRes)(nom, r.score, apres));
+      b.parentNode.replaceChild(res, b);
+    });
+    return b;
   }
 
   /* Ce que l'IA reçoit : les MÊMES points que l'écran, sans les traits
@@ -417,9 +488,10 @@
       return (b.c.poids || 1) * (b.souhait ? 0.5 : 1) - (a.c.poids || 1) * (a.souhait ? 0.5 : 1);
     });
     tries.forEach(function (t) {
-      var details = T.niveaux[t.c.niveau] + (t.souhait ? " · " + T.souhait : "") + " · " + T.vu + "« " + t.vu + " »";
-      if (EN) details = details.replace("« ", "“").replace(" »", "”");
-      (t.c.niveau >= 2 ? plus : moins).appendChild(puce(t.c.nom[L], t.c.dit[L], details));
+      var details = T.niveaux[t.c.niveau] + (t.souhait ? " · " + T.souhait : "") +
+        (t.vu ? " · " + T.vu + (EN ? "“" + t.vu + "”" : "« " + t.vu + " »") : "");
+      var si = r.partage || t.c.niveau >= 2 ? null : (function () { var n = {}; n[t.c.id] = 3; return boutonSi(r, t.c.nom[L], { niveaux: n }); })();
+      (t.c.niveau >= 2 ? plus : moins).appendChild(puce(t.c.nom[L], t.c.dit[L], details, si));
       (t.c.niveau >= 2 ? pourIA.plus : pourIA.moins).push(
         t.c.nom[L] + " — niveau : " + ["non", "notions", "pratiqué", "solide"][t.c.niveau] +
         (t.souhait ? " (souhaité par l'offre)" : " (exigé par l'offre)") + " — " + t.c.dit[L]);
@@ -428,7 +500,10 @@
     if (r.xp.demandees !== null) {
       var a = Math.round(r.xp.au);
       var xp = "Expérience : " + r.xp.demandees + " ans demandés, environ " + a + " ans d'expérience professionnelle (stages non comptés)";
-      if (r.variables.ecart > 0) { moins.appendChild(puce(T.xpNom, T.xpKo(r.xp.demandees, a))); pourIA.moins.push(xp); }
+      if (r.variables.ecart > 0) {
+        moins.appendChild(puce(T.xpNom, T.xpKo(r.xp.demandees, a), null, r.partage ? null : boutonSi(r, T.xpSi(r.xp.demandees), { ecart: 0 }, T.xpSiRes)));
+        pourIA.moins.push(xp);
+      }
       else { plus.appendChild(puce(T.xpNom, T.xpOk(r.xp.demandees, a))); pourIA.plus.push(xp); }
     }
     if (!r.trouves.length) moins.appendChild(puce(T.rienNom, T.rien));
@@ -460,14 +535,29 @@
     r.clins.forEach(function (k) { cl.appendChild(el("li", null, T.clins[k])); });
     cl.hidden = !r.clins.length;
 
-    calculs(r);
-
-    dernier = { offre: zone.value, score: r.score, verdict: verdict, plus: pourIA.plus, moins: pourIA.moins,
-                ligne: r.ligne && r.ligne.sim >= 0.05 ? r.ligne.texte : "" };
-    preparerIA();
+    // Un résultat partagé n'a ni l'offre, ni les calculs : on n'affiche que
+    // ce que le lien contient, et on le dit.
+    var bandeau = q("[data-ats-partage-bandeau]");
+    if (bandeau) bandeau.hidden = !r.partage;
+    q(".ats-calculs").hidden = !!r.partage;
+    var bp = q("[data-ats-partager]");
+    if (bp) bp.hidden = !!r.partage;   // on repartage l'URL telle quelle
+    if (r.partage) {
+      dernier = null;
+      if (ia) ia.hidden = true;
+    } else {
+      calculs(r);
+      dernier = { offre: zone.value, score: r.score, verdict: verdict, plus: pourIA.plus, moins: pourIA.moins,
+                  ligne: r.ligne && r.ligne.sim >= 0.05 ? r.ligne.texte : "", resume: resumer(r) };
+      preparerIA();
+      if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+    }
+    dire2("");
 
     var mail = q("[data-ats-mail]");
     if (mail) mail.href = "mailto:clement.verdier@laposte.net?subject=" + encodeURIComponent(T.mail(r.score));
+    var date = q("[data-ats-date]");
+    if (date) date.textContent = new Date().toLocaleDateString(EN ? "en-GB" : "fr-FR", { day: "numeric", month: "long", year: "numeric" });
 
     bloc.hidden = false;
     bloc.focus({ preventScroll: true });
@@ -612,7 +702,7 @@
         if (res.texte.split(/\s+/).length < 15) { dire(T.pdfVide); return; }
         zone.value = res.texte;
         dire(pdf ? T.pdfOk(res.pages) : "");
-        afficher(analyser(zone.value));
+        lancer(pdf ? "pdf" : "texte");
       })
       .catch(function () { dire(T.pdfErreur); });
   }
@@ -647,19 +737,88 @@
         .then(function (texte) {
           zone.value = texte;
           dit.textContent = T.redigeOk;
-          afficher(analyser(zone.value));
+          lancer("redaction");
         })
         .catch(function (e) { dit.textContent = e.message === "trop" ? T.iaTrop : T.iaErreur; })
         .then(function () { miseEnForme.disabled = false; });
     });
   }
 
+  /* ------------------------------------------- PARTAGER, IMPRIMER */
+
+  var etatPartage = q("[data-ats-partage-etat]");
+  function dire2(t) { if (etatPartage) etatPartage.textContent = t || ""; }
+
+  // base64url d'un JSON : court, sans caractère à échapper dans une URL.
+  function encoder(o) {
+    return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function decoder(s) {
+    s = s.replace(/-/g, "+").replace(/_/g, "/");
+    while (s.length % 4) s += "=";
+    return JSON.parse(decodeURIComponent(escape(atob(s))));
+  }
+
+  var boutonPartage = q("[data-ats-partager]");
+  if (boutonPartage) boutonPartage.addEventListener("click", function () {
+    if (!dernier) return;
+    var url = location.origin + location.pathname + "#r=" + encoder(dernier.resume);
+    var ok = function () { dire2(T.copie); };
+    var manuel = function () { dire2(T.copieManuelle + url); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(ok, manuel);
+    else manuel();
+  });
+
+  /* Le PDF d'une page : l'impression du navigateur, mise en page par
+     @media print (site.css) — même principe que le CV. */
+  var boutonPdf = q("[data-ats-imprimer]");
+  if (boutonPdf) boutonPdf.addEventListener("click", function () { window.print(); });
+
+  /* ------------------------------------------------- STATISTIQUES */
+  /* Ce que testent les recruteurs, en ANONYME : la note, les compétences
+     repérées, la langue et la source. Jamais le texte de l'offre, jamais
+     d'adresse IP stockée (cf. chat-worker/worker.js). Pas pour les exemples,
+     ni pour un résultat partagé, ni deux fois pour la même offre. */
+
+  var dejaCompte = {};
+  function empreinte(t) {
+    var h = 0;
+    for (var i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0;
+    return String(h);
+  }
+  function compterStat(r, source) {
+    if (!RELAIS || !window.fetch) return;
+    var e = empreinte(zone.value);
+    if (dejaCompte[e]) return;
+    dejaCompte[e] = true;
+    var res = resumer(r);
+    // text/plain : requête « simple », sans aller-retour CORS préalable.
+    fetch(RELAIS, {
+      method: "POST", keepalive: true,
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({ mode: "ats-stat", s: res.s, c: res.c, x: res.x, sport: r.variables.sport, l: L, src: source,
+        manques: r.trouves.filter(function (t) { return t.c.niveau < 2; }).map(function (t) { return t.c.id; }) })
+    }).catch(function () { /* une statistique perdue n'a aucune conséquence */ });
+  }
+
+  function lancer(source) {
+    var r = analyser(zone.value);
+    afficher(r);
+    if (source && !r.trop_court) compterStat(r, source);
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!zone.value.trim()) { zone.focus(); return; }
     dire("");
-    afficher(analyser(zone.value));
+    lancer("texte");
   });
+
+  // Arrivée par un lien partagé : #r=…
+  var m = /^#r=([\w-]+)$/.exec(location.hash);
+  if (m) {
+    try { afficher(relire(decoder(m[1]))); } catch (e) { /* lien abîmé : on ignore */ }
+  }
 
   outil.querySelectorAll("[data-ats-exemple]").forEach(function (b) {
     b.addEventListener("click", function () {

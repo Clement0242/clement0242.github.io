@@ -259,21 +259,98 @@ async function demander(env, { consigne, messages, max, sansRaisonnement, valide
   return { texte, modele: d.model };
 }
 
+/* ------------------------------------------- STATISTIQUES DE L'ATS MAISON */
+/* Ce que testent les recruteurs, en ANONYME : note, ids des compétences
+   repérées, expérience demandée, langue, source. Jamais le texte de l'offre,
+   jamais l'IP (elle ne sert qu'au limiteur, qui n'en garde que des dates).
+   Lecture : GET /stats avec « Authorization: Bearer <STATS_TOKEN> »
+   (secret Cloudflare) — cf. outils/stats-ats.mjs, `npm run stats`. */
+
+const MAX_STATS_PAR_MINUTE = 20;   // par IP ; ne touche PAS au quota OpenRouter
+const SOURCES = ["texte", "pdf", "redaction"];
+
+function statValide(c) {
+  const s = Number(c?.s);
+  if (!Number.isInteger(s) || s < 0 || s > 100) return null;
+  const ids = Array.isArray(c.c) ? c.c.filter((x) => typeof x === "string" && /^~?[a-z0-9_-]{1,24}$/.test(x)).slice(0, 50) : [];
+  const x = Array.isArray(c.x) && c.x.length === 2 && c.x.every((n) => Number.isInteger(n) && n >= 0 && n <= 30) ? c.x : 0;
+  return {
+    s, c: ids, x,
+    sport: c.sport ? 1 : 0,
+    l: c.l === "en" ? "en" : "fr",
+    src: SOURCES.includes(c.src) ? c.src : "texte",
+  };
+}
+
+export class Statistiques {
+  constructor(state) { this.state = state; }
+  async fetch(requete) {
+    const st = this.state.storage;
+    if (requete.method === "GET") {
+      const jours = Object.fromEntries(await st.list({ prefix: "j:" }));
+      return Response.json({ jours, recents: (await st.get("recents")) || [] });
+    }
+    const e = await requete.json();
+    const maintenant = new Date();
+    const cle = "j:" + maintenant.toISOString().slice(0, 10);
+    const j = (await st.get(cle)) || { n: 0, somme: 0, tranches: Array(10).fill(0), demandees: {}, manques: {}, sport: 0, langues: {}, sources: {} };
+    j.n++; j.somme += e.s;
+    j.tranches[Math.min(9, Math.floor(e.s / 10))]++;
+    for (const id of e.c) {
+      const nu = id.replace(/^~/, "");
+      j.demandees[nu] = (j.demandees[nu] || 0) + 1;
+      if (e.manques?.includes(nu)) j.manques[nu] = (j.manques[nu] || 0) + 1;
+    }
+    j.sport += e.sport;
+    j.langues[e.l] = (j.langues[e.l] || 0) + 1;
+    j.sources[e.src] = (j.sources[e.src] || 0) + 1;
+    await st.put(cle, j);
+    // Les 300 dernières analyses, datées à l'heure près (pas plus fin).
+    const recents = (await st.get("recents")) || [];
+    recents.push({ t: maintenant.toISOString().slice(0, 13) + "h", s: e.s, c: e.c, x: e.x, l: e.l, src: e.src });
+    await st.put("recents", recents.slice(-300));
+    return Response.json({ ok: true });
+  }
+}
+
+function statsObjet(env) { return env.STATS.get(env.STATS.idFromName("ats")); }
+
 export default {
   async fetch(requete, env) {
     const origine = requete.headers.get("Origin") || "";
+    const url = new URL(requete.url);
+
+    // Lecture des statistiques : réservée au porteur du jeton.
+    if (requete.method === "GET" && url.pathname === "/stats") {
+      const jeton = (requete.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "");
+      if (!env.STATS_TOKEN || !env.STATS || jeton !== env.STATS_TOKEN) return new Response("interdit", { status: 403 });
+      return statsObjet(env).fetch("https://stats/", { method: "GET" });
+    }
 
     if (requete.method === "OPTIONS") return new Response(null, { status: 204, headers: entetes(origine) });
     if (requete.method !== "POST") return reponse({ erreur: "méthode" }, 405, origine);
     if (!permise(origine)) return reponse({ erreur: "origine" }, 403, origine);
-    if (!env.OPENROUTER_API_KEY) return reponse({ erreur: "configuration" }, 500, origine);
-
-    const ip = requete.headers.get("CF-Connecting-IP") || "?";
-    if (!(await autorise(env, "ip:" + ip, 60_000, MAX_PAR_MINUTE))) return reponse({ erreur: "trop" }, 429, origine);
-    if (!(await autorise(env, "jour", 86_400_000, MAX_PAR_JOUR))) return reponse({ erreur: "quota" }, 429, origine);
 
     let corps;
     try { corps = await requete.json(); } catch { return reponse({ erreur: "json" }, 400, origine); }
+    const ip = requete.headers.get("CF-Connecting-IP") || "?";
+
+    // Une statistique : comptée à part, AVANT le plafond quotidien d'OpenRouter.
+    if (corps?.mode === "ats-stat") {
+      const e = statValide(corps);
+      if (!e || !env.STATS) return reponse({ erreur: "stat" }, 400, origine);
+      if (!(await autorise(env, "stat:" + ip, 60_000, MAX_STATS_PAR_MINUTE))) return reponse({ erreur: "trop" }, 429, origine);
+      // Les manques se déduisent du lexique côté navigateur ; ici, on garde
+      // seulement ceux que le client a pu marquer (ids présents dans `c`).
+      e.manques = Array.isArray(corps.manques) ? corps.manques.filter((id) => e.c.some((x) => x.replace(/^~/, "") === id)) : [];
+      await statsObjet(env).fetch("https://stats/", { method: "POST", body: JSON.stringify(e) });
+      return reponse({ ok: true }, 200, origine);
+    }
+
+    if (!env.OPENROUTER_API_KEY) return reponse({ erreur: "configuration" }, 500, origine);
+    if (!(await autorise(env, "ip:" + ip, 60_000, MAX_PAR_MINUTE))) return reponse({ erreur: "trop" }, 429, origine);
+    if (!(await autorise(env, "jour", 86_400_000, MAX_PAR_JOUR))) return reponse({ erreur: "quota" }, 429, origine);
+
     const demande = preparer(corps);
     if (!demande) return reponse({ erreur: "messages" }, 400, origine);
 

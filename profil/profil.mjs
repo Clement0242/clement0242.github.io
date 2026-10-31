@@ -365,6 +365,7 @@ export const projets = [
   "Client API Kinvent (public) : participants, protocoles, métriques de force et d'équilibre. https://github.com/Clement0242/Kinvent_api",
   "Extraction des statistiques FFBB (public) : scraper des feuilles de match officielles (NM1, LF2, Pro B). https://github.com/Clement0242/Scrap_NM1_LF2",
   "ATS maison (https://clement0242.github.io/ats/) : on colle une offre d'emploi, un petit algorithme de NLP/machine learning écrit par Clément (TF-IDF, similarité cosinus, score logistique, calculé dans le navigateur ; l'offre peut aussi être importée en PDF) la compare à son parcours et rend une note sur 100 avec ses points forts ET ses points faibles. Sur demande, une IA gratuite rédige un avis neutre à partir de ce résultat, ou met en forme une offre à partir de notes en vrac. C'est un outil à tester sur le site, pas une ligne du CV.",
+  "Test de détente (https://clement0242.github.io/detente/) : on saute téléphone plaqué contre la poitrine, l'accéléromètre mesure le temps de vol et en déduit la hauteur (h = g·t²/8), comparée à des repères (non sportifs, basketteurs pros, volleyeurs élite). Tout reste sur le téléphone. Outil à tester sur le site, pas une ligne du CV.",
   "Analyse des décélérations (recherche, R) : les phases de décélération, le versant le plus coûteux de la locomotion et le plus négligé dans le suivi de charge.",
 ];
 

@@ -114,6 +114,11 @@
         <noscript><p class="ats-sans">L'analyse a besoin de JavaScript. Le <a href="../cv/">CV</a>, lui, n'en a pas besoin.</p></noscript>
 
         <div class="ats-resultat" data-ats-resultat hidden tabindex="-1" aria-live="polite">
+          <p class="ats-impression">Clément Verdier — correspondance avec votre offre · <span data-ats-date></span> · clement0242.github.io/ats</p>
+          <p class="ats-partage-bandeau" data-ats-partage-bandeau hidden>
+            Résultat partagé : la note et les compétences repérées. L'offre elle-même ne voyage pas dans le lien.
+            <a href="./">Testez la vôtre →</a>
+          </p>
           <div class="ats-note">
             <p class="ats-chiffre"><b data-ats-score>0</b><span>/100</span></p>
             <div class="ats-verdict-bloc">
@@ -161,7 +166,10 @@
               Convaincu ? Écrivez-moi
             </a>
             <a class="bouton creux" href="../cv/">Voir le CV</a>
+            <button class="bouton creux" type="button" data-ats-partager><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg> Copier le lien du résultat</button>
+            <button class="bouton creux" type="button" data-ats-imprimer><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h10v6M7 19H5v-7h14v7h-2M7 15h10v6H7z"/></svg> PDF d'une page</button>
           </div>
+          <p class="ats-etat" data-ats-partage-etat aria-live="polite"></p>
         </div>
       </div>
     </div>
@@ -209,6 +217,7 @@
     </nav>
     <p class="pied-note">
       La note est calculée sur votre appareil, PDF compris. Seuls l'avis et la mise en forme par l'IA, sur demande, transmettent le texte à un modèle gratuit via OpenRouter.
+      Pour savoir quels postes s'y intéressent, le site compte anonymement chaque analyse (note, compétences repérées, langue) — jamais le texte de l'offre, jamais votre adresse IP.
     </p>
   </div>
 </footer>

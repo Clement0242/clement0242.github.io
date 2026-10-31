@@ -4,6 +4,8 @@ compatibility_date = "2026-09-01"
 
 # La clé OpenRouter n'est JAMAIS écrite ici (dépôt public) :
 #   npx wrangler secret put OPENROUTER_API_KEY
+# Idem pour le jeton de lecture des statistiques de l'ATS :
+#   npx wrangler secret put STATS_TOKEN
 workers_dev = true
 
 
@@ -12,6 +14,16 @@ workers_dev = true
 name = "COMPTEUR"
 class_name = "Compteur"
 
+# Statistiques anonymes de l'ATS maison (note, compétences repérées).
+# Lecture : GET /stats avec le secret STATS_TOKEN — `npm run stats`.
+[[durable_objects.bindings]]
+name = "STATS"
+class_name = "Statistiques"
+
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["Compteur"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["Statistiques"]

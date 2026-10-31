@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Combien sautez-vous ? — Clément Verdier</title>
+<meta name="description" content="Un test de détente verticale avec votre téléphone : l'accéléromètre mesure le temps de vol, la hauteur s'en déduit. Comparez-vous à des basketteurs pros. Rien n'est envoyé.">
+<meta name="author" content="Clément Verdier">
+<link rel="canonical" href="https://clement0242.github.io/detente/">
+<meta name="theme-color" content="#FAFAF7">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Combien sautez-vous ?">
+<meta property="og:description" content="Un test de détente avec votre téléphone : sautez, l'accéléromètre fait le reste. Comparez-vous à des basketteurs pros.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://clement0242.github.io/detente/">
+<meta property="og:image" content="https://clement0242.github.io/assets/img/apercu-fr.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Clément Verdier, ingénieur data · haute performance sportive">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="fr" href="https://clement0242.github.io/detente/">
+<link rel="alternate" hreflang="en" href="https://clement0242.github.io/en/detente/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className += " js";</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314171C'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial,sans-serif' font-weight='bold' font-size='16' fill='%23FAFAF7' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="evite" href="#contenu">Aller au contenu</a>
+
+<header class="barre">
+  <div class="barre-in">
+    <a class="sceau" href="../"><i>CV</i> Clément Verdier</a>
+    <nav class="liens" aria-label="Sections du site">
+      <a href="../#faire">Ce que je fais</a>
+      <a href="../#parcours">Parcours</a>
+      <a href="../#projets">Projets</a>
+      <a href="../#labo" aria-current="page">Labo</a>
+      <a href="../cv/">CV</a>
+    </nav>
+    <div class="langue">
+      <a href="./" aria-current="true" hreflang="fr">FR</a>
+      <a href="../en/detente/" hreflang="en">EN</a>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="ats-bandeau">
+    <div class="enveloppe">
+      <p class="etiq">Labo <span>à tester avec votre téléphone</span></p>
+      <h1>Combien <em>sautez-vous&nbsp;?</em></h1>
+      <p class="fonction">
+        À l'INSEP, je mesure des sauts sur des plateformes de force. Votre
+        téléphone n'en a pas, mais il a un
+        <b>accéléromètre</b> : sautez avec, il mesure votre temps de vol et en
+        tire votre hauteur. Puis comparez-vous à des basketteurs pros.
+      </p>
+      <p class="ou"><i aria-hidden="true"></i> Tout se passe sur votre téléphone : rien n'est envoyé ni enregistré.</p>
+    </div>
+  </section>
+
+  <section class="ats-section">
+    <div class="enveloppe">
+      <div class="detente" data-detente>
+
+        <ol class="detente-etapes">
+          <li><b>Plaquez le téléphone contre la poitrine</b>, bras croisés dessus. Les bras ne doivent pas aider.</li>
+          <li><b>Touchez « Commencer »</b>, attendez le « Sautez ! » (et la vibration).</li>
+          <li><b>Sautez une fois, le plus haut possible</b>, et retombez sur la pointe des pieds, jambes tendues.</li>
+        </ol>
+
+        <div class="detente-commandes">
+          <button class="bouton detente-go" type="button" data-detente-go>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            Commencer
+          </button>
+          <button class="ats-exemple" type="button" data-detente-exemple>Voir un saut d'exemple</button>
+        </div>
+        <p class="detente-message" data-detente-message aria-live="assertive"></p>
+        <p class="ats-petit">Sol stable, pas en chaussettes sur du parquet, et tenez bien le téléphone : on décline toute responsabilité pour les écrans.</p>
+
+        <noscript><p class="ats-sans">Le test a besoin de JavaScript (et d'un téléphone).</p></noscript>
+
+        <div class="detente-resultat" data-detente-resultat hidden>
+          <div class="ats-note">
+            <p class="ats-chiffre"><b data-detente-cm>0</b><span>cm</span></p>
+            <div>
+              <p class="ats-verdict" data-detente-verdict></p>
+              <p class="ats-tag" data-detente-vol></p>
+            </div>
+          </div>
+
+          <ul class="detente-echelle" data-detente-echelle></ul>
+          <ul class="detente-essais" data-detente-essais hidden></ul>
+
+          <figure class="detente-figure">
+            <svg class="detente-courbe" data-detente-courbe role="img" aria-label="Courbe d'accélération du saut"></svg>
+            <figcaption data-detente-legende></figcaption>
+          </figure>
+
+          <p class="ats-petit">Repères : ordres de grandeur publiés pour un saut avec contre-mouvement, mains sur la poitrine. Précision du téléphone : environ ± 2 cm (60 à 100 mesures par seconde, contre souvent 1 000 sur une plateforme de force).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comment">
+    <div class="enveloppe">
+      <p class="etiq">Sous le capot <span>de la physique de lycée et un peu de traitement du signal</span></p>
+      <div class="registre">
+        <article class="fait">
+          <h3>1. Écouter</h3>
+          <div><p>Le téléphone donne son accélération 60 à 100 fois par seconde, gravité comprise. Debout, il lit 1&nbsp;g ; pendant la poussée, plus de 2&nbsp;g.</p></div>
+        </article>
+        <article class="fait">
+          <h3>2. Trouver le vol</h3>
+          <div><p>En l'air, le téléphone est en chute libre : son accéléromètre lit presque 0&nbsp;g. Le décollage et l'atterrissage sont les deux passages sous un seuil bas, situés à la milliseconde près par interpolation entre deux mesures.</p></div>
+        </article>
+        <article class="fait">
+          <h3>3. En déduire la hauteur</h3>
+          <div>
+            <p>Monter puis redescendre prend un temps t ; la hauteur atteinte vaut h = g·t²/8. C'est la méthode des tapis de contact et de l'application My Jump. Les tremblements trop courts et les téléphones lancés (plus d'une seconde de vol) sont écartés.</p>
+            <div class="outils"><span>DeviceMotion</span><span>Traitement du signal</span><span>Interpolation</span><span>JavaScript</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-in">
+    <p class="pied-nom" style="margin:0">Clément Verdier</p>
+    <nav class="pied-liens" aria-label="Liens externes">
+      <a href="../">Accueil</a>
+      <a href="../ats/">Mon CV contre votre offre</a>
+      <a href="mailto:clement.verdier@laposte.net">Mail</a>
+      <a href="https://www.linkedin.com/in/cl%C3%A9ment-verdier-a542941b7">LinkedIn</a>
+      <a href="../cv/">CV</a>
+    </nav>
+    <p class="pied-note">Aucune mesure n'est envoyée ni conservée : tout reste sur votre téléphone.</p>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/detente.js" defer></script>
+</body>
+</html>

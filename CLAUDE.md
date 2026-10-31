@@ -22,6 +22,8 @@ Le README est le mode d'emploi détaillé : le lire avant toute modification non
 npm run generer        # régénère les blocs GEN des 4 pages + chat-worker/profil.js + assets/js/ats-profil.js
 npm run verifier       # échoue si une page générée n'est plus à jour — lancer avant chaque commit
 npm run tester-ats     # cas de référence de l'ATS maison (local, gratuit, instantané)
+npm run tester-detente # sauts synthétiques sur le moteur du test de détente (local)
+npm run stats          # ce que testent les recruteurs sur l'ATS (lit /stats du relais)
 npm run tester         # cas de référence de l'assistant (coûte 10-20 requêtes OpenRouter)
 npm run deployer       # generer → tester → wrangler deploy (relais de l'assistant)
 ```
@@ -50,7 +52,13 @@ Pas de serveur de dev : ouvrir les `.html` dans le navigateur suffit.
   `assets/js/ats-profil.js` (généré depuis `ats` dans `profil.mjs`).
   La note ne fait aucun appel réseau. Sur clic seulement, le relais rédige un
   avis neutre (`mode: "ats-avis"`) ou met en forme des notes (`"ats-redaction"`).
-  Ces outils restent des démos sur le site : ils ne vont pas dans le CV.
+  Lien partageable (#r=…, note + ids, jamais l'offre), PDF d'une page (@media
+  print), « Et si… ? » (ATS.noter avec un niveau modifié), statistiques
+  anonymes (`mode: "ats-stat"` → Durable Object `Statistiques`, lecture GET
+  /stats avec le secret STATS_TOKEN).
+- **Test de détente** (`detente/`, `en/detente/`) : `assets/js/detente.js`,
+  accéléromètre (DeviceMotion), temps de vol → h = g·t²/8. 100 % sur le téléphone.
+  Ces outils (« Labo ») restent des démos sur le site : ils ne vont pas dans le CV.
 
 ## Règles à ne pas casser
 
