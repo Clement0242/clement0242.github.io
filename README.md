@@ -47,6 +47,18 @@ mène nulle part.
 laisse voir un nom d'athlète, une date de naissance, une donnée médicale ou un
 identifiant. Flouter ou remplacer par des données factices si besoin.
 
+## Classer un projet par domaine (filtre Sport / RH / Data)
+
+Chaque carte porte `data-domaines` : `sport`, `rh`, `data`, séparés par une
+espace (`<article class="projet" data-domaines="sport data">`), à reporter dans
+`en/index.html`. La barre de filtre est construite par `site.js` et n'affiche
+que les domaines qui ont au moins un projet ; sans JavaScript, tout reste
+affiché. Le choix passe dans l'adresse, pratique à joindre à une candidature :
+
+- `https://clement0242.github.io/?projets=rh#projets`
+- `https://clement0242.github.io/?projets=sport#projets`
+- `https://clement0242.github.io/?projets=data#projets`
+
 ## Publier une modification
 
 ```bash

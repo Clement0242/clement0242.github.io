@@ -115,6 +115,72 @@
     vigieP.observe(grille);
   }
 
+  /* ================================================ 2 bis. FILTRE DES PROJETS */
+  /* Un recruteur RH n'a pas à traverser neuf projets de sport pour trouver le
+     sien. Chaque carte porte ses domaines (data-domaines="sport data") ; la
+     barre n'est construite qu'avec JS (sans script, tout reste affiché) et
+     ne propose que les domaines qui ont au moins un projet. Le choix va dans
+     l'adresse (?projets=rh) : un lien envoyé avec une candidature ouvre
+     directement la bonne sélection. */
+
+  if (grille) {
+    var en = document.documentElement.lang === "en";
+    var DOMAINES = [
+      ["tous", en ? "All" : "Tous"],
+      ["sport", en ? "Sport" : "Sport"],
+      ["rh", en ? "HR & people analytics" : "RH & people analytics"],
+      ["data", en ? "Data & AI" : "Data & IA"]
+    ];
+    var cartesF = Array.prototype.slice.call(grille.querySelectorAll(".projet[data-domaines]"));
+    var compte = function (d) {
+      return cartesF.filter(function (c) {
+        return d === "tous" || (" " + c.getAttribute("data-domaines") + " ").indexOf(" " + d + " ") > -1;
+      }).length;
+    };
+    var dispo = DOMAINES.filter(function (d) { return compte(d[0]) > 0; });
+
+    if (dispo.length > 2) {
+      var barreF = document.createElement("div");
+      barreF.className = "filtre-projets";
+      barreF.setAttribute("role", "group");
+      barreF.setAttribute("aria-label", en ? "Filter projects by field" : "Filtrer les projets par domaine");
+      var etat = document.createElement("p");
+      etat.className = "sr-only";
+      etat.setAttribute("aria-live", "polite");
+
+      var filtrer = function (d, ecrire) {
+        cartesF.forEach(function (c) {
+          var garde = d === "tous" || (" " + c.getAttribute("data-domaines") + " ").indexOf(" " + d + " ") > -1;
+          c.hidden = !garde;
+        });
+        Array.prototype.forEach.call(barreF.children, function (b) {
+          b.setAttribute("aria-pressed", String(b.getAttribute("data-d") === d));
+        });
+        etat.textContent = compte(d) + (en ? " projects shown" : " projets affichés");
+        if (ecrire && window.history && history.replaceState) {
+          var u = new URL(window.location.href);
+          if (d === "tous") u.searchParams.delete("projets"); else u.searchParams.set("projets", d);
+          history.replaceState(null, "", u.toString());
+        }
+      };
+
+      dispo.forEach(function (d) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("data-d", d[0]);
+        b.innerHTML = d[1] + " <span>" + compte(d[0]) + "</span>";
+        b.addEventListener("click", function () { filtrer(d[0], true); });
+        barreF.appendChild(b);
+      });
+      grille.parentNode.insertBefore(barreF, grille);
+      grille.parentNode.insertBefore(etat, grille);
+
+      var demande = new URLSearchParams(window.location.search).get("projets");
+      var connu = dispo.some(function (d) { return d[0] === demande; });
+      filtrer(connu ? demande : "tous", false);
+    }
+  }
+
   /* ============================================ 3. PROJECTEUR AU CURSEUR */
   /* La nappe lumineuse suit le pointeur sur la carte visée. Coupée sur les
      appareils sans pointeur fin : sur un écran tactile elle resterait figée
